@@ -1,0 +1,7 @@
+import styled from "styled-components";
+import CustomButton from "../../common/custom-button/custom-button.component";
+
+export const SignOut = styled(CustomButton)`
+	grid-column: 4 / span 4;
+	height: 40px;
+`;
