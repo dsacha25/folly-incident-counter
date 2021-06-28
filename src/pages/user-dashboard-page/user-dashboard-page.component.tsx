@@ -46,7 +46,7 @@ const UserDashboardPage = () => {
 					.delete()
 					.then(() => console.log("User successfully deleted"));
 
-				window.location.reload;
+				window.location.reload();
 			} catch (err) {
 				console.log("Unable to delete user: ", err.message);
 			}
