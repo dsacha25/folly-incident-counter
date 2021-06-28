@@ -1,10 +1,18 @@
 import { combineReducers } from "redux";
 import { userReducer } from "./user/user.reducer";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
+const persistConfig = {
+	key: "root",
+	storage,
+	whitelist: [""],
+};
 
 const rootReducer = combineReducers({
 	user: userReducer,
 });
 
-export default rootReducer;
+export default persistReducer(persistConfig, rootReducer);
 
 export type State = ReturnType<typeof rootReducer>;

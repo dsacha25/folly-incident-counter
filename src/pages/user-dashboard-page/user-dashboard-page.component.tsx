@@ -1,7 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./user-dashboard-page.styles.css";
+import {
+	DashboardMain,
+	AccessPanel,
+	MainFeed,
+} from "./user-dashboard-page.styles";
 import { PageMain } from "../page-styles/page-styles.styles";
+import CustomButton from "../../components/common/custom-button/custom-button.component";
 
 const UserDashboardPage = () => {
 	/*
@@ -27,17 +32,18 @@ const UserDashboardPage = () => {
 	 */
 	return (
 		<PageMain>
-			<div className="dashboard-main">
-				<div className="access-panel">
+			<DashboardMain className="dashboard-main">
+				<AccessPanel className="access-panel">
 					<h2> Access Panel</h2>
-					<button>Create New Incident</button>
-					<button>View Your Feed</button>
-					<button>Update Profile</button>
-				</div>
-				<div className="main-feed">
+
+					<CustomButton>Create New Incident</CustomButton>
+					<CustomButton>View Your Feed</CustomButton>
+					<CustomButton>Update Profile</CustomButton>
+				</AccessPanel>
+				<MainFeed className="main-feed">
 					<h1>Main User Page</h1>
-				</div>
-			</div>
+				</MainFeed>
+			</DashboardMain>
 		</PageMain>
 	);
 };

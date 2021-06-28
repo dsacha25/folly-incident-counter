@@ -31,7 +31,11 @@ function App() {
 		<AppContainer>
 			<Navbar />
 			<Switch>
-				<Route exact path="/" component={HomePage} />
+				<Route
+					exact
+					path="/"
+					render={() => (currentUser ? <UserDashboardPage /> : <HomePage />)}
+				/>
 				<Route
 					exact
 					path="/signup"
