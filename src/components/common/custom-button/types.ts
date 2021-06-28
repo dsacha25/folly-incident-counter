@@ -17,7 +17,10 @@ export interface StyleTypes {
 	minHeight?: string;
 }
 
-type Click = () => void | ((e: FormEvent<HTMLButtonElement>) => void);
+type Click = () =>
+	| void
+	| ((e: FormEvent<HTMLButtonElement>) => void)
+	| Promise<void>;
 
 export interface CustomButtonProps extends StyleTypes {
 	onClick?: Click;

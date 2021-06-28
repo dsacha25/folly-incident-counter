@@ -7,8 +7,16 @@ import {
 } from "./user-dashboard-page.styles";
 import { PageMain } from "../page-styles/page-styles.styles";
 import CustomButton from "../../components/common/custom-button/custom-button.component";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../redux/user/user.selector";
+import { State } from "../../redux/root-reducer";
+import { User } from "../../redux/user/types";
 
 const UserDashboardPage = () => {
+	const user = useSelector<State, User>((state) => selectCurrentUser(state));
+
+	console.log("USER: ", user);
+
 	/*
 	 * Main dashbaord for users
 	 *
@@ -30,6 +38,21 @@ const UserDashboardPage = () => {
 	 * * To find and add friends
 	 *
 	 */
+
+	const handleDeleteUser = async () => {
+		if (user) {
+			try {
+				await user
+					.delete()
+					.then(() => console.log("User successfully deleted"));
+
+				window.location.reload;
+			} catch (err) {
+				console.log("Unable to delete user: ", err.message);
+			}
+		}
+	};
+
 	return (
 		<PageMain>
 			<DashboardMain className="dashboard-main">
@@ -39,6 +62,9 @@ const UserDashboardPage = () => {
 					<CustomButton>Create New Incident</CustomButton>
 					<CustomButton>View Your Feed</CustomButton>
 					<CustomButton>Update Profile</CustomButton>
+					<CustomButton backgroundColor="red" onClick={handleDeleteUser}>
+						Delete Profile
+					</CustomButton>
 				</AccessPanel>
 				<MainFeed className="main-feed">
 					<h1>Main User Page</h1>
