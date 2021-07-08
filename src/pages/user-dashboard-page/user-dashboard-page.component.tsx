@@ -68,6 +68,13 @@ const UserDashboardPage = () => {
 				</AccessPanel>
 				<MainFeed className="main-feed">
 					<h1>Main User Page</h1>
+					<div>
+						<div>
+							<h4>Oops! You have no icidents!</h4>
+							<p>Create your first one</p>
+							<CustomButton>Create</CustomButton>
+						</div>
+					</div>
 				</MainFeed>
 			</DashboardMain>
 		</PageMain>

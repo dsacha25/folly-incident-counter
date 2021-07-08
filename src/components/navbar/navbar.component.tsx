@@ -15,10 +15,10 @@ const Navbar = () => {
 		<NavbarContainer>
 			<NavbarLogo onClick={goHome} />
 			<NavSearchBar>
-				<CustomInput height="20px" type="text" placeholder="Find Friends" />
+				{/* <CustomInput height="20px" type="text" placeholder="Find Friends" />
 				<CustomButton height="40px" fontSize="10px" margin="0px">
 					Search
-				</CustomButton>
+				</CustomButton> */}
 			</NavSearchBar>
 			<SignInOutButton />
 		</NavbarContainer>

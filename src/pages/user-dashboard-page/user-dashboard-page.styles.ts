@@ -20,7 +20,7 @@ export const AccessPanel = styled.div`
 	place-items: center flex-start;
 	width: 100%;
 	height: 100%;
-	background-color: lightblue;
+	/* background-color: lightblue; */
 	padding: 20px;
 `;
 

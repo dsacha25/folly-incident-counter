@@ -39,16 +39,12 @@ function App() {
 				<Route
 					exact
 					path="/signup"
-					render={() =>
-						currentUser ? <Redirect to="/profile" /> : <SignUpPage />
-					}
+					render={() => (currentUser ? <Redirect to="/" /> : <SignUpPage />)}
 				/>
 				<Route
 					exact
 					path="/signin"
-					render={() =>
-						currentUser ? <Redirect to="/profile" /> : <SignInPage />
-					}
+					render={() => (currentUser ? <Redirect to="/" /> : <SignInPage />)}
 				/>
 				<PrivateRoute exact path="/dashboard">
 					<UserDashboardPage />
