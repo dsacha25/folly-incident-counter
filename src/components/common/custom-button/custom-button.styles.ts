@@ -23,7 +23,7 @@ export const sizeWidthHeight = css`
 `;
 
 export const buttonFontBase = css<CustomButtonProps>`
-	font-family: mr-eaves-modern, sans-serif;
+	font-family: "Archivo", sans-serif;
 	text-transform: uppercase;
 	font-size: ${({ fontSize }) => (fontSize ? fontSize : "20px")};
 	font-weight: ${({ fontWeight }) => (fontWeight ? fontWeight : 600)};
