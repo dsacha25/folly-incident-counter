@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import {
 	DashboardMain,
@@ -7,13 +7,30 @@ import {
 } from "./user-dashboard-page.styles";
 import { PageMain } from "../page-styles/page-styles.styles";
 import CustomButton from "../../components/common/custom-button/custom-button.component";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/user.selector";
 import { State } from "../../redux/root-reducer";
 import { User } from "../../redux/user/types";
+import Incident from "../../utils/classes/incident/incident";
+import {
+	createIncidentStart,
+	fetchIncidentsStart,
+} from "../../redux/incidents/incidents.actions";
+import { selectIncidents } from "../../redux/incidents/incidents.selector";
+import { subDays } from "date-fns";
 
 const UserDashboardPage = () => {
+	const dispatch = useDispatch();
+
+	const createIncident = (incident: Incident) =>
+		dispatch(createIncidentStart(incident));
+
+	const fetchIncidents = () => dispatch(fetchIncidentsStart());
+
 	const user = useSelector<State, User>((state) => selectCurrentUser(state));
+	const incidents = useSelector<State, Array<Incident>>((state) =>
+		selectIncidents(state)
+	);
 
 	console.log("USER: ", user);
 
@@ -39,6 +56,12 @@ const UserDashboardPage = () => {
 	 *
 	 */
 
+	useEffect(() => {
+		fetchIncidents();
+
+		//eslint-disable-next-line
+	}, []);
+
 	const handleDeleteUser = async () => {
 		if (user) {
 			try {
@@ -51,6 +74,15 @@ const UserDashboardPage = () => {
 				console.log("Unable to delete user: ", err.message);
 			}
 		}
+	};
+
+	const uploadFakeIncidentForTesting = () => {
+		createIncident(
+			new Incident({
+				name: "Trip to Hospital",
+				incident_date: subDays(new Date(), 10),
+			})
+		);
 	};
 
 	return (
@@ -70,9 +102,22 @@ const UserDashboardPage = () => {
 					<h1>Main User Page</h1>
 					<div>
 						<div>
-							<h4>Oops! You have no icidents!</h4>
+							{incidents.length > 0 ? (
+								<div>
+									{incidents.map((incident, i) => (
+										<div key={i}>
+											<h2>{incident.name}</h2>
+											<h1>{incident.days_since}</h1>
+										</div>
+									))}
+								</div>
+							) : (
+								<h4>Oops! You have no icidents!</h4>
+							)}
 							<p>Create your first one</p>
-							<CustomButton>Create</CustomButton>
+							<CustomButton onClick={uploadFakeIncidentForTesting}>
+								Create
+							</CustomButton>
 						</div>
 					</div>
 				</MainFeed>

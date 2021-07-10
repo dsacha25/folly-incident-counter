@@ -10,6 +10,11 @@ export const selectCurrentUser = createSelector<State, UserState, User>(
 	(user) => user.user
 );
 
+export const selectUID = createSelector<State, User | null, string | null>(
+	[selectCurrentUser],
+	(user) => user && user.uid
+);
+
 export const selectUserError = createSelector<
 	State,
 	UserState,
