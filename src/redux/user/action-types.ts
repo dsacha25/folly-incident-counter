@@ -4,7 +4,7 @@ import { AdditionalData } from "./user.action";
 import UserTypes from "./user.types";
 
 type SuccessData = {
-	user: UserCredential;
+	user: User;
 	additionalData: AdditionalData;
 };
 

@@ -45,21 +45,21 @@ export function* createUserInFirebase({
 	| Promise<void> {
 	try {
 		const { user, additionalData } = payload;
-		const userData = user.user;
+		yield console.log("CREATE USER IN FIREBASE: ", user);
 
-		if (!userData) return;
+		if (!user) return;
 
-		const userRef: DocumentReference = yield firestore.doc(
-			`customers/${userData.uid}`
-		);
+		const userRef: DocumentReference = yield firestore.doc(`users/${user.uid}`);
 
 		const snapshot: DocumentSnapshot = yield userRef.get();
 
+		yield console.log("SNAPSHOT EXISTS: ", snapshot.exists);
+
 		if (!snapshot.exists) {
-			yield firestore.doc(`customers/${userData.uid}`).set({
+			yield userRef.set({
 				...additionalData,
-				displayName: userData.displayName,
-				email: userData.email,
+				displayName: user.displayName,
+				email: user.email,
 			});
 		}
 	} catch (err) {

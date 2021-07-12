@@ -15,6 +15,8 @@ const SignInOutButton = () => {
 	const signOut = () => dispatch(signOutUser());
 	const handleSignOut = () => {
 		if (currentUser) {
+			console.log("USER FOUND");
+
 			signOut();
 		} else {
 			history.push("/signin");

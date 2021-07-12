@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
+
 import {
 	DashboardMain,
 	AccessPanel,
@@ -18,6 +18,7 @@ import {
 } from "../../redux/incidents/incidents.actions";
 import { selectIncidents } from "../../redux/incidents/incidents.selector";
 import { subDays } from "date-fns";
+import Post from "../../components/posts/post/post.component";
 
 const UserDashboardPage = () => {
 	const dispatch = useDispatch();
@@ -77,12 +78,18 @@ const UserDashboardPage = () => {
 	};
 
 	const uploadFakeIncidentForTesting = () => {
-		createIncident(
-			new Incident({
-				name: "Trip to Hospital",
-				incident_date: subDays(new Date(), 10),
-			})
-		);
+		if (user) {
+			createIncident(
+				new Incident({
+					name: "Trip to Hospital",
+					incident_date: subDays(new Date(), 10),
+					user: {
+						username: user.displayName,
+						photoURL: user.photoURL,
+					},
+				})
+			);
+		}
 	};
 
 	return (
@@ -105,10 +112,7 @@ const UserDashboardPage = () => {
 							{incidents.length > 0 ? (
 								<div>
 									{incidents.map((incident, i) => (
-										<div key={i}>
-											<h2>{incident.name}</h2>
-											<h1>{incident.days_since}</h1>
-										</div>
+										<Post key={i} incident={incident} />
 									))}
 								</div>
 							) : (

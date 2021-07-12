@@ -8,6 +8,7 @@ export const NavbarContainer = styled.div`
 	height: 80px;
 	place-items: center flex-end;
 	grid-template-columns: auto 1fr 1fr;
+	z-index: 1;
 `;
 
 export const NavbarLogo = styled.div`

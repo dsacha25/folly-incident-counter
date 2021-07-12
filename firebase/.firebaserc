@@ -1,0 +1,5 @@
+{
+  "projects": {
+    "default": "folly-incident-app"
+  }
+}

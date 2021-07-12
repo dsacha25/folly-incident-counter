@@ -6,4 +6,14 @@ const theme = {
 	dark: "#0D0D0D",
 };
 
+export interface Theme {
+	theme: {
+		light: string;
+		lightAccent: string;
+		main: string;
+		darkAccent: string;
+		dark: string;
+	};
+}
+
 export default theme;

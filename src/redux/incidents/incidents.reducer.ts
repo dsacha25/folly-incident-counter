@@ -20,7 +20,7 @@ export const incidentReducer = (
 		case IncidentTypes.CREATE_INCIDENT_SUCCESS:
 			return {
 				...state,
-				incidents: state.incidents.push(action.payload),
+				incidents: [...state.incidents, action.payload],
 				error: null,
 			};
 		case IncidentTypes.FETCH_USER_INCIDENTS_START:
@@ -41,7 +41,7 @@ export const incidentReducer = (
 				...state,
 				incidents: [
 					...state.incidents.filter(
-						(incident) => incident.id !== action.payload.id
+						(incident) => incident.inc_uid !== action.payload.inc_uid
 					),
 					action.payload,
 				],
@@ -51,7 +51,7 @@ export const incidentReducer = (
 				...state,
 				incidents: [
 					...state.incidents.map((incident) =>
-						incident.id === action.payload.inc_uid
+						incident.inc_uid === action.payload.inc_uid
 							? incident.addComment(action.payload)
 							: incident
 					),
