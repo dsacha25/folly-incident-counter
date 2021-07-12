@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Theme } from "../../../theme";
-import PostProps from "./types";
 import PictureAvatar from "../../../assets/placeholders/profile-picture/picture-avatar.png";
 
 export const PostContainer = styled.div`

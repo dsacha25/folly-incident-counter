@@ -1,10 +1,6 @@
 import React, { useEffect } from "react";
 
-import {
-	DashboardMain,
-	AccessPanel,
-	MainFeed,
-} from "./user-dashboard-page.styles";
+import { DashboardMain, MainFeed } from "./user-dashboard-page.styles";
 import { PageMain } from "../page-styles/page-styles.styles";
 import CustomButton from "../../components/common/custom-button/custom-button.component";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +15,7 @@ import {
 import { selectIncidents } from "../../redux/incidents/incidents.selector";
 import { subDays } from "date-fns";
 import Post from "../../components/posts/post/post.component";
+import AccessPanel from "../../components/access-panel/access-panel.component";
 
 const UserDashboardPage = () => {
 	const dispatch = useDispatch();
@@ -95,18 +92,8 @@ const UserDashboardPage = () => {
 	return (
 		<PageMain>
 			<DashboardMain className="dashboard-main">
-				<AccessPanel className="access-panel">
-					<h2> Access Panel</h2>
-
-					<CustomButton>Create New Incident</CustomButton>
-					<CustomButton>View Your Feed</CustomButton>
-					<CustomButton>Update Profile</CustomButton>
-					<CustomButton backgroundColor="red" onClick={handleDeleteUser}>
-						Delete Profile
-					</CustomButton>
-				</AccessPanel>
+				<AccessPanel />
 				<MainFeed className="main-feed">
-					<h1>Main User Page</h1>
 					<div>
 						<div>
 							{incidents.length > 0 ? (

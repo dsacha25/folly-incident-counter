@@ -15,10 +15,11 @@ export interface StyleTypes {
 	maxHeight?: string;
 	minWidth?: string;
 	minHeight?: string;
+	active?: boolean;
 }
 
-type Click = () =>
-	| void
+type Click =
+	| (() => void)
 	| ((e: FormEvent<HTMLButtonElement>) => void)
 	| Promise<void>;
 
