@@ -13,7 +13,6 @@ const shrinkLabelStyles = css<CustomInputTypes>`
 const inputStyles = css<StyleTypes>`
 	background: ${({ theme }) => theme.light};
 	color: ${({ theme }) => theme.main};
-	font-size: ${({ fontSize }) => (fontSize ? fontSize : "26px")};
 	padding: ${({ padding }) => (padding ? padding : "10px 25px")};
 	display: block;
 	width: 100%;
@@ -29,6 +28,8 @@ const inputStyles = css<StyleTypes>`
 		font-size: 1.25rem;
 	}
 
+	font-family: "Archivo", sans-serif;
+	font-size: ${({ fontSize }) => (fontSize ? fontSize : "26px")};
 	font-style: italic;
 	font-weight: 400;
 	letter-spacing: 0.15rem;

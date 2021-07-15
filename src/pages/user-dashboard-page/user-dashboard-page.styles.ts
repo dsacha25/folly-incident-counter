@@ -13,6 +13,8 @@ export const DashboardMain = styled.div`
 		rgba(13, 13, 13, 0.5) 0%,
 		rgba(32, 46, 65, 0.5) 100%
 	);
+
+	overflow: hidden;
 `;
 
 export const AccessPanel = styled.div`
@@ -27,8 +29,19 @@ export const AccessPanel = styled.div`
 export const MainFeed = styled.div`
 	display: grid;
 	place-items: flex-start center;
+	grid-template-rows: auto 1fr;
 	width: 100%;
 	height: 100%;
 	max-height: 100vh;
-	overflow: auto;
+	overflow: hidden;
+`;
+
+export const FeedContainer = styled.div`
+	display: grid;
+	place-items: center;
+	width: 100%;
+	height: 100%;
+	max-height: 85vh;
+
+	overflow-y: scroll;
 `;

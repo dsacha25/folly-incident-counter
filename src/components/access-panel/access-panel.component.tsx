@@ -1,13 +1,18 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/user.selector";
 import CustomButton from "../common/custom-button/custom-button.component";
 import { AcceessPanelContainer, ProfilePicture } from "./access-panel.styles";
 import { State } from "../../redux/root-reducer";
 import { User } from "../../redux/user/types";
+import { setTabDashboard } from "../../redux/tabs/tabs.action";
 
 const AccessPanel = () => {
+	const dispatch = useDispatch();
+
 	const user = useSelector<State, User>((state) => selectCurrentUser(state));
+
+	const setTab = (index: number) => dispatch(setTabDashboard(index));
 
 	const [activeTab, setActiveTab] = useState<number>(0);
 
@@ -15,6 +20,7 @@ const AccessPanel = () => {
 		const { id } = e.currentTarget;
 
 		setActiveTab(parseInt(id));
+		setTab(parseInt(id));
 
 		// CONNECT TO REDUX
 	};

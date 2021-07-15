@@ -11,7 +11,6 @@ interface INCIDENT_PROPS {
 	inc_uid?: string;
 	name: string;
 	incident_date: Date | Timestamp;
-
 	comments?: Array<Comment>;
 	likes?: number;
 	likedByUser?: boolean;
