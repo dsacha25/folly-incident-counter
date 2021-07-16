@@ -1,4 +1,4 @@
-import { differenceInDays } from "date-fns";
+import { differenceInDays, format } from "date-fns";
 import { Comment } from "../../../redux/incidents/incidents.action-types";
 import { Timestamp } from "../../firebase/types";
 
@@ -46,9 +46,10 @@ class Incident {
 
 	resetDateToNow(): Incident {
 		this.incident_date = new Date();
+		this.days_since = 0;
 		this.wasReset = true;
 
-		return this;
+		return new Incident(this);
 	}
 
 	unlikePost(): number | undefined {
@@ -68,6 +69,14 @@ class Incident {
 	addComment(comment: Comment): Incident {
 		this.comments.push(comment);
 		return this;
+	}
+
+	getDateString(): string {
+		return this.incident_date.toDateString();
+	}
+
+	getFormattedDate(): string {
+		return format(this.incident_date, "MM/dd/yy");
 	}
 
 	getDataForFirebase(): INCIDENT_PROPS {

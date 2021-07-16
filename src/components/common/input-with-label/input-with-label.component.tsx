@@ -1,7 +1,7 @@
 import React, { FormEventHandler, useState } from "react";
 import { FieldError } from "react-hook-form";
+import { ButtonRight } from "../custom-button/custom-button-alternates.styles";
 import {
-	EditButton,
 	EditInputContainer,
 	InputWrapper,
 	Label,
@@ -27,7 +27,7 @@ const InputWithLabel = (
 			<Label>{props.label}</Label>
 			<EditInputContainer>
 				<LabeledInput disabled={disabled} placeholder={props.placeholder} />
-				<EditButton onClick={() => setDisabled(!disabled)}>Edit</EditButton>
+				<ButtonRight onClick={() => setDisabled(!disabled)}>Edit</ButtonRight>
 			</EditInputContainer>
 		</InputWrapper>
 	);

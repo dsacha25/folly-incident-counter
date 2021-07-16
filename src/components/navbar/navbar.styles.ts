@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import FollyLogoStmt from "../../assets/folly_brand/FollyLogoStatement.png";
+import CustomButton from "../common/custom-button/custom-button.component";
 
 export const NavbarContainer = styled.div`
 	display: grid;
@@ -23,12 +24,24 @@ export const NavbarLogo = styled.div`
 	cursor: pointer;
 `;
 
-export const NavSearchBar = styled.div`
+export const NavControls = styled.div`
 	display: grid;
 	place-items: center;
-	width: 300px;
-	grid-template-columns: 1fr auto;
+	width: 160px;
+	grid-template-columns: repeat(3, 45px);
 	padding: 0 20px;
+	gap: 15px;
 
 	grid-column: 3 / 3;
+`;
+
+export const NavButton = styled(CustomButton)`
+	border-radius: 2rem;
+	margin: 0;
+	padding: 0;
+
+	width: 100%;
+	height: 45px;
+
+	border-color: ${({ theme }) => theme.lightAccent};
 `;

@@ -19,6 +19,7 @@ import {
 import {
 	CreateIncidentStart,
 	FetchUserIncidentsStart,
+	ResetIncidentDateStart,
 } from "./incidents.action-types";
 import IncidentTypes from "./incidents.types";
 import { selectUID } from "../user/user.selector";
@@ -60,6 +61,8 @@ export function* onCreateNewIncident() {
 	yield takeLatest(IncidentTypes.CREATE_INCIDENT_START, createNewIncident);
 }
 
+// ==== FETCH INCIDENTS ==== //
+
 export function* fetchIncidents(): Generator<SelectEffect | PutEffect> | Query {
 	try {
 		// FETCH INCIDENTS FROM FIREBASE
@@ -91,6 +94,33 @@ export function* onFetchIncidents() {
 	yield takeLatest(IncidentTypes.FETCH_USER_INCIDENTS_START, fetchIncidents);
 }
 
+// ==== RESET INCIDENT ==== //
+
+export function* resetIncidentDate({
+	payload,
+}: ResetIncidentDateStart): Generator<
+	SelectEffect | PutEffect | Promise<void>
+> {
+	try {
+		const uid = yield select(selectUID);
+		const incident = payload;
+
+		yield firestore
+			.doc(`users/${uid}/incidents/${incident.inc_uid}`)
+			.update(incident.getDataForFirebase());
+	} catch (err) {
+		yield put(incidentError(err.message));
+	}
+}
+
+export function* onResetIncident() {
+	yield takeLatest(IncidentTypes.RESET_INCIDENT_DATE, resetIncidentDate);
+}
+
 export function* incidentSagas() {
-	yield all([call(onCreateNewIncident), call(onFetchIncidents)]);
+	yield all([
+		call(onCreateNewIncident),
+		call(onFetchIncidents),
+		call(onResetIncident),
+	]);
 }

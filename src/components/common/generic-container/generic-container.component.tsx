@@ -1,22 +1,21 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import {
 	ContainerHeader,
 	GenericContainerWrapper,
 	HeaderText,
 } from "./generic-container.styles";
-
-interface GenericContainerProps {
-	title: string;
-	children?: ReactNode;
-}
+import { GenericContainerProps } from "./types";
 
 const GenericContainer = (props: GenericContainerProps) => {
 	return (
-		<GenericContainerWrapper>
+		<GenericContainerWrapper
+			maxHeight={props.maxHeight}
+			maxWidth={props.maxWidth}
+		>
 			<ContainerHeader>
 				<HeaderText>{props.title}</HeaderText>
-				{props.children}
 			</ContainerHeader>
+			{props.children}
 		</GenericContainerWrapper>
 	);
 };

@@ -28,12 +28,7 @@ export interface FetchUserIncidentsSuccess {
 }
 
 export interface ResetIncidentDateStart {
-	type: IncidentTypes.RESET_INCIDENT_DATE_START;
-	payload: string;
-}
-
-export interface ResetIncidentDateSuccess {
-	type: IncidentTypes.RESET_INCIDENT_DATE_SUCCESS;
+	type: IncidentTypes.RESET_INCIDENT_DATE;
 	payload: Incident;
 }
 
@@ -73,7 +68,6 @@ type IncidentAction =
 	| FetchUserIncidentsStart
 	| FetchUserIncidentsSuccess
 	| ResetIncidentDateStart
-	| ResetIncidentDateSuccess
 	| DeleteIncidentStart
 	| DeleteIncidentSuccess
 	| PostComment

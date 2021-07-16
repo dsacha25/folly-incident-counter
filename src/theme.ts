@@ -4,6 +4,7 @@ const theme = {
 	main: "#325A8D",
 	darkAccent: "#202E41",
 	dark: "#0D0D0D",
+	warn: "#854040",
 };
 
 export interface Theme {
@@ -13,6 +14,7 @@ export interface Theme {
 		main: string;
 		darkAccent: string;
 		dark: string;
+		warn: string;
 	};
 }
 

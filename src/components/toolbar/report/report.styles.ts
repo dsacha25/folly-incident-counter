@@ -40,19 +40,3 @@ export const ReportInput = styled(CustomInput)`
 		background: none;
 	}
 `;
-
-export const ReportButton = styled(CustomButton)`
-	margin: 0;
-	border: none;
-	background-color: ${({ theme }) => theme.lightAccent};
-	border-top-left-radius: 0;
-	border-bottom-left-radius: 0;
-
-	:hover {
-		background-color: ${({ theme }) => theme.lightAccent}55;
-	}
-
-	:active {
-		transform: unset;
-	}
-`;

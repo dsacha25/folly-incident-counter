@@ -20,13 +20,8 @@ export const fetchIncidentsSuccess = (incidents: Array<Incident>) => ({
 	payload: incidents,
 });
 
-export const resetIncidentDateStart = (id: string) => ({
-	type: IncidentTypes.RESET_INCIDENT_DATE_START,
-	payload: id,
-});
-
-export const resetIncidentDateSuccess = (incident: Incident) => ({
-	type: IncidentTypes.RESET_INCIDENT_DATE_SUCCESS,
+export const resetIncidentDate = (incident: Incident) => ({
+	type: IncidentTypes.RESET_INCIDENT_DATE,
 	payload: incident,
 });
 

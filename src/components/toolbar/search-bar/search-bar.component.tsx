@@ -5,7 +5,8 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { FormData } from "../toolbar-item-container/types";
 import { BsSearch } from "react-icons/bs";
 import { useToolbarContext } from "../toolbar-main/toolbar-main.component";
-import { ReportButton, ReportInput } from "../report/report.styles";
+import { ReportInput } from "../report/report.styles";
+import { ButtonRight } from "../../common/custom-button/custom-button-alternates.styles";
 
 const SearchBar = () => {
 	const { index, setIndex } = useToolbarContext();
@@ -32,7 +33,7 @@ const SearchBar = () => {
 					{...register("query", { required: true })}
 					placeholder="Search Folly..."
 				/>
-				<ReportButton>Search</ReportButton>
+				<ButtonRight>Search</ButtonRight>
 			</SearchBarOpenContainer>
 		</ToolbarItemContainer>
 	);

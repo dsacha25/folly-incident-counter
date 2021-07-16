@@ -5,7 +5,7 @@ import CustomInput from "../custom-input/custom-input.component";
 export const InputWrapper = styled.div`
 	display: grid;
 	width: 100%;
-	height: 60px;
+	height: 50px;
 
 	place-items: center;
 
@@ -13,7 +13,7 @@ export const InputWrapper = styled.div`
 `;
 
 export const Label = styled.p`
-	font-size: 20px;
+	font-size: 25px;
 	font-weight: 300;
 	font-style: italic;
 	font-stretch: 100%;
@@ -42,21 +42,9 @@ export const EditInputContainer = styled.div`
 	border-radius: 15px;
 
 	overflow: hidden;
-`;
 
-export const EditButton = styled(CustomButton)`
-	height: 100%;
-	margin: 0;
-	border: none;
-	background-color: ${({ theme }) => theme.lightAccent};
-	border-radius: 0;
-
-	:hover {
-		background-color: ${({ theme }) => theme.lightAccent}55;
-	}
-
-	:active {
-		transform: unset;
+	button {
+		border-radius: 0;
 	}
 `;
 

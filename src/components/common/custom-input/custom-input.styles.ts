@@ -26,12 +26,14 @@ const inputStyles = css<StyleTypes>`
 	::placeholder {
 		color: ${({ theme }) => theme.darkAccent};
 		font-size: 1.25rem;
+		font-variation-settings: "wdth" 90;
 	}
 
 	font-family: "Archivo", sans-serif;
 	font-size: ${({ fontSize }) => (fontSize ? fontSize : "26px")};
 	font-style: italic;
 	font-weight: 400;
+
 	letter-spacing: 0.15rem;
 
 	cursor: pointer;

@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CustomButton from "../../common/custom-button/custom-button.component";
-import { ReportButton, ReportContainer, ReportInput } from "./report.styles";
+import { ReportContainer, ReportInput } from "./report.styles";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { createIncidentStart } from "../../../redux/incidents/incidents.actions";
 import Incident from "../../../utils/classes/incident/incident";
@@ -12,6 +12,7 @@ import ToolbarItemContainer from "../toolbar-item-container/toolbar-item-contain
 import { GoReport } from "react-icons/go";
 import { useToolbarContext } from "../toolbar-main/toolbar-main.component";
 import { ClickAwayListener } from "@material-ui/core";
+import { ButtonRight } from "../../common/custom-button/custom-button-alternates.styles";
 /*BsSearch
 GoReport
 IoPowerOutline
@@ -80,7 +81,7 @@ const Report = () => {
 					type="date"
 					{...register("incident_date", { required: true })}
 				/>
-				<ReportButton>Report</ReportButton>
+				<ButtonRight>Report</ButtonRight>
 			</ReportContainer>
 		</ToolbarItemContainer>
 	);

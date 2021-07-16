@@ -24,7 +24,7 @@ export const incidentReducer = (
 				error: null,
 			};
 		case IncidentTypes.FETCH_USER_INCIDENTS_START:
-		case IncidentTypes.RESET_INCIDENT_DATE_START:
+		case IncidentTypes.RESET_INCIDENT_DATE:
 			return {
 				...state,
 				error: null,
@@ -36,16 +36,7 @@ export const incidentReducer = (
 				incidents: action.payload,
 				error: null,
 			};
-		case IncidentTypes.RESET_INCIDENT_DATE_SUCCESS:
-			return {
-				...state,
-				incidents: [
-					...state.incidents.filter(
-						(incident) => incident.inc_uid !== action.payload.inc_uid
-					),
-					action.payload,
-				],
-			};
+
 		case IncidentTypes.POST_COMMENT:
 			return {
 				...state,
