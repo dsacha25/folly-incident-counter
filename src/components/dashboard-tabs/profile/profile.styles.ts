@@ -6,3 +6,5 @@ export const ProfileContainer = styled.div`
 	height: 100%;
 	place-items: center;
 `;
+
+export const InfoContainer = styled.div``;
