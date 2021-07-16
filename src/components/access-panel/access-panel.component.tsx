@@ -76,7 +76,7 @@ const AccessPanel = () => {
 				onClick={handleSelectTab}
 				active={activeTab === 3}
 			>
-				Delete Profile
+				Settings
 			</CustomButton>
 		</AcceessPanelContainer>
 	);

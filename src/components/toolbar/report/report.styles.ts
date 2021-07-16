@@ -1,17 +1,14 @@
 import styled from "styled-components";
-import CustomInput from "../common/custom-input/custom-input.component";
-import CustomButton from "../common/custom-button/custom-button.component";
+import CustomInput from "../../common/custom-input/custom-input.component";
+import CustomButton from "../../common/custom-button/custom-button.component";
 
-export const ReportContainer = styled.form`
+export const ReportContainer = styled.div`
 	display: grid;
 	grid-template-columns: 1fr auto 136px;
 	width: 100%;
 	max-width: 52vw;
 	height: 60px;
 	place-items: center;
-	border-radius: 25px;
-
-	border: 1px solid ${({ theme }) => theme.lightAccent};
 `;
 
 export const ReportInput = styled(CustomInput)`
@@ -47,11 +44,12 @@ export const ReportInput = styled(CustomInput)`
 export const ReportButton = styled(CustomButton)`
 	margin: 0;
 	border: none;
+	background-color: ${({ theme }) => theme.lightAccent};
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
 
 	:hover {
-		border-top-left-radius: 0;
-		border-bottom-left-radius: 0;
-		background-color: ${({ theme }) => theme.lightAccent};
+		background-color: ${({ theme }) => theme.lightAccent}55;
 	}
 
 	:active {

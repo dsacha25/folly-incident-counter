@@ -9,23 +9,13 @@ import { SignOut } from "./sign-in-out-button.styles";
 
 const SignInOutButton = () => {
 	const history = useHistory();
-	const dispatch = useDispatch();
 	const currentUser = useSelector<State>((state) => selectCurrentUser(state));
 
-	const signOut = () => dispatch(signOutUser());
-	const handleSignOut = () => {
-		if (currentUser) {
-			console.log("USER FOUND");
+	const handleSignOut = () => !currentUser && history.push("/signin");
 
-			signOut();
-		} else {
-			history.push("/signin");
-		}
-	};
-
-	return (
-		<SignOut onClick={handleSignOut}>Sign {currentUser ? "Out" : "In"}</SignOut>
-	);
+	return !currentUser ? (
+		<SignOut onClick={handleSignOut}>Sign In</SignOut>
+	) : null;
 };
 
 export default SignInOutButton;
