@@ -1,21 +1,15 @@
 import React, { useEffect } from "react";
 
-import {
-	DashboardMain,
-	FeedContainer,
-	MainFeed,
-} from "./user-dashboard-page.styles";
+import { DashboardMain, MainFeed } from "./user-dashboard-page.styles";
 import { PageMain } from "../page-styles/page-styles.styles";
 
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../redux/root-reducer";
-import Incident from "../../utils/classes/incident/incident";
-import { fetchIncidentsStart } from "../../redux/incidents/incidents.actions";
-import { selectIncidents } from "../../redux/incidents/incidents.selector";
 
-import Post from "../../components/posts/post/post.component";
+import { fetchIncidentsStart } from "../../redux/incidents/incidents.actions";
+
 import AccessPanel from "../../components/access-panel/access-panel.component";
-import Report from "../../components/toolbar/report/report.components";
+
 import { selectDashboardTab } from "../../redux/tabs/tabs.selector";
 
 import Profile from "../../components/dashboard-tabs/profile/profile.component";
@@ -28,10 +22,6 @@ const UserDashboardPage = () => {
 	const dispatch = useDispatch();
 
 	const fetchIncidents = () => dispatch(fetchIncidentsStart());
-
-	const incidents = useSelector<State, Array<Incident>>((state) =>
-		selectIncidents(state)
-	);
 
 	const tab = useSelector<State, number>((state) => selectDashboardTab(state));
 

@@ -48,7 +48,7 @@ const AccessPanel = () => {
 				margin="20px 0"
 				active={activeTab === 0}
 			>
-				Profile
+				Feed
 			</CustomButton>
 			<CustomButton
 				onClick={handleSelectTab}
@@ -57,7 +57,7 @@ const AccessPanel = () => {
 				margin="20px 0"
 				active={activeTab === 1}
 			>
-				Incidents
+				Profile
 			</CustomButton>
 			<CustomButton
 				onClick={handleSelectTab}
@@ -66,8 +66,9 @@ const AccessPanel = () => {
 				margin="20px 0"
 				active={activeTab === 2}
 			>
-				Feed
+				Incidents
 			</CustomButton>
+
 			<CustomButton
 				id="3"
 				minWidth="200px"

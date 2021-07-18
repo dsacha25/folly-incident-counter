@@ -1,4 +1,4 @@
-import React, { FormEventHandler, useState } from "react";
+import React, { FormEventHandler, useState, forwardRef } from "react";
 import { FieldError } from "react-hook-form";
 import { ButtonRight } from "../custom-button/custom-button-alternates.styles";
 import {
@@ -17,20 +17,20 @@ interface InputWithLabelProps {
 	placeholder?: string;
 }
 
-const InputWithLabel = (
-	props: InputWithLabelProps & React.ComponentPropsWithRef<"input">
-) => {
-	const [disabled, setDisabled] = useState<boolean>(false);
+const InputWithLabel = forwardRef(
+	(props: InputWithLabelProps & React.ComponentPropsWithRef<"input">) => {
+		const [disabled, setDisabled] = useState<boolean>(true);
 
-	return (
-		<InputWrapper>
-			<Label>{props.label}</Label>
-			<EditInputContainer>
-				<LabeledInput disabled={disabled} placeholder={props.placeholder} />
-				<ButtonRight onClick={() => setDisabled(!disabled)}>Edit</ButtonRight>
-			</EditInputContainer>
-		</InputWrapper>
-	);
-};
+		return (
+			<InputWrapper>
+				<Label>{props.label}</Label>
+				<EditInputContainer>
+					<LabeledInput disabled={disabled} {...props} />
+					<ButtonRight onClick={() => setDisabled(!disabled)}>Edit</ButtonRight>
+				</EditInputContainer>
+			</InputWrapper>
+		);
+	}
+);
 
 export default InputWithLabel;

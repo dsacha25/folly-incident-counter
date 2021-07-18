@@ -11,12 +11,6 @@ const CustomInput = forwardRef(
 	(props: CustomInputTypes & React.ComponentPropsWithRef<"input">) => (
 		<GroupContainer {...props}>
 			<FormInputComponent {...props} />
-
-			{props.label ? (
-				<FormInputLabel className={!!props.value ? "shrink" : ""}>
-					{props.label}
-				</FormInputLabel>
-			) : null}
 		</GroupContainer>
 	)
 );

@@ -2,12 +2,9 @@ import {
 	all,
 	call,
 	put,
-	CallEffect,
-	Effect,
 	PutEffect,
 	SagaReturnType,
 	takeLatest,
-	SimpleEffect,
 } from "redux-saga/effects";
 import {
 	auth,
@@ -15,7 +12,6 @@ import {
 	getCurrentUser,
 } from "../../utils/firebase/firebase.utils";
 import {
-	DocumentData,
 	DocumentReference,
 	DocumentSnapshot,
 	UserCredential,

@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 import { State } from "../root-reducer";
-import { FirebaseAuthError, User, UserError } from "./types";
+import { FirebaseAuthError, User } from "./types";
 import { UserState } from "./user.reducer";
 
 const selectUser = (state: State) => state.user;

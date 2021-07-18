@@ -1,10 +1,32 @@
 import React from "react";
-import { DashboardProps } from "../dashboard.types";
+import { useSelector } from "react-redux";
+import { DashboardProps } from "../types";
 import { FeedContainer } from "./feed.styles";
+import { State } from "../../../redux/root-reducer";
+import Incident from "../../../utils/classes/incident/incident";
+import { selectIncidents } from "../../../redux/incidents/incidents.selector";
+import Post from "../../posts/post/post.component";
 
 const Feed = (props: DashboardProps) => {
-	return props.tab === 2 ? (
-		<FeedContainer>Feed of Incidents from Friends and Shit</FeedContainer>
+	const incidents = useSelector<State, Array<Incident>>((state) =>
+		selectIncidents(state)
+	);
+
+	return props.tab === 0 ? (
+		<FeedContainer>
+			{incidents.length > 0 ? (
+				<>
+					{incidents.map((incident, i) => (
+						<Post key={i} incident={incident} />
+					))}
+				</>
+			) : (
+				<div>
+					<h4>Oops! You have no icidents!</h4>
+					<p>Create your first one</p>
+				</div>
+			)}
+		</FeedContainer>
 	) : null;
 };
 

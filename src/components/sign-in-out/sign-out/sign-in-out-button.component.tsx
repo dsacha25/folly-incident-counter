@@ -1,21 +1,19 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { State } from "../../../redux/root-reducer";
-import { signOutUser } from "../../../redux/user/user.action";
+import { User } from "../../../redux/user/types";
 import { selectCurrentUser } from "../../../redux/user/user.selector";
-import CustomButton from "../../common/custom-button/custom-button.component";
-import { SignOut } from "./sign-in-out-button.styles";
+import { SignIn } from "./sign-in-out-button.styles";
 
-const SignInOutButton = () => {
+const SignInButton = () => {
 	const history = useHistory();
-	const currentUser = useSelector<State>((state) => selectCurrentUser(state));
 
-	const handleSignOut = () => !currentUser && history.push("/signin");
+	const user = useSelector<State, User>((state) => selectCurrentUser(state));
 
-	return !currentUser ? (
-		<SignOut onClick={handleSignOut}>Sign In</SignOut>
+	return !user ? (
+		<SignIn onClick={() => history.push("/signin")}>Sign In</SignIn>
 	) : null;
 };
 
-export default SignInOutButton;
+export default SignInButton;

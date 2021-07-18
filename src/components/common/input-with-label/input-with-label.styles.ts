@@ -79,4 +79,8 @@ export const LabeledInput = styled(CustomInput)`
 	:active {
 		background: none;
 	}
+
+	:disabled {
+		color: ${({ theme }) => theme.main};
+	}
 `;

@@ -26,7 +26,7 @@ export const Data = styled.p<DataProp>`
 
 	justify-self: flex-end;
 
-	font-weight: ${({ important }) => (important ? 400 : 200)};
+	font-weight: ${({ important }) => (important ? 800 : 200)};
 	font-style: italic;
 	font-size: 28px;
 `;

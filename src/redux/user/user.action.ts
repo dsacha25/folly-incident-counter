@@ -1,9 +1,6 @@
-import { auth } from "../../utils/firebase/firebase.utils";
 import UserTypes from "./user.types";
-import { SagaReturnType } from "redux-saga/effects";
-import { UserCredential } from "../../utils/firebase/types";
+
 import { FirebaseAuthError, LogInInfo, User } from "./types";
-import { Dispatch } from "redux";
 
 export type EmailSignUpInfo = {
 	name: string;

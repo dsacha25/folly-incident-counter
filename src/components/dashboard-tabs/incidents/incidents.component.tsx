@@ -5,7 +5,7 @@ import { State } from "../../../redux/root-reducer";
 import Incident from "../../../utils/classes/incident/incident";
 import { selectIncidents } from "../../../redux/incidents/incidents.selector";
 import Post from "../../posts/post/post.component";
-import { DashboardProps } from "../dashboard.types";
+import { DashboardProps } from "../types";
 import IncidentEditor from "../../incident-editor/incident-editor.component";
 import GenericContainer from "../../common/generic-container/generic-container.component";
 
@@ -14,9 +14,9 @@ const Incidents = (props: DashboardProps) => {
 		selectIncidents(state)
 	);
 
-	return props.tab === 1 ? (
+	return props.tab === 2 ? (
 		<GenericContainer title="Your Incidents" maxHeight="80vh" maxWidth="51.6vw">
-			<IncidentsContainer>
+			<IncidentsContainer incidents={incidents}>
 				{incidents.length > 0 ? (
 					<>
 						{incidents.map((incident, i) => (

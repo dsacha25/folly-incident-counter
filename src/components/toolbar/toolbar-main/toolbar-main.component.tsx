@@ -20,10 +20,7 @@ const ToolbarContext = createContext<ToolbarState>(INITIAL_STATE);
 const ToolbarMain = () => {
 	const [index, setTab] = useState<number | null>(null);
 
-	const setIndex = (i: number | null) => {
-		console.log("INDEX: ", i);
-		return setTab(i);
-	};
+	const setIndex = (i: number | null) => setTab(i);
 
 	return (
 		<ToolbarContext.Provider value={{ index, setIndex }}>

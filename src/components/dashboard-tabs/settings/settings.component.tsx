@@ -5,7 +5,7 @@ import { User } from "../../../redux/user/types";
 import { useSelector } from "react-redux";
 import { selectCurrentUser } from "../../../redux/user/user.selector";
 import CustomButton from "../../common/custom-button/custom-button.component";
-import { DashboardProps } from "../dashboard.types";
+import { DashboardProps } from "../types";
 
 const Settings = (props: DashboardProps) => {
 	const user = useSelector<State, User>((state) => selectCurrentUser(state));

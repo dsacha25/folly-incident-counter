@@ -3,12 +3,8 @@ import {
 	call,
 	put,
 	select,
-	CallEffect,
-	Effect,
 	PutEffect,
-	SagaReturnType,
 	takeLatest,
-	SimpleEffect,
 	SelectEffect,
 } from "redux-saga/effects";
 import {
@@ -18,19 +14,12 @@ import {
 } from "./incidents.actions";
 import {
 	CreateIncidentStart,
-	FetchUserIncidentsStart,
 	ResetIncidentDateStart,
 } from "./incidents.action-types";
 import IncidentTypes from "./incidents.types";
 import { selectUID } from "../user/user.selector";
 import { firestore } from "../../utils/firebase/firebase.utils";
-import {
-	CollectionReference,
-	DocumentData,
-	QueryDocumentSnapshot,
-	QuerySnapshot,
-	Timestamp,
-} from "../../utils/firebase/types";
+import { QuerySnapshot } from "../../utils/firebase/types";
 import { Query } from "@testing-library/react";
 import Incident from "../../utils/classes/incident/incident";
 
@@ -70,7 +59,7 @@ export function* fetchIncidents(): Generator<SelectEffect | PutEffect> | Query {
 
 		const incidentsRef: QuerySnapshot = yield firestore
 			.collection(`users/${uid}/incidents`)
-			.orderBy("incident_date", "asc")
+			.orderBy("incident_date", "desc")
 			.get();
 
 		const incidents: Incident[] = yield incidentsRef.docs.map((doc) =>
