@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../../redux/root-reducer";
 import { User } from "../../../redux/user/types";
 import { selectCurrentUser } from "../../../redux/user/user.selector";
@@ -18,7 +18,10 @@ import {
 	ProfileContainer,
 	StatsContainer,
 } from "./profile.styles";
-import CustomInput from "../../common/custom-input/custom-input.component";
+
+import ImageUploader from "../../images/image-uploader/image-uploader.component";
+import { ImageType } from "../../../utils/classes/image/types";
+import { setProfilePicture } from "../../../redux/user/user.action";
 
 interface UpdateUserProps {
 	name: string | null;
@@ -26,6 +29,9 @@ interface UpdateUserProps {
 }
 
 const Profile = (props: DashboardProps) => {
+	const dispatch = useDispatch();
+	const setPicture = (image: ImageType) => dispatch(setProfilePicture(image));
+
 	const user = useSelector<State, User>((state) => selectCurrentUser(state));
 
 	const {
@@ -46,9 +52,13 @@ const Profile = (props: DashboardProps) => {
 		}
 	}, [user, setValue]);
 
+	const handleProfilePicture = (image: ImageType) => {
+		setPicture(image);
+	};
+
 	return props.tab === 1 ? (
 		<ProfileContainer>
-			<GenericContainer title="Info">
+			<GenericContainer title="Info" minHeight="400px">
 				<InfoContainer>
 					<InputWithLabel
 						{...register("name", {
@@ -65,7 +75,11 @@ const Profile = (props: DashboardProps) => {
 					/>
 					<InputWrapper>
 						<Label>Profile Picture:</Label>
-						<ProfilePicture photoURL={""} />
+
+						<ImageUploader
+							getFinalImage={handleProfilePicture}
+							url={user?.photoURL}
+						/>
 					</InputWrapper>
 				</InfoContainer>
 			</GenericContainer>

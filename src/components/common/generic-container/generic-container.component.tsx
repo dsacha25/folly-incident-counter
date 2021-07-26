@@ -9,8 +9,10 @@ import { GenericContainerProps } from "./types";
 const GenericContainer = (props: GenericContainerProps) => {
 	return (
 		<GenericContainerWrapper
-			maxHeight={props.maxHeight}
 			maxWidth={props.maxWidth}
+			maxHeight={props.maxHeight}
+			minWidth={props.minWidth}
+			minHeight={props.minHeight}
 		>
 			<ContainerHeader>
 				<HeaderText>{props.title}</HeaderText>

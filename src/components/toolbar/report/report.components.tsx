@@ -52,6 +52,7 @@ const Report = () => {
 					user: {
 						username: user.displayName,
 						photoURL: user.photoURL,
+						user_uid: user.uid,
 					},
 				})
 			);

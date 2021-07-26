@@ -26,7 +26,7 @@ const SignOut = () => {
 			icon={<IoPowerOutline size="40px" />}
 		>
 			<SignOutOpenContainer>
-				<SignOutButton onClick={handleSignOut}>Sign Out?</SignOutButton>
+				<SignOutButton onClick={handleSignOut}>Sign Out</SignOutButton>
 			</SignOutOpenContainer>
 		</ToolbarItemContainer>
 	);

@@ -15,7 +15,13 @@ const onNewIncident = require("./incidents/onNewIncident");
 const onIncidentDeleted = require("./incidents/onIncidentDeleted");
 const onIncidentUpdated = require("./incidents/onIncidentUpdated");
 
+// ==== USERS ==== //
+const updateUserPhotoReferences = require("./user/updateUserPhotoReferences");
+
 // ==== EXPORTS ==== //
 exports.onNewIncident = onNewIncident.onNewIncident;
 exports.onIncidentDeleted = onIncidentDeleted.onIncidentDeleted;
 exports.onIncidentUpdated = onIncidentUpdated.onIncidentUpdated;
+
+exports.updateUserPhotoReferences =
+	updateUserPhotoReferences.updateUserPhotoReferences;

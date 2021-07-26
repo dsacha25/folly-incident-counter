@@ -1,4 +1,5 @@
 import React from "react";
+import Avatar from "../../common/avatar/avatar.component";
 import PostBody from "../post-body/post-body.component";
 import PostControls from "../post-controls/post-controls.component";
 import {
@@ -12,10 +13,10 @@ import PostProps from "./types";
 const Post = (props: PostProps) => {
 	return (
 		<PostContainer>
-			<PostHeader>
-				<HeaderUserPhoto photoURL={props.incident?.user.photoURL} />
-				<HeaderUserName>{props.incident?.user.username}</HeaderUserName>
-			</PostHeader>
+			<Avatar
+				photoURL={props.incident?.user.photoURL}
+				username={props.incident?.user.username}
+			/>
 			<PostBody
 				name={props.incident?.name}
 				daysSince={props.incident?.days_since}

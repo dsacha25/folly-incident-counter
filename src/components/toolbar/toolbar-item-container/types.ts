@@ -1,11 +1,11 @@
 import { ReactNode } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 
-interface SearchData {
+export interface SearchData {
 	query: string;
 }
 
-interface ReportData {
+export interface ReportData {
 	name: string;
 	incident_date: Date;
 }

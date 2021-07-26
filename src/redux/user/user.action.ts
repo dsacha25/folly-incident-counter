@@ -1,6 +1,13 @@
 import UserTypes from "./user.types";
 
-import { FirebaseAuthError, LogInInfo, User } from "./types";
+import {
+	FirebaseAuthError,
+	LogInInfo,
+	PaginationType,
+	User,
+	UserQueryResult,
+} from "./types";
+import { ImageType } from "../../utils/classes/image/types";
 
 export type EmailSignUpInfo = {
 	name: string;
@@ -65,4 +72,30 @@ export const checkUserSession = () => ({
 // SIGN OUT
 export const signOutUser = () => ({
 	type: UserTypes.SIGN_OUT_USER,
+});
+
+// PROFILE PICTURE
+export const setProfilePicture = (image: ImageType) => ({
+	type: UserTypes.SET_PROFILE_PICTURE,
+	payload: image,
+});
+
+// SEARCH USERS
+export const searchUsersStart = (query: string) => ({
+	type: UserTypes.SEARCH_USERS_START,
+	payload: query,
+});
+
+export const searchUsersSuccess = (users: UserQueryResult[]) => ({
+	type: UserTypes.SEARCH_USERS_SUCCESS,
+	payload: users,
+});
+
+export const clearUserSearch = () => ({
+	type: UserTypes.CLEAR_USER_SEARCH,
+});
+
+export const setSearchPagination = (pagination: PaginationType) => ({
+	type: UserTypes.SET_SEARCH_PAGINATION,
+	payload: pagination,
 });

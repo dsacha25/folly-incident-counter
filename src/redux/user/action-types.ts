@@ -1,5 +1,13 @@
-import { UserCredential } from "../../utils/firebase/types";
-import { FirebaseAuthError, LogInInfo, SignUpData, User } from "./types";
+import { ImageType } from "../../utils/classes/image/types";
+
+import {
+	FirebaseAuthError,
+	LogInInfo,
+	PaginationType,
+	SignUpData,
+	User,
+	UserQueryResult,
+} from "./types";
 import { AdditionalData } from "./user.action";
 import UserTypes from "./user.types";
 
@@ -47,6 +55,30 @@ export interface SignOutUserAction {
 	type: UserTypes.SIGN_OUT_USER;
 }
 
+export interface SetProfilePictureAction {
+	type: UserTypes.SET_PROFILE_PICTURE;
+	payload: ImageType;
+}
+
+export interface SearchUsersStartAction {
+	type: UserTypes.SEARCH_USERS_START;
+	payload: string;
+}
+
+export interface SearchUsersSuccessAction {
+	type: UserTypes.SEARCH_USERS_SUCCESS;
+	payload: UserQueryResult[];
+}
+
+export interface ClearUserSearchAction {
+	type: UserTypes.CLEAR_USER_SEARCH;
+}
+
+export interface SetSearchPagination {
+	type: UserTypes.SET_SEARCH_PAGINATION;
+	payload: PaginationType;
+}
+
 type UserAction =
 	| SignUpStartAction
 	| SignUpSuccessAction
@@ -55,6 +87,11 @@ type UserAction =
 	| SignOutUserAction
 	| SignInStartAction
 	| SignInSuccessAction
-	| SignInFailureAction;
+	| SignInFailureAction
+	| SetProfilePictureAction
+	| SearchUsersStartAction
+	| SearchUsersSuccessAction
+	| ClearUserSearchAction
+	| SetSearchPagination;
 
 export default UserAction;

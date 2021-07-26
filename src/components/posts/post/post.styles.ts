@@ -9,7 +9,7 @@ export const PostContainer = styled.div`
 
 	margin: 30px;
 
-	grid-template-rows: 10.5% 1fr 12.75%;
+	grid-template-rows: auto 1fr auto;
 	place-items: center;
 
 	border: 1px solid ${({ theme }: Theme) => theme.lightAccent};
@@ -60,6 +60,7 @@ export const PostFooter = styled.div`
 	place-items: center;
 	width: 100%;
 	height: 100%;
+	min-height: 60px;
 
 	background-color: ${({ theme }: Theme) => theme.darkAccent};
 `;

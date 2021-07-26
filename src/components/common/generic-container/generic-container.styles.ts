@@ -12,9 +12,12 @@ export const GenericContainerWrapper = styled.div<GenericContainerStyleProps>`
 	min-width: 770px;
 	max-width: ${({ maxWidth }) => (maxWidth ? maxWidth : "40vw")};
 	max-height: ${({ maxHeight }) => (maxHeight ? maxHeight : "40vh")};
+	min-width: ${({ minWidth }) => (minWidth ? minWidth : "auto")};
+	min-height: ${({ minHeight }) => (minHeight ? minHeight : "auto")};
 	margin-top: 10px;
 	overflow: hidden;
 	${BorderStyles};
+	border-radius: 36px;
 `;
 
 export const ContainerHeader = styled.div`

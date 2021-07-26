@@ -1,4 +1,5 @@
 import { auth } from "../../utils/firebase/firebase.utils";
+import { DocumentReference } from "../../utils/firebase/types";
 
 export type User = typeof auth.currentUser;
 
@@ -20,3 +21,16 @@ export type LogInInfo = {
 	email: string;
 	password: string;
 };
+
+export interface UserQueryResult {
+	username: string;
+	user_uid: string;
+	photoURL: string;
+}
+
+export interface PaginationRefType {
+	start: DocumentReference | null;
+	end: DocumentReference | null;
+}
+
+export type PaginationType = PaginationRefType | null;

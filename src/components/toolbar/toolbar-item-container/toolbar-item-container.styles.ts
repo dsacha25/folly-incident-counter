@@ -25,7 +25,7 @@ export const ToolbarItemWrapper = styled.form<ToolbarContainerProps>`
 	border-radius: 25px;
 	grid-template-columns: 1fr;
 
-	overflow: hidden;
+	position: relative;
 
 	${({ open }) => (open ? openStyles : closedStyles)}
 `;

@@ -8,6 +8,8 @@ export const ProfileContainer = styled.div`
 	max-width: 40vw;
 
 	padding-top: 40px;
+	grid-template-rows: 40vh 1fr;
+	gap: 40px;
 `;
 
 export const InfoContainer = styled.div`

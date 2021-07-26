@@ -24,7 +24,7 @@ class Image {
 		this.rawImage = props?.rawImage || {
 			image: "",
 			name: "",
-			upload: {},
+			upload: new Blob(),
 		};
 	}
 
@@ -32,7 +32,7 @@ class Image {
 		this.isPlaceholder = false;
 		this.url = url;
 		this.pathName = path;
-		this.rawImage = { image: "", name: "", upload: {} };
+		this.rawImage = { image: "", name: "", upload: new Blob() };
 	}
 
 	setRawPhoto(image: ImageType) {

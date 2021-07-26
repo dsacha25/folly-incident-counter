@@ -5,14 +5,14 @@ export const ImageUploadContainer = styled.div`
 	display: grid;
 	place-items: center;
 
-	width: 220px;
-	height: 220px;
+	width: 180px;
+	height: 180px;
 	margin: 20px 0;
 	padding: 0;
 	position: relative;
 	transition: all 1s ease;
-	border: 4px solid #8a8b9d;
-	background-color: #8a8b9de2;
+	border: 1px solid ${({ theme }) => theme.lightAccent};
+	background-color: ${({ theme }) => theme.darkAccent}e2;
 	border-radius: 30px;
 	overflow: hidden;
 `;
@@ -59,7 +59,7 @@ export const PhotoButton = styled(CustomButton)<PhotoButtonProps>`
 	height: 40px;
 	color: white;
 	border-color: white;
-	border-width: 4px;
+	border-width: 1px;
 	margin: 0;
 	z-index: 3;
 
@@ -67,7 +67,7 @@ export const PhotoButton = styled(CustomButton)<PhotoButtonProps>`
 `;
 
 export const HiddenInput = styled.input`
-	width: 100%;
+	display: none;
 `;
 
 export const UploadErrorMessage = styled.p`

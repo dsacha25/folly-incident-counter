@@ -1,15 +1,24 @@
 import UserTypes from "./user.types";
 import UserAction from "./action-types";
-import { FirebaseAuthError, User } from "./types";
+import {
+	FirebaseAuthError,
+	PaginationType,
+	User,
+	UserQueryResult,
+} from "./types";
 
 export type UserState = {
 	user: User | null;
 	error: FirebaseAuthError | null;
+	usersQuery: UserQueryResult[];
+	paginationRef: PaginationType;
 };
 
 const INITIAL_STATE = {
 	user: null,
 	error: null,
+	usersQuery: [],
+	paginationRef: null,
 };
 
 export const userReducer = (
@@ -56,6 +65,24 @@ export const userReducer = (
 			return {
 				...state,
 				error: null,
+			};
+
+		case UserTypes.SEARCH_USERS_SUCCESS:
+			return {
+				...state,
+				usersQuery: action.payload,
+			};
+
+		case UserTypes.CLEAR_USER_SEARCH:
+			return {
+				...state,
+				usersQuery: [],
+			};
+
+		case UserTypes.SET_SEARCH_PAGINATION:
+			return {
+				...state,
+				paginationRef: action.payload,
 			};
 
 		default:

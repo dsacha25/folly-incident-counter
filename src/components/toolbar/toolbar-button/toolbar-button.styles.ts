@@ -6,6 +6,7 @@ export const ToolbarIconButton = styled.button`
 	width: 100%;
 	height: 100%;
 
+	border-radius: 25px;
 	outline: none;
 	border: none;
 	background: none;

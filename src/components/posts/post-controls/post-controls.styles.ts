@@ -8,6 +8,7 @@ export const PostControlsContainer = styled.div`
 	place-items: center;
 	width: 100%;
 	height: 100%;
+	min-height: 60px;
 
 	background-color: ${({ theme }) => theme.darkAccent};
 `;

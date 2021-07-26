@@ -4,10 +4,10 @@ import CustomInput from "../custom-input/custom-input.component";
 
 export const InputWrapper = styled.div`
 	display: grid;
-	width: 100%;
+	width: 98%;
 	height: 50px;
 
-	place-items: center;
+	place-items: center flex-end;
 
 	grid-template-columns: auto 1fr;
 `;

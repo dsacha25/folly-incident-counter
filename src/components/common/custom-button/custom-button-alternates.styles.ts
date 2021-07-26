@@ -7,6 +7,8 @@ export const ButtonRight = styled(CustomButton)`
 	height: 100%;
 	background-color: ${({ theme }) => theme.lightAccent};
 	border-radius: 0px;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
 
 	:hover {
 		background-color: ${({ theme }) => theme.lightAccent}55;

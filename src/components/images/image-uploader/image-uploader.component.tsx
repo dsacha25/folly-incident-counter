@@ -1,71 +1,35 @@
 import React, { FormEvent, useState, useRef } from "react";
-import Cropper from "react-easy-crop";
-import { Area, Point } from "react-easy-crop/types";
 import Image from "../../../utils/classes/image/image";
 import { ImageType } from "../../../utils/classes/image/types";
+import { ImageUploaderProps } from "../types";
+import UploadAndCrop from "../upload-and-crop/upload-and-crop.component";
 
 import {
 	HiddenInput,
 	HoverUploadControls,
 	ImageUploadContainer,
 	PhotoButton,
-	PhotoDisplay,
 	UploadErrorMessage,
 } from "./image-uploader.styles";
 
-const ImageUploader = () => {
+const ImageUploader = (props: ImageUploaderProps) => {
 	const [hover, setHover] = useState<boolean>(false);
 	const [inputImg, setInputImg] = useState<ImageType | null>(null);
-	const [cropImage, setCropImage] = useState<ImageType | null>(null);
 	const [preCropFile, setPreCropFile] = useState<ImageType | null>(null);
 	const [wasCropped, setWasCropped] = useState(false);
-	const [crop, setCrop] = useState<Point>({ x: 0, y: 0 });
-
-	const [url, setUrl] = useState("");
 
 	const [inputError, setInputError] = useState<string | null>(null);
-	// const [disabled, setDisabled] = useState<boolean>(false);
 
-	const inputRef = useRef(null);
-
-	// CROP
-	const handleCrop = () => {
-		setInputImg(null);
-		// handleDefaultPhoto(cropImage);
-		if (cropImage) setUrl(cropImage.image);
-
-		// if (!disableForm) return;
-		// disableForm(false);
-	};
+	const inputRef = useRef<HTMLInputElement>(null);
 
 	const handleUpdateCrop = () => {
 		setInputImg(preCropFile);
-		// if (!disableForm) return;
-		// disableForm(true);
-	};
-
-	const onCropComplete = async (
-		croppedPixels: Area,
-		croppedAreaPixels: Area
-	) => {
-		if (inputImg) {
-			const img = await new Image().setCroppedImage(
-				inputImg,
-				croppedAreaPixels
-			);
-
-			if (img) {
-				setCropImage(img);
-			}
-		}
-
-		setWasCropped(true);
 	};
 
 	// UPLOAD
 	const handleStartUpload = () => {
 		if (inputRef) {
-			// inputRef.current?.click();
+			inputRef.current?.click();
 		}
 	};
 
@@ -76,14 +40,11 @@ const ImageUploader = () => {
 
 		if (files.length > 1) {
 			setInputError("*1 photo maximun");
-			// inputRef.current.value = null;
+
 			setTimeout(() => {
 				setInputError(null);
-
-				// disableForm(false);
 			}, 3000);
 		} else if (files.length === 1) {
-			// const photo = await getBase64(files[0]);
 			const img = await new Image().getRawImageUrl(files[0]);
 
 			setPreCropFile({ image: img, upload: files[0], name: files[0].name });
@@ -93,28 +54,25 @@ const ImageUploader = () => {
 		}
 	};
 
+	const handleImage = (image: ImageType) => {
+		setInputImg(null);
+		console.log("CROPPED IMAGE: ", image);
+		setWasCropped(true);
+		props.getFinalImage(image);
+	};
+
 	return (
 		<ImageUploadContainer
 			onMouseEnter={() => setHover(true)}
 			onMouseLeave={() => setHover(false)}
 		>
-			{inputImg ? (
-				<>
-					<Cropper
-						image={inputImg.image}
-						onCropComplete={onCropComplete}
-						onCropChange={setCrop}
-						crop={crop}
-						zoom={1}
-						aspect={1}
-					/>
-					<PhotoButton type="button" onClick={handleCrop} error={inputError}>
-						Crop
-					</PhotoButton>
-				</>
-			) : (
-				<PhotoDisplay url={url} />
-			)}
+			<UploadAndCrop
+				currentImage={props.url}
+				inputImage={inputImg}
+				getImage={handleImage}
+				inputError={inputError}
+			/>
+
 			<HoverUploadControls hover={hover && !inputImg}>
 				{wasCropped && (
 					<PhotoButton
@@ -126,17 +84,21 @@ const ImageUploader = () => {
 					</PhotoButton>
 				)}
 				<HiddenInput
+					ref={inputRef}
 					type="file"
-					multiple
 					accept="image/*"
 					aria-label="image-input"
 					onChange={handleUploadChange}
+				/>
+				<PhotoButton
+					type="button"
+					onClick={handleStartUpload}
+					error={inputError}
 				>
 					Upload
-				</HiddenInput>
+				</PhotoButton>
 			</HoverUploadControls>
 			{inputError && <UploadErrorMessage>{inputError}</UploadErrorMessage>}
-			{/* <button hidden onClick={handleClearPhoto} type="button" ref={ref} /> */}
 		</ImageUploadContainer>
 	);
 };

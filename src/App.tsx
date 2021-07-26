@@ -14,6 +14,7 @@ import { checkUserSession } from "./redux/user/user.action";
 import { selectCurrentUser } from "./redux/user/user.selector";
 import { State } from "./redux/root-reducer";
 import PrivateRoute from "./components/common/private-route/private-route.component";
+import PublicProfilePage from "./pages/public-profile-page/public-profile-page.component";
 
 function App() {
 	const dispatch = useDispatch();
@@ -49,8 +50,8 @@ function App() {
 				<PrivateRoute exact path="/dashboard">
 					<UserDashboardPage />
 				</PrivateRoute>
-				<PrivateRoute exact path="/profile">
-					<UserProfilePage />
+				<PrivateRoute exact path="/profile/:uid">
+					<PublicProfilePage />
 				</PrivateRoute>
 			</Switch>
 		</AppContainer>

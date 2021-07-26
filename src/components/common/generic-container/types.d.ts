@@ -3,11 +3,13 @@ import { ReactNode } from "react";
 export interface GenericContainerProps {
 	maxHeight?: string;
 	maxWidth?: string;
+	minWidth?: string;
+	minHeight?: string;
 	title: string;
 	children?: ReactNode;
 }
 
-export interface GenericContainerStyleProps {
-	maxHeight?: string;
-	maxWidth?: string;
-}
+export type GenericContainerStyleProps = Omit<
+	GenericContainerProps,
+	"title" | "children"
+>;

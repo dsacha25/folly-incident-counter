@@ -10,8 +10,6 @@ const PrivateRoute = (props: RouteProps) => {
 		selectCurrentUser(state)
 	);
 
-	console.log("FUCK: ", currentUser);
-
 	return (
 		<Route
 			exact={props.exact}

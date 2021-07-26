@@ -4,6 +4,7 @@ import { Timestamp } from "../../firebase/types";
 
 interface IncidentUserInfo {
 	username?: string | null;
+	user_uid?: string | null;
 	photoURL?: string | null;
 }
 

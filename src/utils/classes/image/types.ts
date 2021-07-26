@@ -7,6 +7,6 @@ export interface Crop {
 
 export interface ImageType {
 	image: string;
-	upload: object;
+	upload: Blob | Uint8Array | ArrayBuffer;
 	name: string;
 }
