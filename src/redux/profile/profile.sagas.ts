@@ -9,8 +9,10 @@ import {
 	SelectEffect,
 	takeLatest,
 } from "redux-saga/effects";
+import Incident from "../../utils/classes/incident/incident";
 import {
 	auth,
+	FieldPath,
 	firestore,
 	getCurrentUser,
 	storage,
@@ -25,7 +27,11 @@ import {
 	UserCredential,
 } from "../../utils/firebase/types";
 
-import { fetchProfileInfoSuccess, setProfileError } from "./profile.action";
+import {
+	fetchProfileIncidentsSuccess,
+	fetchProfileInfoSuccess,
+	setProfileError,
+} from "./profile.action";
 import {
 	FetchProfileIncidentsSuccessAction,
 	FetchProfileInfoStartAction,
@@ -38,7 +44,16 @@ export function* fetchProfileIncidents({
 	payload,
 }: FetchProfileIncidentsSuccessAction) {
 	try {
-		//
+		const incidentsRef: QuerySnapshot = yield firestore
+			.collection(`incidents`)
+			.where(new FieldPath("user", "user_uid"), "==", payload)
+			.get();
+
+		const incidents: Incident[] = yield incidentsRef.docs.map((doc) =>
+			doc.data()
+		);
+
+		yield put(fetchProfileIncidentsSuccess(incidents));
 	} catch (err) {
 		put(setProfileError(err));
 	}

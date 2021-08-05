@@ -23,6 +23,8 @@ export const storage = firebase.storage();
 export const storageRef = storage.ref();
 export const functions = firebase.functions();
 
+export const FieldPath = firebase.firestore.FieldPath;
+
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
 export const signInWithGoogle = () => auth.signInWithPopup(provider);

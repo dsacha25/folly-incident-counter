@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/user.selector";
 import CustomButton from "../common/custom-button/custom-button.component";
-import { AcceessPanelContainer, ProfilePicture } from "./access-panel.styles";
+import { AcceessPanelContainer } from "./access-panel.styles";
 import { State } from "../../redux/root-reducer";
 import { User } from "../../redux/user/types";
 import { setTabDashboard } from "../../redux/tabs/tabs.action";
+import ProfilePicture from "../common/profile-picture/profile-picture.component";
 
 const AccessPanel = () => {
 	const dispatch = useDispatch();

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../../redux/root-reducer";
 import { User } from "../../../redux/user/types";
 import { selectCurrentUser } from "../../../redux/user/user.selector";
-import { ProfilePicture } from "../../access-panel/access-panel.styles";
+
 import GenericContainer from "../../common/generic-container/generic-container.component";
 import InputWithLabel from "../../common/input-with-label/input-with-label.component";
 import {
@@ -11,7 +11,7 @@ import {
 	Label,
 } from "../../common/input-with-label/input-with-label.styles";
 import { DashboardProps } from "../types";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import {
 	DataWrapper,
 	InfoContainer,
