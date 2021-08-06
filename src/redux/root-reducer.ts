@@ -5,6 +5,7 @@ import storage from "redux-persist/lib/storage";
 import { incidentReducer } from "./incidents/incidents.reducer";
 import { tabsReducer } from "./tabs/tabs.reducer";
 import { profileReducer } from "./profile/profile.reducer";
+import { feedRecuder } from "./feed/feed.reducer";
 
 const persistConfig = {
 	key: "root",
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
 	incidents: incidentReducer,
 	tabs: tabsReducer,
 	profile: profileReducer,
+	feed: feedRecuder,
 });
 
 export default persistReducer(persistConfig, rootReducer);

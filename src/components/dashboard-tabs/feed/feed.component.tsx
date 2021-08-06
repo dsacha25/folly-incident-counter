@@ -14,13 +14,10 @@ const Feed = (props: DashboardProps) => {
 
 	return props.tab === 0 ? (
 		<FeedContainer>
-			{incidents.length > 0 ? (
-				<>
-					{incidents.map((incident, i) => (
-						<Post key={i} incident={incident} />
-					))}
-				</>
-			) : (
+			{incidents.map((incident, i) => (
+				<Post key={i} incident={incident} />
+			))}
+			{incidents.length > 0 && (
 				<div>
 					<h4>Oops! You have no icidents!</h4>
 					<p>Create your first one</p>
