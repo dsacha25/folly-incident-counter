@@ -1,6 +1,11 @@
 import { createSelector } from "reselect";
 import { State } from "../root-reducer";
-import { FirebaseAuthError, User, UserQueryResult } from "./types";
+import {
+	FirebaseAuthError,
+	FriendRequestType,
+	User,
+	UserQueryResult,
+} from "./types";
 import { UserState } from "./user.reducer";
 
 const selectUser = (state: State) => state.user;
@@ -31,3 +36,15 @@ export const selectUserError = createSelector<
 	UserState,
 	FirebaseAuthError | null
 >(selectUser, (user) => user.error);
+
+export const selectPendingFriendRequests = createSelector<
+	State,
+	UserState,
+	string[]
+>(selectUser, (user) => user.pendingRequests);
+
+export const selectFriendRequests = createSelector<
+	State,
+	UserState,
+	FriendRequestType[]
+>(selectUser, (user) => user.friendRequests);

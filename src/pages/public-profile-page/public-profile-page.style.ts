@@ -6,8 +6,7 @@ export const ProfilePageContainer = styled.div`
 	width: 100%;
 	height: 100%;
 
-	grid-template-rows: 25.5vh 74.5vh;
-	padding-top: 15.6vh;
+	grid-template-rows: 25.5vh 66vh;
 `;
 
 export const ProfileIncidentsContainer = styled.div`

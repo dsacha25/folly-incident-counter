@@ -1,4 +1,5 @@
 import React from "react";
+
 import Avatar from "../../common/avatar/avatar.component";
 import PostBody from "../post-body/post-body.component";
 import PostControls from "../post-controls/post-controls.component";

@@ -84,7 +84,6 @@ export function* onFetchIncidents() {
 }
 
 // ==== RESET INCIDENT ==== //
-
 export function* resetIncidentDate({
 	payload,
 }: ResetIncidentDateStart): Generator<

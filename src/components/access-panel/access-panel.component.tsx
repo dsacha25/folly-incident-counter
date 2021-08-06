@@ -78,6 +78,16 @@ const AccessPanel = () => {
 				onClick={handleSelectTab}
 				active={activeTab === 3}
 			>
+				Friends
+			</CustomButton>
+			<CustomButton
+				id="4"
+				minWidth="200px"
+				margin="20px 0"
+				backgroundColor="red"
+				onClick={handleSelectTab}
+				active={activeTab === 4}
+			>
 				Settings
 			</CustomButton>
 		</AcceessPanelContainer>

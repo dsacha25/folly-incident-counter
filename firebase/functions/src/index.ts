@@ -17,6 +17,10 @@ const onIncidentUpdated = require("./incidents/onIncidentUpdated");
 
 // ==== USERS ==== //
 const updateUserPhotoReferences = require("./user/updateUserPhotoReferences");
+const sendFriendRequest = require("./user/sendFriendRequest");
+const declineFriendRequest = require("./user/declineFriendRequest");
+const acceptFriendRequest = require("./user/acceptFriendRequest");
+const removeFriend = require("./user/removeFriend");
 
 // ==== EXPORTS ==== //
 exports.onNewIncident = onNewIncident.onNewIncident;
@@ -25,3 +29,7 @@ exports.onIncidentUpdated = onIncidentUpdated.onIncidentUpdated;
 
 exports.updateUserPhotoReferences =
 	updateUserPhotoReferences.updateUserPhotoReferences;
+exports.sendFriendRequest = sendFriendRequest.sendFriendRequest;
+exports.declineFriendRequest = declineFriendRequest.declineFriendRequest;
+exports.acceptFriendRequest = acceptFriendRequest.acceptFriendRequest;
+exports.removeFriend = removeFriend.removeFriend;

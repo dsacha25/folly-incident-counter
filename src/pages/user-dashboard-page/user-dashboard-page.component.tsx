@@ -17,11 +17,18 @@ import Incidents from "../../components/dashboard-tabs/incidents/incidents.compo
 import Feed from "../../components/dashboard-tabs/feed/feed.component";
 import Settings from "../../components/dashboard-tabs/settings/settings.component";
 import ToolbarMain from "../../components/toolbar/toolbar-main/toolbar-main.component";
+import {
+	fetchFriendRequestsStart,
+	fetchPendingFriendRequestsStart,
+} from "../../redux/user/user.action";
+import Friends from "../../components/dashboard-tabs/friends/friends.component";
 
 const UserDashboardPage = () => {
 	const dispatch = useDispatch();
 
 	const fetchIncidents = () => dispatch(fetchIncidentsStart());
+	const fetchPendingRequest = () => dispatch(fetchPendingFriendRequestsStart());
+	const fetchFriendRequests = () => dispatch(fetchFriendRequestsStart());
 
 	const tab = useSelector<State, number>((state) => selectDashboardTab(state));
 
@@ -49,7 +56,8 @@ const UserDashboardPage = () => {
 
 	useEffect(() => {
 		fetchIncidents();
-
+		fetchPendingRequest();
+		fetchFriendRequests();
 		//eslint-disable-next-line
 	}, []);
 
@@ -62,6 +70,7 @@ const UserDashboardPage = () => {
 					<Profile tab={tab} />
 					<Incidents tab={tab} />
 					<Feed tab={tab} />
+					<Friends tab={tab} />
 					<Settings tab={tab} />
 				</MainFeed>
 			</DashboardMain>

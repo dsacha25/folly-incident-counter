@@ -9,6 +9,13 @@ export interface FirebaseAuthError {
 	message: string;
 }
 
+export type PendingFriendRequests = string[];
+
+export interface FriendRequestType {
+	uid: string;
+	username: string;
+}
+
 export type UserError = string | FirebaseAuthError | null;
 
 export type SignUpData = {

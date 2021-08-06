@@ -2,8 +2,10 @@ import UserTypes from "./user.types";
 
 import {
 	FirebaseAuthError,
+	FriendRequestType,
 	LogInInfo,
 	PaginationType,
+	PendingFriendRequests,
 	User,
 	UserQueryResult,
 } from "./types";
@@ -98,4 +100,25 @@ export const clearUserSearch = () => ({
 export const setSearchPagination = (pagination: PaginationType) => ({
 	type: UserTypes.SET_SEARCH_PAGINATION,
 	payload: pagination,
+});
+
+// FRIEND REQUESTS
+export const fetchPendingFriendRequestsStart = () => ({
+	type: UserTypes.FETCH_PENDING_REQUESTS_START,
+});
+
+export const fetchPendingFriendRequestsSuccess = (
+	users: PendingFriendRequests
+) => ({
+	type: UserTypes.FETCH_PENDING_FRIEND_REQUESTS_SUCCESS,
+	payload: users,
+});
+
+export const fetchFriendRequestsStart = () => ({
+	type: UserTypes.FETCH_FRIEND_REQUESTS_START,
+});
+
+export const fetchFriendRequestsSuccess = (requests: FriendRequestType[]) => ({
+	type: UserTypes.FETCH_FRIEND_REQUESTS_SUCCESS,
+	payload: requests,
 });

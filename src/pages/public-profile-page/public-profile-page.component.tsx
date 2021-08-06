@@ -21,9 +21,7 @@ import {
 	ProfilePageContainer,
 } from "./public-profile-page.style";
 
-interface ParamTypes {
-	uid: string;
-}
+import ParamTypes from "../../types";
 
 const PublicProfilePage = () => {
 	const dispatch = useDispatch();

@@ -1,5 +1,6 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import ParamTypes from "../../../types";
 
 import {
 	FriendPhoto,
@@ -10,10 +11,15 @@ import {
 	FriendsList,
 	ViewMoreLink,
 } from "./profile-friends.styles";
-import { Friend, FriendsProps } from "./types";
+import { FriendsProps } from "./types";
 
 const ProfileFriends = (props: FriendsProps) => {
 	const history = useHistory();
+	const { uid } = useParams<ParamTypes>();
+
+	const handleViewFriends = () => {
+		history.push(`/profile/${uid}/friends`);
+	};
 
 	return (
 		<FriendsContainer>
@@ -26,9 +32,7 @@ const ProfileFriends = (props: FriendsProps) => {
 					<FriendPhoto key={i} photoURL={photoURL} />
 				))}
 			</FriendsList>
-			<ViewMoreLink href={`${history.location}/friends`}>
-				view more
-			</ViewMoreLink>
+			<ViewMoreLink onClick={handleViewFriends}>view more</ViewMoreLink>
 		</FriendsContainer>
 	);
 };

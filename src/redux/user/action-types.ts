@@ -4,6 +4,7 @@ import {
 	FirebaseAuthError,
 	LogInInfo,
 	PaginationType,
+	PendingFriendRequests,
 	SignUpData,
 	User,
 	UserQueryResult,
@@ -74,9 +75,26 @@ export interface ClearUserSearchAction {
 	type: UserTypes.CLEAR_USER_SEARCH;
 }
 
-export interface SetSearchPagination {
+export interface SetSearchPaginationAction {
 	type: UserTypes.SET_SEARCH_PAGINATION;
 	payload: PaginationType;
+}
+
+export interface FetchPendingFriendRequestsStartAction {
+	type: UserTypes.FETCH_PENDING_REQUESTS_START;
+}
+
+export interface FetchPendingFriendRequestsSuccessAction {
+	type: UserTypes.FETCH_PENDING_FRIEND_REQUESTS_SUCCESS;
+	payload: PendingFriendRequests;
+}
+export interface FetchFriendRequestsStartAction {
+	type: UserTypes.FETCH_FRIEND_REQUESTS_START;
+}
+
+export interface FetchFriendRequestsSuccessAction {
+	type: UserTypes.FETCH_FRIEND_REQUESTS_SUCCESS;
+	payload: PendingFriendRequests;
 }
 
 type UserAction =
@@ -92,6 +110,10 @@ type UserAction =
 	| SearchUsersStartAction
 	| SearchUsersSuccessAction
 	| ClearUserSearchAction
-	| SetSearchPagination;
+	| SetSearchPaginationAction
+	| FetchPendingFriendRequestsStartAction
+	| FetchPendingFriendRequestsSuccessAction
+	| FetchFriendRequestsStartAction
+	| FetchFriendRequestsSuccessAction;
 
 export default UserAction;

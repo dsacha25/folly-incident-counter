@@ -19,6 +19,8 @@ interface INCIDENT_PROPS {
 	wasReset?: boolean;
 }
 
+const userDefault = { username: "", user_uid: "", photoURL: "" };
+
 class Incident {
 	inc_uid: string = "";
 	name: string = "";

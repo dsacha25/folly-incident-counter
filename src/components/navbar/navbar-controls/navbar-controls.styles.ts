@@ -21,4 +21,6 @@ export const NavButton = styled(CustomButton)`
 	height: 45px;
 
 	border-color: ${({ theme }) => theme.lightAccent};
+
+	position: relative;
 `;

@@ -25,6 +25,8 @@ import {
 } from "../../utils/firebase/types";
 
 import {
+	fetchFriendRequestsSuccess,
+	fetchPendingFriendRequestsSuccess,
 	searchUsersSuccess,
 	setSearchPagination,
 	setUserAuth,
@@ -42,7 +44,7 @@ import {
 	SignUpStartAction,
 	SignUpSuccessAction,
 } from "./action-types";
-import { User, UserQueryResult } from "./types";
+import { FriendRequestType, User, UserQueryResult } from "./types";
 import { selectCurrentUser, selectUID } from "./user.selector";
 import callFirebaseFunction from "../../utils/methods/call-firebase-function.method";
 
@@ -253,6 +255,58 @@ export function* onSearchUsersStart() {
 	yield takeLatest(UserTypes.SEARCH_USERS_START, searchUsers);
 }
 
+// FRIEND REQUESTS
+export function* fetchPendingFriendRequests(): Generator<SelectEffect> | Query {
+	try {
+		const uid = yield select(selectUID);
+
+		const req_docs: QuerySnapshot = yield firestore
+			.collection(`users/${uid}/pending_requests`)
+			.get();
+
+		const requests: string[] = yield req_docs.docs.map(
+			(doc) => doc.data().user_uid
+		);
+
+		yield put(fetchPendingFriendRequestsSuccess(requests));
+	} catch (err) {
+		yield put(signUpUserFailure(err.message));
+	}
+}
+
+export function* onFetchPendingFriendRequests() {
+	yield takeLatest(
+		UserTypes.FETCH_PENDING_REQUESTS_START,
+		fetchPendingFriendRequests
+	);
+}
+
+export function* fetchFriendRequests():
+	| Generator<SelectEffect | PutEffect>
+	| Query {
+	try {
+		const uid = yield select(selectUID);
+		yield console.log("FRIEND REQUESTS: ");
+
+		const req_docs: QuerySnapshot = yield firestore
+			.collection(`users/${uid}/requests`)
+			.get();
+
+		const requests: FriendRequestType[] = yield req_docs.docs.map((doc) => ({
+			username: doc.data().username,
+			uid: doc.data().uid,
+		}));
+
+		yield put(fetchFriendRequestsSuccess(requests));
+	} catch (err) {
+		yield put(signUpUserFailure(err.message));
+	}
+}
+
+export function* onFetchFriendRequests() {
+	yield takeLatest(UserTypes.FETCH_FRIEND_REQUESTS_START, fetchFriendRequests);
+}
+
 export function* userSagas() {
 	yield all([
 		call(onUserSignUpEmail),
@@ -262,5 +316,7 @@ export function* userSagas() {
 		call(onUserEmailSignIn),
 		call(onSetProfilePicture),
 		call(onSearchUsersStart),
+		call(onFetchPendingFriendRequests),
+		call(onFetchFriendRequests),
 	]);
 }

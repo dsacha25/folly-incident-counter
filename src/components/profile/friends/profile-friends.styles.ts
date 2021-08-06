@@ -7,9 +7,9 @@ export const FriendsContainer = styled.div`
 
 	width: 100%;
 	height: 85%;
-	max-width: 17vw;
+	max-width: 30vw;
 	max-height: 220px;
-
+	padding: 30px;
 	border: 1px solid ${({ theme }) => theme.lightAccent};
 	border-radius: 30px;
 

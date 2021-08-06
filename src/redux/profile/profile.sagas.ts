@@ -38,6 +38,7 @@ import {
 } from "./profile.action-types";
 import ProfileTypes from "./profile.types";
 import { Profile } from "./types";
+import { sortBy } from "lodash";
 
 // FETCH PROFILE INCIDENTS
 export function* fetchProfileIncidents({
@@ -53,7 +54,13 @@ export function* fetchProfileIncidents({
 			doc.data()
 		);
 
-		yield put(fetchProfileIncidentsSuccess(incidents));
+		const sorted: Incident[] = sortBy(incidents, "incident_date");
+
+		yield put(
+			fetchProfileIncidentsSuccess(
+				sorted.map((incident) => new Incident(incident))
+			)
+		);
 	} catch (err) {
 		put(setProfileError(err));
 	}

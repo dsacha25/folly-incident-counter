@@ -24,7 +24,7 @@ const Settings = (props: DashboardProps) => {
 		}
 	};
 
-	return props.tab === 3 ? (
+	return props.tab === 4 ? (
 		<SettingsContainer>
 			Settings for Profile Information and account info
 			<CustomButton onClick={handleDeleteUser}> Delete Account</CustomButton>

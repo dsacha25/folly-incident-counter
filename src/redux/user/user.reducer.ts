@@ -2,7 +2,9 @@ import UserTypes from "./user.types";
 import UserAction from "./action-types";
 import {
 	FirebaseAuthError,
+	FriendRequestType,
 	PaginationType,
+	PendingFriendRequests,
 	User,
 	UserQueryResult,
 } from "./types";
@@ -12,6 +14,8 @@ export type UserState = {
 	error: FirebaseAuthError | null;
 	usersQuery: UserQueryResult[];
 	paginationRef: PaginationType;
+	pendingRequests: string[];
+	friendRequests: FriendRequestType[];
 };
 
 const INITIAL_STATE = {
@@ -19,6 +23,8 @@ const INITIAL_STATE = {
 	error: null,
 	usersQuery: [],
 	paginationRef: null,
+	pendingRequests: [],
+	friendRequests: [],
 };
 
 export const userReducer = (
@@ -83,6 +89,18 @@ export const userReducer = (
 			return {
 				...state,
 				paginationRef: action.payload,
+			};
+
+		case UserTypes.FETCH_PENDING_FRIEND_REQUESTS_SUCCESS:
+			return {
+				...state,
+				pendingRequests: action.payload,
+			};
+
+		case UserTypes.FETCH_FRIEND_REQUESTS_SUCCESS:
+			return {
+				...state,
+				friendRequests: action.payload,
 			};
 
 		default:
