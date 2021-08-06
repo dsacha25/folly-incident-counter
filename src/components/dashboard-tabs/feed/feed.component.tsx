@@ -1,26 +1,37 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { DashboardProps } from "../types";
 import { FeedContainer } from "./feed.styles";
 import { State } from "../../../redux/root-reducer";
 import Incident from "../../../utils/classes/incident/incident";
-import { selectIncidents } from "../../../redux/incidents/incidents.selector";
 import Post from "../../posts/post/post.component";
+import { selectFeedIncidents } from "../../../redux/feed/feed.selector";
+import { fetchFeedIncidentsStart } from "../../../redux/feed/feed.actions";
 
 const Feed = (props: DashboardProps) => {
-	const incidents = useSelector<State, Array<Incident>>((state) =>
-		selectIncidents(state)
+	const dispatch = useDispatch();
+
+	const fetchFeed = () => dispatch(fetchFeedIncidentsStart());
+
+	const feedIncidents = useSelector<State, Incident[]>((state) =>
+		selectFeedIncidents(state)
 	);
+
+	useEffect(() => {
+		if (props.tab === 0) {
+			fetchFeed();
+		}
+	}, [props.tab]);
 
 	return props.tab === 0 ? (
 		<FeedContainer>
-			{incidents.map((incident, i) => (
+			{feedIncidents.map((incident, i) => (
 				<Post key={i} incident={incident} />
 			))}
-			{incidents.length > 0 && (
+			{feedIncidents.length == 0 && (
 				<div>
-					<h4>Oops! You have no icidents!</h4>
-					<p>Create your first one</p>
+					<h2>Oops! You have no icidents!</h2>
+					<p>Create your one or add friends and see theirs</p>
 				</div>
 			)}
 		</FeedContainer>

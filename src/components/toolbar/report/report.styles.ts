@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import CustomInput from "../../common/custom-input/custom-input.component";
-import CustomButton from "../../common/custom-button/custom-button.component";
 
 export const ReportContainer = styled.div`
 	display: grid;
@@ -9,6 +8,13 @@ export const ReportContainer = styled.div`
 	max-width: 52vw;
 	height: 60px;
 	place-items: center;
+	position: relative;
+
+	grid-template-rows: 1fr 0;
+
+	.react-datepicker__tab-loop {
+		grid-row: 2 / 2;
+	}
 `;
 
 export const ReportInput = styled(CustomInput)`
@@ -18,18 +24,13 @@ export const ReportInput = styled(CustomInput)`
 	height: 100%;
 	max-height: 60px;
 	font-size: 25px;
-	color: ${({ theme }) => theme.lightAccent};
+	color: ${({ theme }) => theme.lightAccent} !important;
 
 	padding: 0 0 0 20px;
 
 	::placeholder {
 		color: ${({ theme }) => theme.lightAccent};
 		font-weight: 100;
-	}
-
-	input[type="date"]::-webkit-calendar-picker-indicator {
-		display: none;
-		-webkit-appearance: none;
 	}
 
 	input[type="date"] {

@@ -1,6 +1,5 @@
 import React, { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import CustomButton from "../../common/custom-button/custom-button.component";
 import { ReportContainer, ReportInput } from "./report.styles";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { createIncidentStart } from "../../../redux/incidents/incidents.actions";
@@ -11,12 +10,11 @@ import { User } from "../../../redux/user/types";
 import ToolbarItemContainer from "../toolbar-item-container/toolbar-item-container.component";
 import { GoReport } from "react-icons/go";
 import { useToolbarContext } from "../toolbar-main/toolbar-main.component";
-import { ClickAwayListener } from "@material-ui/core";
+import "react-datepicker/dist/react-datepicker.css";
+
 import { ButtonRight } from "../../common/custom-button/custom-button-alternates.styles";
-/*BsSearch
-GoReport
-IoPowerOutline
-*/
+import CustomDateInput from "../../common/custom-date-input/custom-date-input.component";
+import { addDays } from "date-fns";
 
 interface IncidentReport {
 	name: string;
@@ -36,8 +34,12 @@ const Report = () => {
 	const {
 		register,
 		handleSubmit,
+		watch,
+		setValue,
 		formState: { errors },
 	} = useForm<IncidentReport>();
+
+	const selected = watch("incident_date");
 
 	const onSubmit: SubmitHandler<IncidentReport> = (data) => {
 		// REPORT INCIDENT TO FIREBASE
@@ -65,6 +67,10 @@ const Report = () => {
 		setIndex(null);
 	};
 
+	const handleDate = (date: Date) => {
+		setValue("incident_date", date);
+	};
+
 	return (
 		<ToolbarItemContainer
 			onSubmit={handleSubmit(onSubmit)}
@@ -78,9 +84,11 @@ const Report = () => {
 					error={errors.name}
 					placeholder="What happened?"
 				/>
-				<ReportInput
-					type="date"
-					{...register("incident_date", { required: true })}
+				<CustomDateInput
+					selected={selected}
+					onChange={handleDate}
+					dateFormat="yyyy-MM-dd"
+					maxDate={new Date()}
 				/>
 				<ButtonRight>Report</ButtonRight>
 			</ReportContainer>

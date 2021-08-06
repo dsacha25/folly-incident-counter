@@ -11,7 +11,7 @@ import ParamTypes from "../../../types";
 import callFirebaseFunction from "../../../utils/methods/call-firebase-function.method";
 
 import ProfilePicture from "../../common/profile-picture/profile-picture.component";
-import ProfileFriends from "../friends/profile-friends.component";
+import ProfileFriends from "../profile-friends/profile-friends.component";
 import {
 	InfoText,
 	ProfileButton,
