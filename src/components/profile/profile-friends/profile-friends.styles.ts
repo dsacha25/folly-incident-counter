@@ -7,9 +7,9 @@ export const FriendsContainer = styled.div`
 
 	width: 100%;
 	height: 85%;
-	max-width: 30vw;
+	max-width: 20vw;
 	max-height: 220px;
-	padding: 30px;
+	/* padding: 30px; */
 	border: 1px solid ${({ theme }) => theme.lightAccent};
 	border-radius: 30px;
 
@@ -47,18 +47,19 @@ export const FriendsCount = styled.h4`
 
 export const FriendsList = styled.div`
 	display: grid;
-	place-items: center;
+	place-items: flex-start center;
 	grid-template-columns: repeat(3, 1fr);
+	width: 90%;
 `;
 
 export const FriendPhoto = styled.div<Omit<Friend, "username">>`
 	background: url(${({ photoURL }) => (photoURL ? photoURL : PictureAvatar)});
 	width: 70px;
-	height: 70x;
+	height: 70px;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
-	margin: 0 0 0;
+	margin: 0;
 	border-radius: 50%;
 
 	overflow: hidden;

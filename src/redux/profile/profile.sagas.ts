@@ -28,17 +28,19 @@ import {
 } from "../../utils/firebase/types";
 
 import {
+	fetchFriendsSuccess,
 	fetchProfileIncidentsSuccess,
 	fetchProfileInfoSuccess,
 	setProfileError,
 } from "./profile.action";
 import {
+	FetchFriendsStartAction,
 	FetchProfileIncidentsSuccessAction,
 	FetchProfileInfoStartAction,
 } from "./profile.action-types";
 import ProfileTypes from "./profile.types";
 import { Profile } from "./types";
-import { sortBy } from "lodash";
+import { flatMap, sortBy, filter } from "lodash";
 
 // FETCH PROFILE INCIDENTS
 export function* fetchProfileIncidents({
@@ -62,7 +64,7 @@ export function* fetchProfileIncidents({
 			)
 		);
 	} catch (err) {
-		put(setProfileError(err));
+		yield put(setProfileError(err));
 	}
 }
 
@@ -96,7 +98,7 @@ export function* fetchProfileInfo({
 
 		yield put(fetchProfileInfoSuccess(user_info));
 	} catch (err) {
-		put(setProfileError(err));
+		yield put(setProfileError(err));
 	}
 }
 
@@ -104,6 +106,58 @@ export function* onFetchProfileInfo() {
 	yield takeLatest(ProfileTypes.FETCH_PROFILE_INFO_START, fetchProfileInfo);
 }
 
+// FETCH FRIENDS
+export function* fetchFriends({
+	payload,
+}: FetchFriendsStartAction): Generator | Query {
+	try {
+		const friendsRef: QuerySnapshot = yield firestore
+			.collection("friendships")
+			.where("users", "array-contains", payload)
+			.get();
+
+		const friendships: string[] = flatMap(friendsRef.docs, (friend) =>
+			filter(friend.data().users, (user_uid) => user_uid !== payload)
+		);
+
+		yield console.log("FRIENDSHIPS: ", friendships);
+
+		let friends: Profile[] = [];
+
+		for (const friend_uid of friendships) {
+			const friendRef: DocumentSnapshot = yield firestore
+				.doc(`users/${friend_uid}`)
+				.get();
+
+			const friendDoc = yield friendRef.data();
+
+			if (friendDoc) {
+				const friend: Profile = {
+					displayName: friendDoc.displayName,
+					email: friendDoc.email,
+					photoURL: friendDoc.photoURL,
+				};
+
+				friends.push(friend);
+			}
+
+			yield console.log("FRIENDS: ", friends);
+		}
+
+		yield put(fetchFriendsSuccess(friends));
+	} catch (err) {
+		yield put(setProfileError(err));
+	}
+}
+
+export function* onFetchFriends() {
+	yield takeLatest(ProfileTypes.FETCH_FRIENDS_START, fetchFriends);
+}
+
 export function* profileSagas() {
-	yield all([call(onFetchProfileInfo), call(onFetchProfileIncidents)]);
+	yield all([
+		call(onFetchProfileInfo),
+		call(onFetchProfileIncidents),
+		call(onFetchFriends),
+	]);
 }

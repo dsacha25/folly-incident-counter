@@ -7,6 +7,7 @@ import ProfileInfoBar from "../../components/profile/profile-info-bar/profile-in
 import {
 	fetchProfileInfoStart,
 	fetchProfileIncidentsStart,
+	fetchFriendsStart,
 } from "../../redux/profile/profile.action";
 import {
 	selectProfileIncidents,
@@ -30,6 +31,8 @@ const PublicProfilePage = () => {
 	const fetchIncidents = (uid: string) =>
 		dispatch(fetchProfileIncidentsStart(uid));
 
+	const fetchFriends = (uid: string) => dispatch(fetchFriendsStart(uid));
+
 	const user_info = useSelector<State, Profile | null>((state) =>
 		selectProfileUser(state)
 	);
@@ -48,6 +51,7 @@ const PublicProfilePage = () => {
 	useEffect(() => {
 		fetchInfo(uid);
 		fetchIncidents(uid);
+		fetchFriends(uid);
 	}, []);
 
 	useEffect(() => {

@@ -30,3 +30,9 @@ export const selectProfileError = createSelector<
 	ProfileState,
 	string | null
 >(selectProfile, (profile) => profile.error);
+
+export const selectProfileFriends = createSelector<
+	State,
+	ProfileState,
+	Profile[]
+>(selectProfile, (profile) => profile.friends);

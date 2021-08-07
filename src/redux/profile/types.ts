@@ -9,6 +9,7 @@ export interface Profile {
 export type ProfileState = {
 	user_info: Profile | null;
 	incidents: Incident[];
+	friends: Profile[];
 	isFriend: boolean;
 	error: string | null;
 };

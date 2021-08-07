@@ -21,6 +21,7 @@ const sendFriendRequest = require("./user/sendFriendRequest");
 const declineFriendRequest = require("./user/declineFriendRequest");
 const acceptFriendRequest = require("./user/acceptFriendRequest");
 const removeFriend = require("./user/removeFriend");
+const onUserDeleted = require("./user/onUserDeleted");
 
 // ==== EXPORTS ==== //
 exports.onNewIncident = onNewIncident.onNewIncident;
@@ -33,3 +34,4 @@ exports.sendFriendRequest = sendFriendRequest.sendFriendRequest;
 exports.declineFriendRequest = declineFriendRequest.declineFriendRequest;
 exports.acceptFriendRequest = acceptFriendRequest.acceptFriendRequest;
 exports.removeFriend = removeFriend.removeFriend;
+exports.onUserDeleted = onUserDeleted.onUserDeleted;

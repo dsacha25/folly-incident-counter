@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { selectProfileIsFriend } from "../../../redux/profile/profile.selector";
+import {
+	selectProfileFriends,
+	selectProfileIsFriend,
+} from "../../../redux/profile/profile.selector";
+import { Profile } from "../../../redux/profile/types";
 import { State } from "../../../redux/root-reducer";
 import {
 	selectPendingFriendRequests,
@@ -35,6 +39,10 @@ const ProfileInfoBar = (props: ProfileInfoBarProps) => {
 
 	const isFriend = useSelector<State, boolean>((state) =>
 		selectProfileIsFriend(state)
+	);
+
+	const friends = useSelector<State, Profile[]>((state) =>
+		selectProfileFriends(state)
 	);
 
 	const [disabled, setDisabled] = useState<boolean>(false);
@@ -82,7 +90,7 @@ const ProfileInfoBar = (props: ProfileInfoBarProps) => {
 				<InfoText>{props.user.displayName}</InfoText>
 				<InfoText>{props.user.email}</InfoText>
 			</ProfileInfo>
-			<ProfileFriends friends={[]} />
+			<ProfileFriends friends={friends} />
 		</ProfileInfoContainer>
 	);
 };

@@ -46,6 +46,16 @@ export interface ProfileErrorAction {
 	payload: string;
 }
 
+export interface FetchFriendsStartAction {
+	type: ProfileTypes.FETCH_FRIENDS_START;
+	payload: string;
+}
+
+export interface FetchFriendsSuccessAction {
+	type: ProfileTypes.FETCH_FRIENDS_SUCCESS;
+	payload: Profile[];
+}
+
 type ProfileAction =
 	| FetchProfileInfoStartAction
 	| FetchProfileInfoSuccessAction
@@ -55,6 +65,8 @@ type ProfileAction =
 	| AddFriendSuccessAction
 	| RemoveFriendStartAction
 	| RemoveFriendSuccessAction
-	| ProfileErrorAction;
+	| ProfileErrorAction
+	| FetchFriendsStartAction
+	| FetchFriendsSuccessAction;
 
 export default ProfileAction;

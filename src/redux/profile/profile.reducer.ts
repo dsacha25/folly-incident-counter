@@ -7,6 +7,7 @@ const INITIAL_STATE = {
 	isFriend: false,
 	incidents: [],
 	error: null,
+	friends: [],
 };
 
 export const profileReducer = (
@@ -46,6 +47,12 @@ export const profileReducer = (
 			return {
 				...state,
 				error: action.payload,
+			};
+
+		case ProfileTypes.FETCH_FRIENDS_SUCCESS:
+			return {
+				...state,
+				friends: action.payload,
 			};
 
 		default:
