@@ -7,6 +7,8 @@ export const onUserDeleted = functions.firestore
 	.onDelete(async (snapshot, context) => {
 		const uid = context.params.uid;
 
+		/// DELETE
+
 		const friendshipsRef = await firestore
 			.collection("friendships")
 			.where(
