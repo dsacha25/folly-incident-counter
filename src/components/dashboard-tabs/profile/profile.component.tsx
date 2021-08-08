@@ -91,10 +91,6 @@ const Profile = (props: DashboardProps) => {
 			<GenericContainer title="Stats" maxHeight="30vh">
 				<StatsContainer>
 					<DataWrapper>
-						<Label>Days Since Joined</Label>
-						<p>{}</p>
-					</DataWrapper>
-					<DataWrapper>
 						<Label>Incidents:</Label>
 						<p>{numberOfIncidents}</p>
 					</DataWrapper>

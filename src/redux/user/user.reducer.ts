@@ -7,6 +7,7 @@ import {
 	User,
 	UserQueryResult,
 } from "./types";
+import { Profile } from "../profile/types";
 
 export type UserState = {
 	user: User;
@@ -15,6 +16,7 @@ export type UserState = {
 	paginationRef: PaginationType;
 	pendingRequests: string[];
 	friendRequests: FriendRequestType[];
+	friends: Profile[];
 };
 
 const INITIAL_STATE = {
@@ -24,6 +26,7 @@ const INITIAL_STATE = {
 	paginationRef: null,
 	pendingRequests: [],
 	friendRequests: [],
+	friends: [],
 };
 
 export const userReducer = (
@@ -100,6 +103,12 @@ export const userReducer = (
 			return {
 				...state,
 				friendRequests: action.payload,
+			};
+
+		case UserTypes.FETCH_FRIENDS_SUCCESS:
+			return {
+				...state,
+				friends: action.payload,
 			};
 
 		default:

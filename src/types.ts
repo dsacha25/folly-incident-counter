@@ -1,5 +1,9 @@
-interface ParamTypes {
+export interface ParamTypes {
 	uid: string;
 }
 
-export default ParamTypes;
+export interface UserInfoType {
+	username?: string | null;
+	user_uid?: string | null;
+	photoURL?: string | null;
+}

@@ -1,7 +1,6 @@
 import React from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { ParamTypes } from "../../../types";
-
 import {
 	FriendPhoto,
 	FriendsContainer,
@@ -10,10 +9,10 @@ import {
 	FriendsLabel,
 	FriendsList,
 	ViewMoreLink,
-} from "./profile-friends.styles";
-import { FriendsProps } from "./types";
+} from "./view-friends.styles";
+import { FriendsProps } from "../types";
 
-const ProfileFriends = (props: FriendsProps) => {
+const ViewFriends = (props: FriendsProps) => {
 	const history = useHistory();
 	const { uid } = useParams<ParamTypes>();
 
@@ -37,4 +36,4 @@ const ProfileFriends = (props: FriendsProps) => {
 	);
 };
 
-export default ProfileFriends;
+export default ViewFriends;

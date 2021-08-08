@@ -26,6 +26,7 @@ import {
 
 import {
 	fetchFriendRequestsSuccess,
+	fetchFriendsSuccess,
 	fetchPendingFriendRequestsSuccess,
 	searchUsersSuccess,
 	setSearchPagination,
@@ -47,6 +48,8 @@ import {
 import { FriendRequestType, User, UserQueryResult } from "./types";
 import { selectCurrentUser, selectUID } from "./user.selector";
 import callFirebaseFunction from "../../utils/methods/call-firebase-function.method";
+import { Profile } from "../profile/types";
+import { filter, flatMap } from "lodash";
 
 /// CREATE USER IN FIREBASE
 export function* createUserInFirebase({
@@ -307,6 +310,53 @@ export function* onFetchFriendRequests() {
 	yield takeLatest(UserTypes.FETCH_FRIEND_REQUESTS_START, fetchFriendRequests);
 }
 
+// FRIENDS
+export function* fetchFriends(): Generator | Query {
+	try {
+		const uid = yield select(selectUID);
+
+		const friendsRef: QuerySnapshot = yield firestore
+			.collection("friendships")
+			.where("users", "array-contains", uid)
+			.get();
+
+		const friendships: string[] = flatMap(friendsRef.docs, (friend) =>
+			filter(friend.data().users, (user_uid) => user_uid !== uid)
+		);
+
+		yield console.log("USERS FRIENDSHIP UIDS: ", friendships);
+
+		let friends: Profile[] = [];
+
+		for (const friend_uid of friendships) {
+			const friendRef: DocumentSnapshot = yield firestore
+				.doc(`users/${friend_uid}`)
+				.get();
+
+			const friendDoc = yield friendRef.data();
+
+			if (friendDoc) {
+				const friend: Profile = {
+					displayName: friendDoc.displayName,
+					email: friendDoc.email,
+					photoURL: friendDoc.photoURL,
+				};
+
+				friends.push(friend);
+			}
+		}
+		yield console.log("USERS FRIENDS: ", friends);
+
+		yield put(fetchFriendsSuccess(friends));
+	} catch (err) {
+		yield put(signUpUserFailure(err.message));
+	}
+}
+
+export function* onFetchFriends() {
+	yield takeLatest(UserTypes.FETCH_FRIENDS_START, fetchFriends);
+}
+
 export function* userSagas() {
 	yield all([
 		call(onUserSignUpEmail),
@@ -318,5 +368,6 @@ export function* userSagas() {
 		call(onSearchUsersStart),
 		call(onFetchPendingFriendRequests),
 		call(onFetchFriendRequests),
+		call(onFetchFriends),
 	]);
 }

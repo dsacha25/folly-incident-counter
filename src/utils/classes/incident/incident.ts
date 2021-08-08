@@ -1,38 +1,19 @@
 import { differenceInDays, format } from "date-fns";
 import { Comment } from "../../../redux/incidents/incidents.action-types";
-import { Timestamp } from "../../firebase/types";
-
-interface IncidentUserInfo {
-	username?: string | null;
-	user_uid?: string | null;
-	photoURL?: string | null;
-}
-
-interface INCIDENT_PROPS {
-	inc_uid?: string;
-	name: string;
-	incident_date: Date | Timestamp;
-	comments?: Array<Comment>;
-	likes?: number;
-	likedByUser?: boolean;
-	user: IncidentUserInfo;
-	wasReset?: boolean;
-}
-
-const userDefault = { username: "", user_uid: "", photoURL: "" };
+import { IncidentPropTypes, IncidentUserInfoType } from "./types";
 
 class Incident {
+	readonly name: string = "";
+	readonly user: IncidentUserInfoType;
 	inc_uid: string = "";
-	name: string = "";
 	incident_date: Date;
 	days_since: number = 0;
-	comments: Array<Comment>;
+	comments: Comment[];
 	likes: number = 0;
 	likedByUser: boolean = false;
-	user: IncidentUserInfo;
 	wasReset: boolean = false;
 
-	constructor(props: INCIDENT_PROPS) {
+	constructor(props: IncidentPropTypes) {
 		this.name = props.name;
 		this.incident_date =
 			props.incident_date instanceof Date
@@ -82,7 +63,7 @@ class Incident {
 		return format(this.incident_date, "MM/dd/yy");
 	}
 
-	getDataForFirebase(): INCIDENT_PROPS {
+	getDataForFirebase(): IncidentPropTypes {
 		return {
 			name: this.name,
 			incident_date: this.incident_date,
@@ -90,10 +71,15 @@ class Incident {
 			likes: this.likes,
 			likedByUser: this.likedByUser,
 			inc_uid: this.inc_uid,
-			wasReset: this.wasReset,
 			user: this.user,
 		};
 	}
 }
+
+// const inst = new Incident({
+// 	name: "",
+// 	incident_date: new Date(),
+// 	user: { user_uid: "", username: "", photoURL: "" },
+// });
 
 export default Incident;

@@ -11,7 +11,7 @@ import {
 	selectPendingFriendRequests,
 	selectUID,
 } from "../../../redux/user/user.selector";
-import ParamTypes from "../../../types";
+import { ParamTypes } from "../../../types";
 import callFirebaseFunction from "../../../utils/methods/call-firebase-function.method";
 
 import ProfilePicture from "../../common/profile-picture/profile-picture.component";

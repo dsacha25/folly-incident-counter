@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import CustomButton from "../common/custom-button/custom-button.component";
+import CustomButton from "../../common/custom-button/custom-button.component";
 
 export const FriendRequestContainer = styled.div`
 	display: grid;

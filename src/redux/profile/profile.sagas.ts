@@ -28,7 +28,7 @@ import {
 } from "../../utils/firebase/types";
 
 import {
-	fetchFriendsSuccess,
+	fetchProfileFriendsSuccess,
 	fetchProfileIncidentsSuccess,
 	fetchProfileInfoSuccess,
 	setProfileError,
@@ -144,14 +144,14 @@ export function* fetchFriends({
 			yield console.log("FRIENDS: ", friends);
 		}
 
-		yield put(fetchFriendsSuccess(friends));
+		yield put(fetchProfileFriendsSuccess(friends));
 	} catch (err) {
 		yield put(setProfileError(err));
 	}
 }
 
 export function* onFetchFriends() {
-	yield takeLatest(ProfileTypes.FETCH_FRIENDS_START, fetchFriends);
+	yield takeLatest(ProfileTypes.FETCH_PROFILE_FRIENDS_START, fetchFriends);
 }
 
 export function* profileSagas() {

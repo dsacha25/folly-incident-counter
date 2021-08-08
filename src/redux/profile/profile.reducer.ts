@@ -49,7 +49,7 @@ export const profileReducer = (
 				error: action.payload,
 			};
 
-		case ProfileTypes.FETCH_FRIENDS_SUCCESS:
+		case ProfileTypes.FETCH_PROFILE_FRIENDS_SUCCESS:
 			return {
 				...state,
 				friends: action.payload,

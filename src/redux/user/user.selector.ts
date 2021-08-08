@@ -1,4 +1,5 @@
 import { createSelector } from "reselect";
+import { Profile } from "../profile/types";
 import { State } from "../root-reducer";
 import {
 	FirebaseAuthError,
@@ -48,3 +49,8 @@ export const selectFriendRequests = createSelector<
 	UserState,
 	FriendRequestType[]
 >(selectUser, (user) => user.friendRequests);
+
+export const selectFriends = createSelector<State, UserState, Profile[]>(
+	selectUser,
+	(user) => user.friends
+);

@@ -1,4 +1,5 @@
 import { ImageType } from "../../utils/classes/image/types";
+import { Profile } from "../profile/types";
 
 import {
 	FirebaseAuthError,
@@ -88,6 +89,7 @@ export interface FetchPendingFriendRequestsSuccessAction {
 	type: UserTypes.FETCH_PENDING_FRIEND_REQUESTS_SUCCESS;
 	payload: PendingFriendRequests;
 }
+
 export interface FetchFriendRequestsStartAction {
 	type: UserTypes.FETCH_FRIEND_REQUESTS_START;
 }
@@ -95,6 +97,15 @@ export interface FetchFriendRequestsStartAction {
 export interface FetchFriendRequestsSuccessAction {
 	type: UserTypes.FETCH_FRIEND_REQUESTS_SUCCESS;
 	payload: PendingFriendRequests;
+}
+
+export interface FetchFriendsStartAction {
+	type: UserTypes.FETCH_FRIENDS_START;
+}
+
+export interface FetchFriendsSuccessAction {
+	type: UserTypes.FETCH_FRIENDS_SUCCESS;
+	payload: Profile[];
 }
 
 type UserAction =
@@ -114,6 +125,8 @@ type UserAction =
 	| FetchPendingFriendRequestsStartAction
 	| FetchPendingFriendRequestsSuccessAction
 	| FetchFriendRequestsStartAction
-	| FetchFriendRequestsSuccessAction;
+	| FetchFriendRequestsSuccessAction
+	| FetchFriendsStartAction
+	| FetchFriendsSuccessAction;
 
 export default UserAction;

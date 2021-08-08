@@ -47,12 +47,12 @@ export interface ProfileErrorAction {
 }
 
 export interface FetchFriendsStartAction {
-	type: ProfileTypes.FETCH_FRIENDS_START;
+	type: ProfileTypes.FETCH_PROFILE_FRIENDS_START;
 	payload: string;
 }
 
 export interface FetchFriendsSuccessAction {
-	type: ProfileTypes.FETCH_FRIENDS_SUCCESS;
+	type: ProfileTypes.FETCH_PROFILE_FRIENDS_SUCCESS;
 	payload: Profile[];
 }
 

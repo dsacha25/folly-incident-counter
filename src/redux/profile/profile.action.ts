@@ -45,12 +45,12 @@ export const setProfileError = (error: string) => ({
 	payload: error,
 });
 
-export const fetchFriendsStart = (uid: string) => ({
-	type: ProfileTypes.FETCH_FRIENDS_START,
+export const fetchProfileFriendsStart = (uid: string) => ({
+	type: ProfileTypes.FETCH_PROFILE_FRIENDS_START,
 	payload: uid,
 });
 
-export const fetchFriendsSuccess = (friends: Profile[]) => ({
-	type: ProfileTypes.FETCH_FRIENDS_SUCCESS,
+export const fetchProfileFriendsSuccess = (friends: Profile[]) => ({
+	type: ProfileTypes.FETCH_PROFILE_FRIENDS_SUCCESS,
 	payload: friends,
 });

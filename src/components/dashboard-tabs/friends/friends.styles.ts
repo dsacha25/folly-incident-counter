@@ -4,6 +4,16 @@ interface FriendsContainerProps {
 	friends: string[];
 }
 
+export const FriendsTabContainer = styled.div`
+	display: grid;
+	width: 60vw;
+	min-width: 600px;
+	height: 100%;
+
+	place-items: center;
+	grid-template-rows: minmax(200px, 30%) 1fr;
+`;
+
 export const FriendsContainer = styled.div<FriendsContainerProps>`
 	display: grid;
 	place-items: flex-start center;

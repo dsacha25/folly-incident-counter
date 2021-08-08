@@ -10,6 +10,7 @@ import {
 	UserQueryResult,
 } from "./types";
 import { ImageType } from "../../utils/classes/image/types";
+import { Profile } from "../profile/types";
 
 export type EmailSignUpInfo = {
 	name: string;
@@ -121,4 +122,14 @@ export const fetchFriendRequestsStart = () => ({
 export const fetchFriendRequestsSuccess = (requests: FriendRequestType[]) => ({
 	type: UserTypes.FETCH_FRIEND_REQUESTS_SUCCESS,
 	payload: requests,
+});
+
+// FETCH FRIENDS
+export const fetchFriendsStart = () => ({
+	type: UserTypes.FETCH_FRIENDS_START,
+});
+
+export const fetchFriendsSuccess = (friends: Profile[]) => ({
+	type: UserTypes.FETCH_FRIENDS_SUCCESS,
+	payload: friends,
 });
