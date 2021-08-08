@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ReportContainer, ReportInput } from "./report.styles";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -14,7 +14,6 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import { ButtonRight } from "../../common/custom-button/custom-button-alternates.styles";
 import CustomDateInput from "../../common/custom-date-input/custom-date-input.component";
-import { addDays } from "date-fns";
 
 interface IncidentReport {
 	name: string;
@@ -31,10 +30,12 @@ const Report = () => {
 
 	const user = useSelector<State, User>((state) => selectCurrentUser(state));
 
+	const [disabled, setDisabled] = useState<boolean>(false);
 	const {
 		register,
 		handleSubmit,
 		watch,
+		reset,
 		setValue,
 		formState: { errors },
 	} = useForm<IncidentReport>();
@@ -42,6 +43,7 @@ const Report = () => {
 	const selected = watch("incident_date");
 
 	const onSubmit: SubmitHandler<IncidentReport> = (data) => {
+		setDisabled(true);
 		// REPORT INCIDENT TO FIREBASE
 
 		console.log("DATE: ", data.incident_date);
@@ -58,13 +60,10 @@ const Report = () => {
 					},
 				})
 			);
+			reset();
+			setDisabled(false);
+			setIndex(null);
 		}
-	};
-
-	const handleClickAway = () => {
-		console.log("CLICK AWAY");
-
-		setIndex(null);
 	};
 
 	const handleDate = (date: Date) => {
@@ -90,7 +89,7 @@ const Report = () => {
 					dateFormat="yyyy-MM-dd"
 					maxDate={new Date()}
 				/>
-				<ButtonRight>Report</ButtonRight>
+				<ButtonRight disabled={disabled}>Report</ButtonRight>
 			</ReportContainer>
 		</ToolbarItemContainer>
 	);

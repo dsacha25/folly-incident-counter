@@ -1,7 +1,8 @@
 import { auth } from "../../utils/firebase/firebase.utils";
-import { DocumentReference } from "../../utils/firebase/types";
+import { DocumentReference, FirebaseUser } from "../../utils/firebase/types";
 
-export type User = typeof auth.currentUser;
+export type User = FirebaseUser | null;
+// export type User = typeof auth.currentUser;
 
 export interface FirebaseAuthError {
 	a: string;

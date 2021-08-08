@@ -4,13 +4,12 @@ import {
 	FirebaseAuthError,
 	FriendRequestType,
 	PaginationType,
-	PendingFriendRequests,
 	User,
 	UserQueryResult,
 } from "./types";
 
 export type UserState = {
-	user: User | null;
+	user: User;
 	error: FirebaseAuthError | null;
 	usersQuery: UserQueryResult[];
 	paginationRef: PaginationType;

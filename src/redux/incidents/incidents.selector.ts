@@ -11,6 +11,11 @@ export const selectIncidents = createSelector<
 	Array<Incident>
 >(selectIncident, (incidents) => incidents.incidents);
 
+export const selectNumberOfIncidents = createSelector(
+	selectIncidents,
+	(incidents) => incidents.length
+);
+
 export const selectIncidentError = createSelector<
 	State,
 	IncidentState,

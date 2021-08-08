@@ -14,6 +14,8 @@ export type UserCredential = firebase.auth.UserCredential;
 export type Auth = firebase.auth.Auth;
 export type AuthCredential = firebase.auth.AuthCredential;
 export type OAuthCredential = firebase.auth.OAuthCredential;
+export type FirebaseUser = firebase.User;
+export type FirebaseUserInfo = firebase.UserInfo;
 
 // FIELDS
 export type Timestamp = firebase.firestore.Timestamp;

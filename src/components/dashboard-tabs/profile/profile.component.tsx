@@ -22,6 +22,7 @@ import {
 import ImageUploader from "../../images/image-uploader/image-uploader.component";
 import { ImageType } from "../../../utils/classes/image/types";
 import { setProfilePicture } from "../../../redux/user/user.action";
+import { selectNumberOfIncidents } from "../../../redux/incidents/incidents.selector";
 
 interface UpdateUserProps {
 	name: string | null;
@@ -33,6 +34,10 @@ const Profile = (props: DashboardProps) => {
 	const setPicture = (image: ImageType) => dispatch(setProfilePicture(image));
 
 	const user = useSelector<State, User>((state) => selectCurrentUser(state));
+
+	const numberOfIncidents = useSelector<State, number>((state) =>
+		selectNumberOfIncidents(state)
+	);
 
 	const {
 		register,
@@ -87,11 +92,11 @@ const Profile = (props: DashboardProps) => {
 				<StatsContainer>
 					<DataWrapper>
 						<Label>Days Since Joined</Label>
-						<p>07/10/21</p>
+						<p>{}</p>
 					</DataWrapper>
 					<DataWrapper>
 						<Label>Incidents:</Label>
-						<p>5</p>
+						<p>{numberOfIncidents}</p>
 					</DataWrapper>
 					<DataWrapper>
 						<Label>Times Exposed:</Label>

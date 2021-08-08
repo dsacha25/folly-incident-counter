@@ -11,7 +11,7 @@ import { UserState } from "./user.reducer";
 const selectUser = (state: State) => state.user;
 
 export const selectCurrentUser = createSelector<State, UserState, User>(
-	selectUser,
+	[selectUser],
 	(user) => user.user
 );
 
