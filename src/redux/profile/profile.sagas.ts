@@ -140,9 +140,9 @@ export function* fetchFriends({
 
 				friends.push(friend);
 			}
-
-			yield console.log("FRIENDS: ", friends);
 		}
+
+		yield console.log("FRIENDS: ", friends);
 
 		yield put(fetchProfileFriendsSuccess(friends));
 	} catch (err) {
