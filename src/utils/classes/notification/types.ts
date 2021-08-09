@@ -9,15 +9,16 @@ export enum NotificationCategories {
 }
 
 export interface NotifInfo {
-	url: string;
-	source_uid?: string;
-	source_name?: string;
+	url?: string;
+	notif_source_uid?: string;
+	notif_source_name?: string;
 }
 
 export interface NotificationPropTypes {
+	user: UserInfoType;
+	info: NotifInfo;
+	notif_uid?: string;
 	createdAt?: Date;
 	category?: NotificationCategories;
-	user: UserInfoType;
 	viewed?: boolean;
-	info: NotifInfo;
 }

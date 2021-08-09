@@ -28,13 +28,16 @@ ref=notif === ??? its the same on all notifications so I'm not sure what it's pu
 */
 
 class Notification {
-	createdAt: Date = new Date();
-	category: NotificationCategories = NotificationCategories.FRIEND_REQUEST;
-	viewed: boolean = false;
-	user: UserInfoType;
-	message: string;
-	info: NotifInfo;
+	public notif_uid: string;
+	public createdAt: Date = new Date();
+	public category: NotificationCategories =
+		NotificationCategories.FRIEND_REQUEST;
+	public viewed: boolean = false;
+	public user: UserInfoType;
+	public message: string;
+	public info: NotifInfo;
 	constructor(props: NotificationPropTypes) {
+		this.notif_uid = props.notif_uid ? props.notif_uid : "";
 		this.createdAt = props.createdAt ? props.createdAt : this.createdAt;
 		this.category = props.category ? props.category : this.category;
 		this.viewed = props.viewed ? props.viewed : this.viewed;
@@ -43,8 +46,13 @@ class Notification {
 		this.info = props.info;
 	}
 
-	constructUrl(category: NotificationCategories): string {
-		switch (category) {
+	private setMessage(message: string): Notification {
+		this.message = message;
+		return this;
+	}
+
+	private constructUrl(): string {
+		switch (this.category) {
 			case NotificationCategories.FRIEND_REQUEST:
 				return `/friends`;
 
@@ -54,15 +62,15 @@ class Notification {
 			case NotificationCategories.INCIDENT_COMMENT:
 			case NotificationCategories.INCIDENT_LIKED:
 			case NotificationCategories.INCIDENT_EXPOSED:
-				return `/notification/${this.info.source_uid}`;
+				return `/notifs/${this.info.notif_source_uid}`;
 
 			default:
 				return "";
 		}
 	}
 
-	setNotificationMessage(category: NotificationCategories) {
-		switch (category) {
+	private setNotificationMessage(): Notification {
+		switch (this.category) {
 			case NotificationCategories.FRIEND_REQUEST:
 				return this.setMessage(
 					`${this.user.username} wants to be your friend!`
@@ -84,12 +92,25 @@ class Notification {
 					`${this.user.username} liked your incident.` /// NEED SOME WAY TO ID WHICH ONE AND LINK
 				);
 			default:
-				break;
+				return this;
 		}
 	}
 
-	setMessage(message: string) {
-		this.message = message;
+	public constructNotification(): Notification {
+		this.info.url = this.constructUrl();
+
+		return this.setNotificationMessage();
+	}
+
+	public dataToFirebase(): NotificationPropTypes {
+		return {
+			user: this.user,
+			info: this.info,
+			notif_uid: this.notif_uid,
+			createdAt: this.createdAt,
+			category: this.category,
+			viewed: this.viewed,
+		};
 	}
 }
 
