@@ -55,6 +55,12 @@ export const profileReducer = (
 				friends: action.payload,
 			};
 
+		case ProfileTypes.SET_IS_FRIEND:
+			return {
+				...state,
+				isFriend: action.payload,
+			};
+
 		default:
 			return state;
 	}

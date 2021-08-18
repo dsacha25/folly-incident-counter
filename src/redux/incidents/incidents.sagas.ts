@@ -11,10 +11,12 @@ import {
 	createIncidentSuccess,
 	fetchIncidentsSuccess,
 	incidentError,
+	updateIncidentInfoSuccess,
 } from "./incidents.actions";
 import {
 	CreateIncidentStart,
 	ResetIncidentDateStart,
+	UpdateIncidentStart,
 } from "./incidents.action-types";
 import IncidentTypes from "./incidents.types";
 import { selectUID } from "../user/user.selector";
@@ -22,7 +24,9 @@ import { firestore } from "../../utils/firebase/firebase.utils";
 import { QuerySnapshot } from "../../utils/firebase/types";
 import { Query } from "@testing-library/react";
 import Incident from "../../utils/classes/incident/incident";
+import { selectIncidents } from "./incidents.selector";
 
+// ==== CREATE INCIDENT ==== //
 export function* createNewIncident({
 	payload,
 }: CreateIncidentStart): Generator {
@@ -51,7 +55,6 @@ export function* onCreateNewIncident() {
 }
 
 // ==== FETCH INCIDENTS ==== //
-
 export function* fetchIncidents(): Generator<SelectEffect | PutEffect> | Query {
 	try {
 		// FETCH INCIDENTS FROM FIREBASE
@@ -86,16 +89,25 @@ export function* onFetchIncidents() {
 // ==== RESET INCIDENT ==== //
 export function* resetIncidentDate({
 	payload,
-}: ResetIncidentDateStart): Generator<
-	SelectEffect | PutEffect | Promise<void>
-> {
+}: ResetIncidentDateStart):
+	| Generator<Promise<void>>
+	| SelectEffect
+	| PutEffect {
 	try {
 		const uid = yield select(selectUID);
-		const incident = payload;
+		const incidents: Incident[] = yield select(selectIncidents);
 
 		yield firestore
-			.doc(`users/${uid}/incidents/${incident.inc_uid}`)
-			.update(incident.getDataForFirebase());
+			.doc(`users/${uid}/incidents/${payload.inc_uid}`)
+			.update(payload.getDataForFirebase());
+
+		yield put(
+			updateIncidentInfoSuccess(
+				incidents.map((incident) =>
+					incident.inc_uid === payload.inc_uid ? payload : incident
+				)
+			)
+		);
 	} catch (err) {
 		yield put(incidentError(err.message));
 	}
@@ -105,10 +117,40 @@ export function* onResetIncident() {
 	yield takeLatest(IncidentTypes.RESET_INCIDENT_DATE, resetIncidentDate);
 }
 
+// ==== UPDATE INCIDENT ==== //
+export function* updateIncident({
+	payload,
+}: UpdateIncidentStart): Generator | SelectEffect | Promise<void> {
+	try {
+		const uid = yield select(selectUID);
+		const incidents: Incident[] = yield select(selectIncidents);
+
+		yield firestore
+			.doc(`users/${uid}/incidents/${payload.inc_uid}`)
+			.update(payload.getDataForFirebase());
+
+		yield put(
+			updateIncidentInfoSuccess(
+				incidents.map((incident) =>
+					incident.inc_uid === payload.inc_uid ? payload : incident
+				)
+			)
+		);
+	} catch (err) {
+		yield put(incidentError(err.message));
+	}
+}
+
+export function* onUpdateIncident() {
+	yield takeLatest(IncidentTypes.UPDATE_INCIDENT_START, updateIncident);
+}
+
+// ==== DELETE INCIDENT ==== //
+
 export function* incidentSagas() {
 	yield all([
 		call(onCreateNewIncident),
 		call(onFetchIncidents),
-		call(onResetIncident),
+		call(onUpdateIncident),
 	]);
 }

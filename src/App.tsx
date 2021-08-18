@@ -5,7 +5,6 @@ import HomePage from "./pages/home-page/home-page.component";
 import SignUpPage from "./pages/sign-up-page/sign-up-page.component";
 import SignInPage from "./pages/sign-in-page/sign-in-page.component";
 import UserDashboardPage from "./pages/user-dashboard-page/user-dashboard-page.component";
-import UserProfilePage from "./pages/user-profile-page/user-profile-page.component";
 import Navbar from "./components/navbar/navbar-main/navbar.component";
 import { AppContainer } from "./App.styles";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +14,7 @@ import { selectCurrentUser } from "./redux/user/user.selector";
 import { State } from "./redux/root-reducer";
 import PrivateRoute from "./components/common/private-route/private-route.component";
 import PublicProfilePage from "./pages/public-profile-page/public-profile-page.component";
+import NotficationPage from "./pages/notification-page/notification-page.component";
 
 function App() {
 	const dispatch = useDispatch();
@@ -33,7 +33,6 @@ function App() {
 			<Navbar />
 			<Switch>
 				<Route
-					exact
 					path="/"
 					render={() => (currentUser ? <UserDashboardPage /> : <HomePage />)}
 				/>
@@ -52,6 +51,9 @@ function App() {
 				</PrivateRoute>
 				<PrivateRoute exact path="/profile/:uid">
 					<PublicProfilePage />
+				</PrivateRoute>
+				<PrivateRoute exact path="/notification/:notif_type/:notif_uid/">
+					<NotficationPage />
 				</PrivateRoute>
 			</Switch>
 		</AppContainer>

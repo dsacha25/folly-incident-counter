@@ -1,5 +1,13 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import CustomButton from "./custom-button.component";
+
+interface Hidden {
+	hidden?: boolean;
+}
+
+const displayStyles = css<Hidden>`
+	display: ${({ hidden }) => (hidden ? "none" : "grid")};
+`;
 
 export const ButtonRight = styled(CustomButton)`
 	margin: 0;
@@ -17,6 +25,8 @@ export const ButtonRight = styled(CustomButton)`
 	:active {
 		transform: unset;
 	}
+
+	${displayStyles}
 `;
 
 export const ButtonLeft = styled(CustomButton)`

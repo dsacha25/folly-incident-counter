@@ -1,10 +1,14 @@
 import { differenceInDays, format } from "date-fns";
 import { Comment } from "../../../redux/incidents/incidents.action-types";
-import { IncidentPropTypes, IncidentUserInfoType } from "./types";
+import {
+	IncidentPropTypes,
+	IncidentReport,
+	IncidentUserInfoType,
+} from "./types";
 
 class Incident {
-	readonly name: string = "";
 	readonly user: IncidentUserInfoType;
+	name: string = "";
 	inc_uid: string = "";
 	incident_date: Date;
 	days_since: number = 0;
@@ -26,6 +30,13 @@ class Incident {
 		this.inc_uid = props.inc_uid ? props.inc_uid : "";
 		this.user = props.user;
 		this.wasReset = this.days_since < 1 ? true : false;
+	}
+
+	updateNameAndDate(data: IncidentReport): Incident {
+		this.name = data.name;
+		this.incident_date = data.incident_date;
+
+		return this;
 	}
 
 	resetDateToNow(): Incident {

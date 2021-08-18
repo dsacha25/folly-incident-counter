@@ -31,6 +31,7 @@ import {
 	fetchProfileFriendsSuccess,
 	fetchProfileIncidentsSuccess,
 	fetchProfileInfoSuccess,
+	setIsFriend,
 	setProfileError,
 } from "./profile.action";
 import {
@@ -41,6 +42,7 @@ import {
 import ProfileTypes from "./profile.types";
 import { Profile } from "./types";
 import { flatMap, sortBy, filter } from "lodash";
+import { selectUID } from "../user/user.selector";
 
 // FETCH PROFILE INCIDENTS
 export function* fetchProfileIncidents({
@@ -111,6 +113,8 @@ export function* fetchFriends({
 	payload,
 }: FetchFriendsStartAction): Generator | Query {
 	try {
+		const uid = yield select(selectUID);
+
 		const friendsRef: QuerySnapshot = yield firestore
 			.collection("friendships")
 			.where("users", "array-contains", payload)
@@ -121,6 +125,12 @@ export function* fetchFriends({
 		);
 
 		yield console.log("FRIENDSHIPS: ", friendships);
+
+		if (friendships.includes(uid)) {
+			yield put(setIsFriend(true));
+		} else {
+			yield put(setIsFriend(false));
+		}
 
 		let friends: Profile[] = [];
 

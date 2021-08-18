@@ -29,11 +29,21 @@ export const incidentReducer = (
 				...state,
 				error: null,
 			};
+
 		case IncidentTypes.FETCH_USER_INCIDENTS_SUCCESS:
-		case IncidentTypes.DELETE_INCIDENT_SUCCESS:
+		case IncidentTypes.UPDATE_INCIDENT_SUCCESS:
 			return {
 				...state,
 				incidents: action.payload,
+				error: null,
+			};
+
+		case IncidentTypes.DELETE_INCIDENT_SUCCESS:
+			return {
+				...state,
+				incidents: state.incidents.filter(
+					(incident) => incident.inc_uid !== action.payload.inc_uid
+				),
 				error: null,
 			};
 

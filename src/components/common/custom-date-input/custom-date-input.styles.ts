@@ -26,9 +26,17 @@ export const CustomDatePicker = styled(DatePicker)`
 
 	input[type="date"] {
 		font-weight: 800;
+
+		:disabled {
+			font-weight: 600;
+		}
 	}
 
 	:active {
 		background: none;
+	}
+
+	:disabled {
+		color: ${({ theme }) => theme.main};
 	}
 `;

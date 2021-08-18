@@ -24,7 +24,7 @@ export interface FetchUserIncidentsStart {
 
 export interface FetchUserIncidentsSuccess {
 	type: IncidentTypes.FETCH_USER_INCIDENTS_SUCCESS;
-	payload: Array<Incident>;
+	payload: Incident[];
 }
 
 export interface ResetIncidentDateStart {
@@ -39,7 +39,17 @@ export interface DeleteIncidentStart {
 
 export interface DeleteIncidentSuccess {
 	type: IncidentTypes.DELETE_INCIDENT_SUCCESS;
-	payload: Array<Incident>;
+	payload: Incident;
+}
+
+export interface UpdateIncidentStart {
+	type: IncidentTypes.UPDATE_INCIDENT_START;
+	payload: Incident;
+}
+
+export interface UpdateIncidentSuccess {
+	type: IncidentTypes.UPDATE_INCIDENT_SUCCESS;
+	payload: Incident[];
 }
 
 export interface PostComment {
@@ -70,6 +80,8 @@ type IncidentAction =
 	| ResetIncidentDateStart
 	| DeleteIncidentStart
 	| DeleteIncidentSuccess
+	| UpdateIncidentStart
+	| UpdateIncidentSuccess
 	| PostComment
 	| UpdateComment
 	| DeleteComment

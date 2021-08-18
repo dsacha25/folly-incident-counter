@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import CustomButton from "../common/custom-button/custom-button.component";
+import CustomInput from "../common/custom-input/custom-input.component";
 import BorderStyles from "../common/styles/border/border.styles";
 
-export const IncidentEditorContainer = styled.div`
+export const IncidentEditorContainer = styled.form`
 	display: grid;
 	place-items: center;
 	width: 100%;
@@ -13,7 +14,8 @@ export const IncidentEditorContainer = styled.div`
 	grid-template-columns: 120px 1fr 96px;
 
 	overflow: hidden;
-	${BorderStyles}
+	border: 2px solid ${({ theme }) => theme.lightAccent};
+	border-radius: 30px;
 `;
 
 export const IncidentData = styled.div`
@@ -27,6 +29,28 @@ export const IncidentData = styled.div`
 	gap: 20px;
 
 	overflow-x: scroll;
+`;
+
+export const IncidentNameInput = styled(CustomInput)`
+	border: none !important;
+	box-shadow: none !important;
+	background: none !important;
+	height: 100%;
+	max-height: 60px;
+	font-size: 30px;
+	font-weight: 700;
+	color: ${({ theme }) => theme.lightAccent} !important;
+
+	padding: 0 0 0 20px;
+
+	::placeholder {
+		color: ${({ theme }) => theme.lightAccent};
+		font-weight: 100;
+	}
+
+	:active {
+		background: none;
+	}
 `;
 
 export const IncidentName = styled.p`

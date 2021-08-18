@@ -31,6 +31,11 @@ export const addFriendSuccess = () => ({
 	type: ProfileTypes.ADD_FRIEND_START,
 });
 
+export const setIsFriend = (isFriend: boolean) => ({
+	type: ProfileTypes.SET_IS_FRIEND,
+	payload: isFriend,
+});
+
 export const removeFriendStart = (uid: string) => ({
 	type: ProfileTypes.REMOVE_FRIEND_START,
 	payload: uid,

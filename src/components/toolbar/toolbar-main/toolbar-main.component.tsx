@@ -29,8 +29,10 @@ const ToolbarMain = () => {
 	const setIndex = (i: number | null) => setTab(i);
 
 	const handleClickAway = () => {
-		setIndex(null);
-		clearSearch();
+		if (index) {
+			setIndex(null);
+			clearSearch();
+		}
 	};
 
 	return (

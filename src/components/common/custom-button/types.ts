@@ -27,6 +27,7 @@ export interface CustomButtonProps extends StyleTypes {
 	onClick?: Click;
 	disabled?: boolean;
 	children?: ReactNode;
+	hidden?: boolean;
 }
 
 export default CustomButtonProps;

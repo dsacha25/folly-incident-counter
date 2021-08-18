@@ -40,8 +40,6 @@ const Report = () => {
 		formState: { errors },
 	} = useForm<IncidentReport>();
 
-	const selected = watch("incident_date");
-
 	const onSubmit: SubmitHandler<IncidentReport> = (data) => {
 		setDisabled(true);
 		// REPORT INCIDENT TO FIREBASE
@@ -84,7 +82,7 @@ const Report = () => {
 					placeholder="What happened?"
 				/>
 				<CustomDateInput
-					selected={selected}
+					selected={watch("incident_date")}
 					onChange={handleDate}
 					dateFormat="yyyy-MM-dd"
 					maxDate={new Date()}

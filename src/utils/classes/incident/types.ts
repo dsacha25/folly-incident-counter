@@ -16,3 +16,8 @@ export interface IncidentPropTypes {
 	likes?: number;
 	likedByUser?: boolean;
 }
+
+export interface IncidentReport {
+	name: string;
+	incident_date: Date;
+}

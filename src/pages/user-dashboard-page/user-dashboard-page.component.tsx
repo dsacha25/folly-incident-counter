@@ -22,9 +22,11 @@ import {
 	fetchPendingFriendRequestsStart,
 } from "../../redux/user/user.action";
 import Friends from "../../components/dashboard-tabs/friends/friends.component";
+import { useHistory } from "react-router-dom";
 
 const UserDashboardPage = () => {
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	const fetchIncidents = () => dispatch(fetchIncidentsStart());
 	const fetchPendingRequest = () => dispatch(fetchPendingFriendRequestsStart());
@@ -60,6 +62,10 @@ const UserDashboardPage = () => {
 		fetchFriendRequests();
 		//eslint-disable-next-line
 	}, []);
+
+	useEffect(() => {
+		console.log("LOCATION: ", history.location.pathname);
+	});
 
 	return (
 		<PageMain>

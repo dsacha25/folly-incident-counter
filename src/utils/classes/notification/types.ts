@@ -1,11 +1,11 @@
 import { UserInfoType } from "../../../types";
 
-export enum NotificationCategories {
-	FRIEND_REQUEST = "FRIEND_REQUEST",
-	FRIEND_REQUEST_ACCEPTED = "FRIEND_REQUEST_ACCEPTED",
-	INCIDENT_LIKED = "INCIDENT_LIKED",
-	INCIDENT_COMMENT = "INCIDENT_COMMENT",
-	INCIDENT_EXPOSED = "INCIDENT_EXPOSED",
+export enum NotifCategories {
+	FRIEND_REQUEST = "friend_request",
+	FRIEND_REQUEST_ACCEPTED = "friend_request_accepted",
+	INCIDENT_LIKED = "inc_liked",
+	INCIDENT_COMMENT = "inc_comment",
+	INCIDENT_EXPOSED = "inc_exposed",
 }
 
 export interface NotifInfo {
@@ -17,8 +17,9 @@ export interface NotifInfo {
 export interface NotificationPropTypes {
 	user: UserInfoType;
 	info: NotifInfo;
+	notif_url?: string;
 	notif_uid?: string;
 	createdAt?: Date;
-	category?: NotificationCategories;
+	category?: NotifCategories;
 	viewed?: boolean;
 }

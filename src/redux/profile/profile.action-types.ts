@@ -56,6 +56,11 @@ export interface FetchFriendsSuccessAction {
 	payload: Profile[];
 }
 
+export interface SetIsFriendAction {
+	type: ProfileTypes.SET_IS_FRIEND;
+	payload: boolean;
+}
+
 type ProfileAction =
 	| FetchProfileInfoStartAction
 	| FetchProfileInfoSuccessAction
@@ -67,6 +72,7 @@ type ProfileAction =
 	| RemoveFriendSuccessAction
 	| ProfileErrorAction
 	| FetchFriendsStartAction
-	| FetchFriendsSuccessAction;
+	| FetchFriendsSuccessAction
+	| SetIsFriendAction;
 
 export default ProfileAction;

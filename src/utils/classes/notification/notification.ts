@@ -1,9 +1,5 @@
 import { UserInfoType } from "../../../types";
-import {
-	NotificationCategories,
-	NotificationPropTypes,
-	NotifInfo,
-} from "./types";
+import { NotifCategories, NotificationPropTypes, NotifInfo } from "./types";
 
 /* 
 FACEBOOK URL EXAMPLE:
@@ -12,10 +8,14 @@ FACEBOOK URL EXAMPLE:
 www.facebook.com/david.j.sacha/posts/10215756350742209?notif_id=1626260617124439&notif_t=feedback_reaction_generic&ref=notif
 
 www.facebook.com/ === BASE URL
-david.j.sacha/posts/ === USER
+david.j.sacha/ === Username | user_uid
+posts/ === What
 10215756350742209? === ???
 notif_id=1626260617124439& === NOTIFICATION UID
 notif_t=feedback_reaction_generic& === NOTIFICATION TYPE
+ref=notif === ??? its the same on all notifications so I'm not sure what it's purpose is
+
+
 **** other examples: 
 ******* story_reshare --- LINKS TO POST
 ******* close_friend_activity
@@ -24,18 +24,16 @@ notif_t=feedback_reaction_generic& === NOTIFICATION TYPE
 ******* feedback_reaction_generic --- LINKS TO POST -> THEN SHOWS COMMENT
 
 
-ref=notif === ??? its the same on all notifications so I'm not sure what it's purpose is
 */
 
 class Notification {
-	public notif_uid: string;
 	public createdAt: Date = new Date();
-	public category: NotificationCategories =
-		NotificationCategories.FRIEND_REQUEST;
+	public category: NotifCategories = NotifCategories.FRIEND_REQUEST;
+	public info: NotifInfo;
+	public message: string;
+	public notif_uid: string;
 	public viewed: boolean = false;
 	public user: UserInfoType;
-	public message: string;
-	public info: NotifInfo;
 	constructor(props: NotificationPropTypes) {
 		this.notif_uid = props.notif_uid ? props.notif_uid : "";
 		this.createdAt = props.createdAt ? props.createdAt : this.createdAt;
@@ -53,16 +51,16 @@ class Notification {
 
 	private constructUrl(): string {
 		switch (this.category) {
-			case NotificationCategories.FRIEND_REQUEST:
+			case NotifCategories.FRIEND_REQUEST:
 				return `/friends`;
 
-			case NotificationCategories.FRIEND_REQUEST_ACCEPTED:
+			case NotifCategories.FRIEND_REQUEST_ACCEPTED:
 				return `/profile/${this.user.user_uid}`;
 
-			case NotificationCategories.INCIDENT_COMMENT:
-			case NotificationCategories.INCIDENT_LIKED:
-			case NotificationCategories.INCIDENT_EXPOSED:
-				return `/notifs/${this.info.notif_source_uid}`;
+			case NotifCategories.INCIDENT_COMMENT:
+			case NotifCategories.INCIDENT_LIKED:
+			case NotifCategories.INCIDENT_EXPOSED:
+				return `/notification/${this.info.notif_source_uid}/${this.category}`;
 
 			default:
 				return "";
@@ -71,23 +69,23 @@ class Notification {
 
 	private setNotificationMessage(): Notification {
 		switch (this.category) {
-			case NotificationCategories.FRIEND_REQUEST:
+			case NotifCategories.FRIEND_REQUEST:
 				return this.setMessage(
 					`${this.user.username} wants to be your friend!`
 				);
-			case NotificationCategories.FRIEND_REQUEST_ACCEPTED:
+			case NotifCategories.FRIEND_REQUEST_ACCEPTED:
 				return this.setMessage(
 					`${this.user.username} accepted your friend request!`
 				);
-			case NotificationCategories.INCIDENT_COMMENT:
+			case NotifCategories.INCIDENT_COMMENT:
 				return this.setMessage(
 					`${this.user.username} commented on your incident.` /// NEED SOME WAY TO ID WHICH ONE AND LINK
 				);
-			case NotificationCategories.INCIDENT_EXPOSED:
+			case NotifCategories.INCIDENT_EXPOSED:
 				return this.setMessage(
 					`${this.user.username} exposed your incident!` /// NEED SOME WAY TO ID WHICH ONE AND LINK
 				);
-			case NotificationCategories.INCIDENT_LIKED:
+			case NotifCategories.INCIDENT_LIKED:
 				return this.setMessage(
 					`${this.user.username} liked your incident.` /// NEED SOME WAY TO ID WHICH ONE AND LINK
 				);
