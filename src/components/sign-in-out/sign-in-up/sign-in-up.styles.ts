@@ -17,7 +17,12 @@ export const SignInUpContainer = styled.div`
 	border-radius: 2px;
 	opacity: 0.9;
 
-	/* padding: 40px; */
+	@media screen and (max-width: 800px) {
+		border: none;
+		background-color: unset;
+		max-width: unset;
+		max-height: unset;
+	}
 `;
 
 export const ButtonContainer = styled.div`
@@ -26,6 +31,13 @@ export const ButtonContainer = styled.div`
 	grid-template-columns: 1fr 1fr;
 	width: 100%;
 	height: 100%;
+
+	@media screen and (max-width: 800px) {
+		height: unset;
+		place-items: flex-start center;
+		grid-template-columns: 1fr;
+		grid-template-rows: 1fr 1fr;
+	}
 `;
 
 export const SignInButton = styled(CustomButton)`

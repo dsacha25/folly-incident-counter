@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useHistory } from "react-router-dom";
-import { HomePageContent, HomePageMain, LogoSplash } from "./home-page.styles";
+import { HomePageContent, LogoSplash } from "./home-page.styles";
 import {
 	BackgroundLogo,
 	PageContentContainer,

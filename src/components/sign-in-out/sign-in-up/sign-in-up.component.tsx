@@ -12,8 +12,6 @@ const SignInUp = () => {
 
 	return (
 		<SignInUpContainer>
-			<h2>Join Us!</h2>
-			<h4>Start tracking your own incidents and share them with friends!</h4>
 			<ButtonContainer>
 				<CustomButton onClick={() => history.push("/signup")}>
 					Sign Up

@@ -1,18 +1,6 @@
 import styled from "styled-components";
 import FollyLogoStmt from "../../assets/folly_brand/FollyLogoStatement.png";
 
-export const HomePageMain = styled.div`
-	display: grid;
-	width: 100vw;
-	height: 100vh;
-	max-height: 100vh;
-	overflow-y: auto;
-
-	@media screen and (max-width: 800px) {
-		max-width: 100vw;
-	}
-`;
-
 export const LogoSplash = styled.div`
 	display: grid;
 	width: -webkit-fill-available;
@@ -30,4 +18,10 @@ export const HomePageContent = styled.div`
 
 	place-items: center;
 	grid-template-columns: 1fr 1fr;
+
+	@media screen and (max-width: 800px) {
+		height: 100%;
+		grid-template-columns: 1fr;
+		grid-template-rows: 42vh 58vh;
+	}
 `;
