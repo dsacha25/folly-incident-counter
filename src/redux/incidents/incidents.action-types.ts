@@ -8,83 +8,95 @@ export type Comment = {
 	comment: string;
 };
 
-export interface CreateIncidentStart {
+export interface CreateIncidentStartAction {
 	type: IncidentTypes.CREATE_INCIDENT_START;
 	payload: Incident;
 }
 
-export interface CreateIncidentSuccess {
+export interface CreateIncidentSuccessAction {
 	type: IncidentTypes.CREATE_INCIDENT_SUCCESS;
 	payload: Incident;
 }
 
-export interface FetchUserIncidentsStart {
+export interface FetchUserIncidentsStartAction {
 	type: IncidentTypes.FETCH_USER_INCIDENTS_START;
 }
 
-export interface FetchUserIncidentsSuccess {
+export interface FetchUserIncidentsSuccessAction {
 	type: IncidentTypes.FETCH_USER_INCIDENTS_SUCCESS;
 	payload: Incident[];
 }
 
-export interface ResetIncidentDateStart {
-	type: IncidentTypes.RESET_INCIDENT_DATE;
-	payload: Incident;
-}
-
-export interface DeleteIncidentStart {
-	type: IncidentTypes.DELETE_INCIDENT_START;
-	payload: string;
-}
-
-export interface DeleteIncidentSuccess {
-	type: IncidentTypes.DELETE_INCIDENT_SUCCESS;
-	payload: Incident;
-}
-
-export interface UpdateIncidentStart {
+export interface UpdateIncidentStartAction {
 	type: IncidentTypes.UPDATE_INCIDENT_START;
 	payload: Incident;
 }
 
-export interface UpdateIncidentSuccess {
+export interface UpdateIncidentSuccessAction {
 	type: IncidentTypes.UPDATE_INCIDENT_SUCCESS;
 	payload: Incident[];
 }
 
-export interface PostComment {
-	type: IncidentTypes.POST_COMMENT;
-	payload: Comment;
-}
-
-export interface UpdateComment {
-	type: IncidentTypes.UPDATE_COMMENT;
-	payload: Comment;
-}
-
-export interface DeleteComment {
-	type: IncidentTypes.DELETE_COMMENT;
+export interface DeleteIncidentStartAction {
+	type: IncidentTypes.DELETE_INCIDENT_START;
 	payload: string;
 }
 
-export interface IncidentError {
+export interface DeleteIncidentSuccessAction {
+	type: IncidentTypes.DELETE_INCIDENT_SUCCESS;
+	payload: string;
+}
+
+export interface PostCommentStartAction {
+	type: IncidentTypes.POST_COMMENT_START;
+	payload: Comment;
+}
+
+export interface PostCommentSuccessAction {
+	type: IncidentTypes.POST_COMMENT_START;
+	payload: Comment;
+}
+
+export interface UpdateCommentStartAction {
+	type: IncidentTypes.UPDATE_COMMENT_START;
+	payload: Comment;
+}
+
+export interface UpdateCommentSuccessAction {
+	type: IncidentTypes.UPDATE_COMMENT_START;
+	payload: Comment[];
+}
+
+export interface DeleteCommentStartAction {
+	type: IncidentTypes.DELETE_COMMENT_START;
+	payload: string;
+}
+
+export interface DeleteCommentSuccessAction {
+	type: IncidentTypes.DELETE_COMMENT_START;
+	payload: string;
+}
+
+export interface IncidentErrorAction {
 	type: IncidentTypes.INCIDENT_ERROR;
 	payload: string;
 }
 
 type IncidentAction =
-	| CreateIncidentStart
-	| CreateIncidentSuccess
-	| FetchUserIncidentsStart
-	| FetchUserIncidentsSuccess
-	| ResetIncidentDateStart
-	| DeleteIncidentStart
-	| DeleteIncidentSuccess
-	| UpdateIncidentStart
-	| UpdateIncidentSuccess
-	| PostComment
-	| UpdateComment
-	| DeleteComment
-	| IncidentError;
+	| CreateIncidentStartAction
+	| CreateIncidentSuccessAction
+	| FetchUserIncidentsStartAction
+	| FetchUserIncidentsSuccessAction
+	| UpdateIncidentStartAction
+	| UpdateIncidentSuccessAction
+	| DeleteIncidentStartAction
+	| DeleteIncidentSuccessAction
+	| PostCommentStartAction
+	| PostCommentSuccessAction
+	| UpdateCommentStartAction
+	| UpdateCommentSuccessAction
+	| DeleteCommentStartAction
+	| DeleteCommentSuccessAction
+	| IncidentErrorAction;
 
 export default IncidentAction;

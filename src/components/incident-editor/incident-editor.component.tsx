@@ -15,7 +15,10 @@ import { FiHash } from "react-icons/fi";
 import { BiCommentDetail, BiLike } from "react-icons/bi";
 import Incident from "../../utils/classes/incident/incident";
 import { useDispatch } from "react-redux";
-import { updateIncidentInfoStart } from "../../redux/incidents/incidents.actions";
+import {
+	deleteIncidentStart,
+	updateIncidentInfoStart,
+} from "../../redux/incidents/incidents.actions";
 import CustomDateInput from "../common/custom-date-input/custom-date-input.component";
 
 interface IncidentReport {
@@ -28,6 +31,8 @@ const IncidentEditor = (props: IncidentEditorProps) => {
 
 	const update = (incident: Incident) =>
 		dispatch(updateIncidentInfoStart(incident));
+	const deleteIncident = (inc_uid: string) =>
+		dispatch(deleteIncidentStart(inc_uid));
 
 	const [incident, setIncident] = useState<Incident>(props.incident);
 	const [disabled, setDisabled] = useState<boolean>(true);
@@ -46,10 +51,15 @@ const IncidentEditor = (props: IncidentEditorProps) => {
 	// });
 
 	const handleReset = () => {
-		const updatedIncident = incident.resetDateToNow();
-
-		setIncident(updatedIncident);
-		update(updatedIncident);
+		if (disabled) {
+			/// RESET INCIDENT
+			const updatedIncident = incident.resetDateToNow();
+			setIncident(updatedIncident);
+			update(updatedIncident);
+		} else {
+			/// DELETE INCIDENT
+			deleteIncident(incident.inc_uid);
+		}
 	};
 
 	const handleDate = (date: Date) => {
@@ -92,7 +102,7 @@ const IncidentEditor = (props: IncidentEditorProps) => {
 	return (
 		<IncidentEditorContainer onSubmit={handleSubmit(onSubmit)}>
 			<ButtonLeft type="button" onClick={handleReset}>
-				Reset
+				{disabled ? "Reset" : "Delete"}
 			</ButtonLeft>
 			<IncidentData>
 				<IncidentNameInput
@@ -103,14 +113,14 @@ const IncidentEditor = (props: IncidentEditorProps) => {
 				/>
 				<IconRight
 					value={incident.days_since}
-					icon={<FiHash size="30px" />}
+					icon={<FiHash size="20px" />}
 					important
 				/>
 				<IconRight
 					value={incident.comments.length}
-					icon={<BiCommentDetail size="30px" />}
+					icon={<BiCommentDetail size="20px" />}
 				/>
-				<IconRight value={incident.likes} icon={<BiLike size="30px" />} />
+				<IconRight value={incident.likes} icon={<BiLike size="20px" />} />
 
 				<CustomDateInput
 					selected={watch("incident_date", incident.incident_date)}

@@ -5,16 +5,22 @@ import { IncidentState } from "./incidents.reducer";
 
 const selectIncident = (state: State) => state.incidents;
 
-export const selectIncidents = createSelector<
+export const selectIncidents = createSelector<State, IncidentState, Incident[]>(
+	selectIncident,
+	(incidents) => incidents.incidents
+);
+
+export const selectNumberOfIncidents = createSelector<
+	State,
+	Incident[],
+	number
+>(selectIncidents, (incidents) => incidents.length);
+
+export const selectIsFetchingIncidents = createSelector<
 	State,
 	IncidentState,
-	Array<Incident>
->(selectIncident, (incidents) => incidents.incidents);
-
-export const selectNumberOfIncidents = createSelector(
-	selectIncidents,
-	(incidents) => incidents.length
-);
+	boolean
+>(selectIncident, (incidents) => incidents.fetching);
 
 export const selectIncidentError = createSelector<
 	State,

@@ -6,9 +6,8 @@ import BorderStyles from "../common/styles/border/border.styles";
 export const IncidentEditorContainer = styled.form`
 	display: grid;
 	place-items: center;
-	width: 100%;
 	height: 100%;
-	max-width: 49vw;
+
 	max-height: 60px;
 
 	grid-template-columns: 120px 1fr 96px;

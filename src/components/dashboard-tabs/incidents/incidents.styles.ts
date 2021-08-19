@@ -8,10 +8,9 @@ interface InterfaceContainerProps {
 export const IncidentsContainer = styled.div<InterfaceContainerProps>`
 	display: grid;
 	place-items: flex-start center;
-	width: 100%;
+	width: 96%;
 	height: 100%;
 	max-height: 85vh;
-
 	overflow-y: scroll;
 
 	grid-template-rows: repeat(

@@ -9,14 +9,15 @@ import {
 } from "redux-saga/effects";
 import {
 	createIncidentSuccess,
+	deleteIncidentSuccess,
 	fetchIncidentsSuccess,
 	incidentError,
 	updateIncidentInfoSuccess,
 } from "./incidents.actions";
 import {
-	CreateIncidentStart,
-	ResetIncidentDateStart,
-	UpdateIncidentStart,
+	CreateIncidentStartAction,
+	DeleteIncidentStartAction,
+	UpdateIncidentStartAction,
 } from "./incidents.action-types";
 import IncidentTypes from "./incidents.types";
 import { selectUID } from "../user/user.selector";
@@ -29,7 +30,7 @@ import { selectIncidents } from "./incidents.selector";
 // ==== CREATE INCIDENT ==== //
 export function* createNewIncident({
 	payload,
-}: CreateIncidentStart): Generator {
+}: CreateIncidentStartAction): Generator {
 	try {
 		const uid = yield select(selectUID);
 		yield console.log("INCIDENT BEFORE UPLOAD: ", payload);
@@ -86,41 +87,10 @@ export function* onFetchIncidents() {
 	yield takeLatest(IncidentTypes.FETCH_USER_INCIDENTS_START, fetchIncidents);
 }
 
-// ==== RESET INCIDENT ==== //
-export function* resetIncidentDate({
-	payload,
-}: ResetIncidentDateStart):
-	| Generator<Promise<void>>
-	| SelectEffect
-	| PutEffect {
-	try {
-		const uid = yield select(selectUID);
-		const incidents: Incident[] = yield select(selectIncidents);
-
-		yield firestore
-			.doc(`users/${uid}/incidents/${payload.inc_uid}`)
-			.update(payload.getDataForFirebase());
-
-		yield put(
-			updateIncidentInfoSuccess(
-				incidents.map((incident) =>
-					incident.inc_uid === payload.inc_uid ? payload : incident
-				)
-			)
-		);
-	} catch (err) {
-		yield put(incidentError(err.message));
-	}
-}
-
-export function* onResetIncident() {
-	yield takeLatest(IncidentTypes.RESET_INCIDENT_DATE, resetIncidentDate);
-}
-
 // ==== UPDATE INCIDENT ==== //
 export function* updateIncident({
 	payload,
-}: UpdateIncidentStart): Generator | SelectEffect | Promise<void> {
+}: UpdateIncidentStartAction): Generator | SelectEffect | Promise<void> {
 	try {
 		const uid = yield select(selectUID);
 		const incidents: Incident[] = yield select(selectIncidents);
@@ -146,11 +116,29 @@ export function* onUpdateIncident() {
 }
 
 // ==== DELETE INCIDENT ==== //
+export function* deleteIncident({
+	payload,
+}: DeleteIncidentStartAction): Generator | SelectEffect | Promise<void> {
+	try {
+		const uid = yield select(selectUID);
+
+		yield firestore.doc(`users/${uid}/incidents/${payload}`).delete();
+
+		yield put(deleteIncidentSuccess(payload));
+	} catch (err) {
+		yield put(incidentError(err.message));
+	}
+}
+
+export function* onDeleteIncident() {
+	yield takeLatest(IncidentTypes.DELETE_INCIDENT_START, deleteIncident);
+}
 
 export function* incidentSagas() {
 	yield all([
 		call(onCreateNewIncident),
 		call(onFetchIncidents),
 		call(onUpdateIncident),
+		call(onDeleteIncident),
 	]);
 }

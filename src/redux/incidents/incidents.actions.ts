@@ -22,12 +22,6 @@ export const fetchIncidentsSuccess = (incidents: Incident[]) => ({
 	payload: incidents,
 });
 
-// ==== RESET INCIDENT DATE
-export const resetIncidentDate = (incident: Incident) => ({
-	type: IncidentTypes.RESET_INCIDENT_DATE,
-	payload: incident,
-});
-
 // ==== UPDATE INCIDENT INFO
 export const updateIncidentInfoStart = (incident: Incident) => ({
 	type: IncidentTypes.UPDATE_INCIDENT_START,
@@ -40,6 +34,15 @@ export const updateIncidentInfoSuccess = (incidents: Incident[]) => ({
 });
 
 // ==== DELETE INCIDENT
+export const deleteIncidentStart = (inst_uid: string) => ({
+	type: IncidentTypes.DELETE_INCIDENT_START,
+	payload: inst_uid,
+});
+
+export const deleteIncidentSuccess = (inst_uid: string) => ({
+	type: IncidentTypes.DELETE_INCIDENT_SUCCESS,
+	payload: inst_uid,
+});
 
 // ==== ERROR
 export const incidentError = (error: string) => ({

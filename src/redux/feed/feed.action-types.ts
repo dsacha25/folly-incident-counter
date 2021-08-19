@@ -3,7 +3,8 @@ import FeedTypes from "./feed.types";
 
 export interface FeedState {
 	feedIncidents: Incident[];
-	error: string;
+	fetching: boolean;
+	error: string | null;
 }
 
 export interface FetchFeedIncidentsStartAction {
