@@ -8,6 +8,14 @@ export const SignUpForm = styled.form`
 	place-items: center;
 
 	grid-template-rows: auto repeat(5, 1fr) auto;
+
+	@media screen and (max-width: 800px) {
+		width: 90vw;
+		height: 70vh;
+
+		place-items: flex-start center;
+		place-self: flex-start center;
+	}
 `;
 
 export const SignUpInput = styled(CustomInput)`

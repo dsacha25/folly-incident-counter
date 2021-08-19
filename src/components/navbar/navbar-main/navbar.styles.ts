@@ -27,6 +27,8 @@ export const NavbarLogo = styled.div`
 	cursor: pointer;
 
 	@media screen and (max-width: 800px) {
-		display: none;
+		width: 140px;
+		height: 50px;
+		margin-left: 10px;
 	}
 `;

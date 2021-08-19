@@ -35,10 +35,7 @@ const SignInPage = () => {
 
 	return (
 		<PageBlank>
-			<SignInForm
-				style={{ display: "grid", maxWidth: "60vw" }}
-				onSubmit={handleSubmit(onSubmit)}
-			>
+			<SignInForm onSubmit={handleSubmit(onSubmit)}>
 				<h1>Log In</h1>
 
 				<CustomInput

@@ -22,6 +22,6 @@ export const HomePageContent = styled.div`
 	@media screen and (max-width: 800px) {
 		height: 100%;
 		grid-template-columns: 1fr;
-		grid-template-rows: 42vh 58vh;
+		grid-template-rows: 40vh 60vh;
 	}
 `;

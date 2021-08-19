@@ -33,6 +33,7 @@ function App() {
 			<Navbar />
 			<Switch>
 				<Route
+					exact
 					path="/"
 					render={() => (currentUser ? <UserDashboardPage /> : <HomePage />)}
 				/>

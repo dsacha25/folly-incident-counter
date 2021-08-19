@@ -48,6 +48,13 @@ export const BackgroundLogo = styled.div`
 	right: -800px;
 
 	opacity: 0.1;
+
+	@media screen and (max-width: 800px) {
+		width: 1400px;
+		height: 1400px;
+		top: -575px;
+		right: -800px;
+	}
 `;
 
 export const PageBlank = styled.div`
