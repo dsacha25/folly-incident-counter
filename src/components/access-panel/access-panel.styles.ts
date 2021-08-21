@@ -21,6 +21,10 @@ export const AccessPanelContainer = styled.div`
 
 		grid-template-columns: repeat(5, 1fr);
 		grid-template-rows: 1fr;
+
+		background-color: ${({ theme }) => theme.darkAccent};
+
+		padding: 0;
 	}
 `;
 
@@ -46,5 +50,25 @@ export const PanelButton = styled(CustomButton)`
 		border-width: 1px;
 		border-top: none;
 		border-bottom: none;
+	}
+`;
+
+export const PanelButtonText = styled.p`
+	padding: 0;
+	margin: 0;
+
+	@media screen and (max-width: 800px) {
+		display: none;
+	}
+`;
+
+export const PanelButtonIcon = styled.span`
+	display: grid;
+	width: 100%;
+	height: 100%;
+	place-items: center;
+
+	@media screen and (min-width: 800px) {
+		display: none;
 	}
 `;

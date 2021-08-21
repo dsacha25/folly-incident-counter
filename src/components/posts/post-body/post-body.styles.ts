@@ -19,6 +19,10 @@ export const TitleContainer = styled.div`
 
 	place-items: center;
 	grid-template-columns: auto auto 1fr;
+
+	@media screen and (max-width: 800px) {
+		margin: 15px 0 0 15px;
+	}
 `;
 
 export const Title = styled.p`
@@ -29,6 +33,11 @@ export const Title = styled.p`
 	padding: 10px 0;
 	margin: 0;
 	place-self: flex-start flex-end;
+
+	@media screen and (max-width: 800px) {
+		font-size: 16px;
+		padding: 0;
+	}
 `;
 
 export const DashDivider = styled.div`
@@ -47,6 +56,10 @@ export const IncidentName = styled.p`
 	padding: 0 0 5px 0;
 	margin: 0;
 	place-self: flex-end flex-start;
+
+	@media screen and (max-width: 800px) {
+		font-size: 25px;
+	}
 `;
 
 export const DaysContainer = styled.div`
@@ -65,6 +78,10 @@ export const DaysSince = styled.p`
 	padding: 0 0 0 10px;
 	margin: 0;
 	justify-self: flex-start;
+
+	@media screen and (max-width: 800px) {
+		font-size: 60px;
+	}
 `;
 
 export const Arrow = styled.div<PostBodyProps>`
@@ -74,4 +91,9 @@ export const Arrow = styled.div<PostBodyProps>`
 	background-size: contain;
 	background-repeat: no-repeat;
 	justify-self: flex-end;
+
+	@media screen and (max-width: 800px) {
+		width: 40px;
+		height: 50px;
+	}
 `;

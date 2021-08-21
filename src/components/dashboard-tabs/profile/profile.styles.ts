@@ -10,6 +10,11 @@ export const ProfileContainer = styled.div`
 	padding-top: 40px;
 	grid-template-rows: 40vh 1fr;
 	gap: 40px;
+
+	@media screen and (max-width: 800px) {
+		max-width: 90vw;
+		grid-template-rows: 1fr 1fr;
+	}
 `;
 
 export const InfoContainer = styled.div`
@@ -22,6 +27,10 @@ export const InfoContainer = styled.div`
 	grid-template-rows: auto auto 1fr;
 
 	gap: 20px;
+
+	@media screen and (max-width: 800px) {
+		place-items: flex-start center;
+	}
 `;
 
 export const StatsContainer = styled.div`

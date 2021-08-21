@@ -63,7 +63,7 @@ const Profile = (props: DashboardProps) => {
 
 	return props.tab === 1 ? (
 		<ProfileContainer>
-			<GenericContainer title="Info" minHeight="400px">
+			<GenericContainer title="Info" minHeight="500px">
 				<InfoContainer>
 					<InputWithLabel
 						{...register("name", {

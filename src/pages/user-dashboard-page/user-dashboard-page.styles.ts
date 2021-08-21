@@ -40,5 +40,7 @@ export const MainContainer = styled.div`
 		mask-size: 100%;
 		mask-position: 0 0, 100% 0;
 		mask-repeat: no-repeat, no-repeat;
+
+		overflow-y: scroll;
 	}
 `;

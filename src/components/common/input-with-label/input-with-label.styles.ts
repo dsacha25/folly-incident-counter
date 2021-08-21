@@ -10,6 +10,15 @@ export const InputWrapper = styled.div`
 	place-items: center flex-end;
 
 	grid-template-columns: auto 1fr;
+
+	@media screen and (max-width: 800px) {
+		grid-template-columns: 1fr;
+		grid-template-rows: auto 1fr;
+		place-items: center;
+
+		height: 80px;
+		gap: 5px;
+	}
 `;
 
 export const Label = styled.p`
@@ -24,6 +33,10 @@ export const Label = styled.p`
 	margin: 0;
 
 	color: ${({ theme }) => theme.lightAccent};
+
+	@media screen and (max-width: 800px) {
+		/* display: none; */
+	}
 `;
 
 export const EditInputContainer = styled.div`
@@ -45,6 +58,11 @@ export const EditInputContainer = styled.div`
 
 	button {
 		border-radius: 0;
+	}
+
+	@media screen and (max-width: 800px) {
+		max-width: 90vw;
+		min-width: unset;
 	}
 `;
 
@@ -82,5 +100,9 @@ export const LabeledInput = styled(CustomInput)`
 
 	:disabled {
 		color: ${({ theme }) => theme.main};
+	}
+
+	@media screen and (max-width: 800px) {
+		font-size: 18px;
 	}
 `;

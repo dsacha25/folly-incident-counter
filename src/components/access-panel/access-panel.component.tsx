@@ -3,12 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/user.selector";
 import {
 	AccessPanelContainer,
+	PanelButtonText,
 	PanelButton,
 	PanelPicture,
+	PanelButtonIcon,
 } from "./access-panel.styles";
 import { State } from "../../redux/root-reducer";
 import { User } from "../../redux/user/types";
 import { setTabDashboard } from "../../redux/tabs/tabs.action";
+import { AiFillSetting } from "react-icons/ai";
+import { FaUserFriends } from "react-icons/fa";
+import { BiCommentError } from "react-icons/bi";
+import { CgProfile, CgFeed } from "react-icons/cg";
 
 const AccessPanel = () => {
 	const dispatch = useDispatch();
@@ -32,19 +38,34 @@ const AccessPanel = () => {
 		<AccessPanelContainer>
 			<PanelPicture photoURL={user?.photoURL} />
 			<PanelButton id="0" onClick={handleSelectTab} active={activeTab === 0}>
-				Feed
+				<PanelButtonText>Feed</PanelButtonText>
+				<PanelButtonIcon>
+					<CgFeed size="80%" />
+				</PanelButtonIcon>
 			</PanelButton>
 			<PanelButton id="1" onClick={handleSelectTab} active={activeTab === 1}>
-				Profile
+				<PanelButtonText>Profile</PanelButtonText>
+				<PanelButtonIcon>
+					<CgProfile size="60%" />
+				</PanelButtonIcon>
 			</PanelButton>
 			<PanelButton id="2" onClick={handleSelectTab} active={activeTab === 2}>
-				Incidents
+				<PanelButtonText>Incidents</PanelButtonText>
+				<PanelButtonIcon>
+					<BiCommentError size="65%" />
+				</PanelButtonIcon>
 			</PanelButton>
 			<PanelButton id="3" onClick={handleSelectTab} active={activeTab === 3}>
-				Friends
+				<PanelButtonText>Friends</PanelButtonText>
+				<PanelButtonIcon>
+					<FaUserFriends size="60%" />
+				</PanelButtonIcon>
 			</PanelButton>
 			<PanelButton id="4" onClick={handleSelectTab} active={activeTab === 4}>
-				Settings
+				<PanelButtonText>Settings</PanelButtonText>
+				<PanelButtonIcon>
+					<AiFillSetting size="60%" />
+				</PanelButtonIcon>
 			</PanelButton>
 		</AccessPanelContainer>
 	);

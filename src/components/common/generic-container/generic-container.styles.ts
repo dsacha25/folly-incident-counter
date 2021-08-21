@@ -16,8 +16,18 @@ export const GenericContainerWrapper = styled.div<GenericContainerStyleProps>`
 	min-height: ${({ minHeight }) => (minHeight ? minHeight : "auto")};
 	margin-top: 10px;
 	overflow: hidden;
-	${BorderStyles};
+
 	border-radius: 36px;
+
+	@media screen and (min-width: 800px) {
+		${BorderStyles};
+	}
+
+	@media screen and (max-width: 800px) {
+		max-width: 90vw;
+		max-height: 90vh;
+		overflow-x: scroll;
+	}
 `;
 
 export const ContainerHeader = styled.div`
