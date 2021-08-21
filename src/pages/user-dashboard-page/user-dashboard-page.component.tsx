@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { DashboardMain, MainFeed } from "./user-dashboard-page.styles";
+import { DashboardMain, MainContainer } from "./user-dashboard-page.styles";
 import { PageMain } from "../page-styles/page-styles.styles";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -69,16 +69,16 @@ const UserDashboardPage = () => {
 
 	return (
 		<PageMain>
-			<DashboardMain className="dashboard-main">
+			<DashboardMain>
 				<AccessPanel />
-				<MainFeed className="main-feed">
+				<MainContainer>
 					<ToolbarMain />
+					<Feed tab={tab} />
 					<Profile tab={tab} />
 					<Incidents tab={tab} />
-					<Feed tab={tab} />
 					<Friends tab={tab} />
 					<Settings tab={tab} />
-				</MainFeed>
+				</MainContainer>
 			</DashboardMain>
 		</PageMain>
 	);

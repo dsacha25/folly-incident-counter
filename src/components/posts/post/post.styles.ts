@@ -15,6 +15,11 @@ export const PostContainer = styled.div`
 	border: 1px solid ${({ theme }: Theme) => theme.lightAccent};
 	border-radius: 30px;
 	overflow: hidden;
+
+	@media screen and (max-width: 800px) {
+		width: 86vw;
+		margin: 0;
+	}
 `;
 
 export const PostHeader = styled.div`

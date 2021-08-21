@@ -10,4 +10,8 @@ export const ToolbarMainContainer = styled.div`
 	gap: 40px;
 
 	place-self: center;
+
+	@media screen and (max-width: 800px) {
+		gap: 0;
+	}
 `;

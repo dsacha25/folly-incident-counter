@@ -10,6 +10,10 @@ export const NavControlContainer = styled.div`
 	gap: 15px;
 
 	grid-column: 3 / 3;
+
+	@media screen and (max-width: 800px) {
+		display: none;
+	}
 `;
 
 export const NavButton = styled(CustomButton)`

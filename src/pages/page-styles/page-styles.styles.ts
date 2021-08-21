@@ -10,6 +10,12 @@ export const PageMain = styled.div`
 
 	place-items: center;
 
+	background: linear-gradient(
+		180deg,
+		rgba(13, 13, 13, 0.5) 0%,
+		rgba(32, 46, 65, 0.5) 100%
+	);
+
 	@media screen and (max-width: 800px) {
 		max-width: 100vw;
 	}

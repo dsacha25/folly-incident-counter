@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/user.selector";
-import CustomButton from "../common/custom-button/custom-button.component";
-import { AcceessPanelContainer } from "./access-panel.styles";
+import {
+	AccessPanelContainer,
+	PanelButton,
+	PanelPicture,
+} from "./access-panel.styles";
 import { State } from "../../redux/root-reducer";
 import { User } from "../../redux/user/types";
 import { setTabDashboard } from "../../redux/tabs/tabs.action";
-import ProfilePicture from "../common/profile-picture/profile-picture.component";
 
 const AccessPanel = () => {
 	const dispatch = useDispatch();
@@ -26,71 +28,25 @@ const AccessPanel = () => {
 		// CONNECT TO REDUX
 	};
 
-	const handleDeleteUser = async () => {
-		if (user) {
-			try {
-				await user
-					.delete()
-					.then(() => console.log("User successfully deleted"));
-
-				window.location.reload();
-			} catch (err) {
-				console.log("Unable to delete user: ", err.message);
-			}
-		}
-	};
 	return (
-		<AcceessPanelContainer>
-			<ProfilePicture photoURL={user?.photoURL} />
-			<CustomButton
-				onClick={handleSelectTab}
-				id="0"
-				minWidth="200px"
-				margin="20px 0"
-				active={activeTab === 0}
-			>
+		<AccessPanelContainer>
+			<PanelPicture photoURL={user?.photoURL} />
+			<PanelButton id="0" onClick={handleSelectTab} active={activeTab === 0}>
 				Feed
-			</CustomButton>
-			<CustomButton
-				onClick={handleSelectTab}
-				id="1"
-				minWidth="200px"
-				margin="20px 0"
-				active={activeTab === 1}
-			>
+			</PanelButton>
+			<PanelButton id="1" onClick={handleSelectTab} active={activeTab === 1}>
 				Profile
-			</CustomButton>
-			<CustomButton
-				onClick={handleSelectTab}
-				id="2"
-				minWidth="200px"
-				margin="20px 0"
-				active={activeTab === 2}
-			>
+			</PanelButton>
+			<PanelButton id="2" onClick={handleSelectTab} active={activeTab === 2}>
 				Incidents
-			</CustomButton>
-
-			<CustomButton
-				id="3"
-				minWidth="200px"
-				margin="20px 0"
-				backgroundColor="red"
-				onClick={handleSelectTab}
-				active={activeTab === 3}
-			>
+			</PanelButton>
+			<PanelButton id="3" onClick={handleSelectTab} active={activeTab === 3}>
 				Friends
-			</CustomButton>
-			<CustomButton
-				id="4"
-				minWidth="200px"
-				margin="20px 0"
-				backgroundColor="red"
-				onClick={handleSelectTab}
-				active={activeTab === 4}
-			>
+			</PanelButton>
+			<PanelButton id="4" onClick={handleSelectTab} active={activeTab === 4}>
 				Settings
-			</CustomButton>
-		</AcceessPanelContainer>
+			</PanelButton>
+		</AccessPanelContainer>
 	);
 };
 

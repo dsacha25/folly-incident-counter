@@ -8,4 +8,6 @@ export const FeedContainer = styled.div`
 	max-height: 85vh;
 
 	overflow-y: scroll;
+
+	gap: 20px;
 `;
