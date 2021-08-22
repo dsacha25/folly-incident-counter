@@ -58,7 +58,7 @@ export const IncidentName = styled.p`
 	place-self: flex-end flex-start;
 
 	@media screen and (max-width: 800px) {
-		font-size: 25px;
+		font-size: 30px;
 	}
 `;
 

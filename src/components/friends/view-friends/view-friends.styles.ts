@@ -2,17 +2,20 @@ import styled from "styled-components";
 import PictureAvatar from "../../../assets/placeholders/profile-picture/picture-avatar.png";
 import { Profile } from "../../../redux/profile/types";
 
-export const FriendsContainer = styled.div`
+interface ViewFriendsProps {
+	minWidth?: string;
+}
+
+export const FriendsContainer = styled.div<ViewFriendsProps>`
 	display: grid;
 	place-items: center;
 	grid-template-rows: 80px 1fr 80px;
 
-	width: 100%;
-	height: 100%;
-	min-width: 770px;
+	height: 85%;
+	min-width: ${({ minWidth }) => (minWidth ? minWidth : "400px")};
 	max-width: 40vw;
 	max-height: 40vh;
-	/* padding: 30px; */
+
 	border: 1px solid ${({ theme }) => theme.lightAccent};
 	border-radius: 30px;
 `;
@@ -20,7 +23,7 @@ export const FriendsContainer = styled.div`
 export const FriendsInfo = styled.div`
 	display: grid;
 	grid-template-columns: 1fr auto;
-	/* padding: 20px; */
+
 	place-items: center;
 	width: 94%;
 
@@ -63,6 +66,12 @@ export const FriendPhoto = styled.div<Pick<Profile, "photoURL">>`
 	border-radius: 50%;
 
 	overflow: hidden;
+
+	cursor: pointer;
+
+	:active {
+		transform: scale(0.98);
+	}
 `;
 
 export const ViewMoreLink = styled.a`

@@ -7,4 +7,11 @@ export interface FriendRequestProps {
 
 export interface FriendsProps {
 	friends: Profile[];
+	handleOpen: () => void;
+}
+
+export interface ViewFriendsProps {
+	open: boolean;
+	handleClose: () => void;
+	handleOpen: () => void;
 }

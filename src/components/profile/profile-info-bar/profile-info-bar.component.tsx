@@ -15,6 +15,8 @@ import { ParamTypes } from "../../../types";
 import callFirebaseFunction from "../../../utils/methods/call-firebase-function.method";
 
 import ProfilePicture from "../../common/profile-picture/profile-picture.component";
+import ViewFriendsModal from "../../friends/view-friends-modal/view-friends-modal.component";
+import ViewFriends from "../../friends/view-friends/view-friends.component";
 import ProfileFriends from "../profile-friends/profile-friends.component";
 import {
 	InfoText,
@@ -46,6 +48,7 @@ const ProfileInfoBar = (props: ProfileInfoBarProps) => {
 	);
 
 	const [disabled, setDisabled] = useState<boolean>(false);
+	const [open, setOpen] = useState<boolean>(false);
 
 	useEffect(() => {
 		console.log("PENDING: ", pendingRequests.includes(uid));
@@ -71,6 +74,14 @@ const ProfileInfoBar = (props: ProfileInfoBarProps) => {
 		history.goBack();
 	};
 
+	const handleClose = () => {
+		setOpen(false);
+	};
+
+	const handleOpen = () => {
+		setOpen(true);
+	};
+
 	return (
 		<ProfileInfoContainer>
 			<ProfileControls>
@@ -90,7 +101,14 @@ const ProfileInfoBar = (props: ProfileInfoBarProps) => {
 				<InfoText>{props.user.displayName}</InfoText>
 				<InfoText>{props.user.email}</InfoText>
 			</ProfileInfo>
-			<ProfileFriends friends={friends} />
+			<ViewFriends friends={friends} handleOpen={handleOpen} />
+			{/* <ProfileFriends friends={friends} /> */}
+
+			<ViewFriendsModal
+				open={open}
+				handleClose={handleClose}
+				handleOpen={handleOpen}
+			/>
 		</ProfileInfoContainer>
 	);
 };

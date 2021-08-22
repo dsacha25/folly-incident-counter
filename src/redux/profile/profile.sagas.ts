@@ -96,6 +96,7 @@ export function* fetchProfileInfo({
 			displayName: user_data.displayName,
 			email: user_data.email,
 			photoURL: user_data.photoURL,
+			friend_uid: payload,
 		};
 
 		yield put(fetchProfileInfoSuccess(user_info));
@@ -146,6 +147,7 @@ export function* fetchFriends({
 					displayName: friendDoc.displayName,
 					email: friendDoc.email,
 					photoURL: friendDoc.photoURL,
+					friend_uid,
 				};
 
 				friends.push(friend);

@@ -15,6 +15,7 @@ import { State } from "./redux/root-reducer";
 import PrivateRoute from "./components/common/private-route/private-route.component";
 import PublicProfilePage from "./pages/public-profile-page/public-profile-page.component";
 import NotficationPage from "./pages/notification-page/notification-page.component";
+import ViewFriendsModal from "./components/friends/view-friends-modal/view-friends-modal.component";
 
 function App() {
 	const dispatch = useDispatch();
@@ -50,9 +51,11 @@ function App() {
 				<PrivateRoute exact path="/dashboard">
 					<UserDashboardPage />
 				</PrivateRoute>
-				<PrivateRoute exact path="/profile/:uid">
+
+				<PrivateRoute path="/profile/:uid">
 					<PublicProfilePage />
 				</PrivateRoute>
+
 				<PrivateRoute exact path="/notification/:notif_type/:notif_uid/">
 					<NotficationPage />
 				</PrivateRoute>

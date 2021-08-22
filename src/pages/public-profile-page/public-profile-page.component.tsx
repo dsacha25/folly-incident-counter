@@ -27,6 +27,8 @@ import { ParamTypes } from "../../types";
 const PublicProfilePage = () => {
 	const dispatch = useDispatch();
 
+	const { uid } = useParams<ParamTypes>();
+
 	const fetchInfo = (uid: string) => dispatch(fetchProfileInfoStart(uid));
 	const fetchIncidents = (uid: string) =>
 		dispatch(fetchProfileIncidentsStart(uid));
@@ -44,15 +46,14 @@ const PublicProfilePage = () => {
 		displayName: "",
 		email: "",
 		photoURL: "",
+		friend_uid: uid,
 	});
-
-	const { uid } = useParams<ParamTypes>();
 
 	useEffect(() => {
 		fetchInfo(uid);
 		fetchIncidents(uid);
 		fetchFriends(uid);
-	}, []);
+	}, [uid]);
 
 	useEffect(() => {
 		if (user_info) {

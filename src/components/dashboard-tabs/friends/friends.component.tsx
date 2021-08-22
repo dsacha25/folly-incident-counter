@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Profile } from "../../../redux/profile/types";
@@ -11,8 +11,9 @@ import {
 } from "../../../redux/user/user.selector";
 import GenericContainer from "../../common/generic-container/generic-container.component";
 import FriendRequest from "../../friends/friend-request/friend-request.component";
+import ViewFriendsModal from "../../friends/view-friends-modal/view-friends-modal.component";
 import ViewFriends from "../../friends/view-friends/view-friends.component";
-import { FriendsContainer } from "../../profile/profile-friends/profile-friends.styles";
+
 import { DashboardProps } from "../types";
 import { FriendsTabContainer } from "./friends.styles";
 
@@ -28,6 +29,8 @@ const Friends = (props: DashboardProps) => {
 		selectFriends(state)
 	);
 
+	const [open, setOpen] = useState<boolean>(false);
+
 	useEffect(() => {
 		if (props.tab === 3) {
 			fetchFriends();
@@ -42,7 +45,12 @@ const Friends = (props: DashboardProps) => {
 				))}
 			</GenericContainer>
 
-			<ViewFriends friends={friends} />
+			<ViewFriends friends={friends} handleOpen={() => setOpen(true)} />
+			<ViewFriendsModal
+				open={open}
+				handleClose={() => setOpen(false)}
+				handleOpen={() => setOpen(true)}
+			/>
 		</FriendsTabContainer>
 	) : null;
 };

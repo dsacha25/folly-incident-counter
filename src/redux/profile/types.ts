@@ -4,6 +4,7 @@ export interface Profile {
 	displayName: string | null;
 	email: string | null;
 	photoURL: string | null;
+	friend_uid: string;
 }
 
 export type ProfileState = {

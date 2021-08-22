@@ -340,6 +340,7 @@ export function* fetchFriends(): Generator | Query {
 					displayName: friendDoc.displayName,
 					email: friendDoc.email,
 					photoURL: friendDoc.photoURL,
+					friend_uid,
 				};
 
 				friends.push(friend);

@@ -10,6 +10,7 @@ export const AccessPanelContainer = styled.div`
 	grid-template-rows: repeat(5, auto) 1fr;
 
 	padding: 50px 0 0 100px;
+	z-index: 1;
 
 	@media screen and (max-width: 800px) {
 		position: absolute;
