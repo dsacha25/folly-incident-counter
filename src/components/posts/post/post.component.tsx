@@ -17,6 +17,7 @@ const Post = (props: PostProps) => {
 			<Avatar
 				photoURL={props.incident?.user.photoURL}
 				username={props.incident?.user.username}
+				user_uid={props.incident?.user.user_uid}
 			/>
 			<PostBody
 				name={props.incident?.name}

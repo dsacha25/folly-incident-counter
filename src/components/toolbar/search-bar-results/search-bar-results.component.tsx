@@ -29,7 +29,12 @@ const SearchBarResults = (props: SearchBarResultsProps) => {
 					key={user.user_uid}
 					onClick={() => handleViewProfile(user.user_uid)}
 				>
-					<Avatar noBorder username={user.username} photoURL={user.photoURL} />
+					<Avatar
+						noBorder
+						username={user.username}
+						photoURL={user.photoURL}
+						user_uid={user.user_uid}
+					/>
 				</SearchBarItem>
 			))}
 		</SearchBarResultsContainer>

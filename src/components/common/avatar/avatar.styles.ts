@@ -16,7 +16,7 @@ export const AvatarContainer = styled.div<Pick<AvatarProps, "noBorder">>`
 		${({ theme }) => theme.lightAccent};
 `;
 
-export const AvatarPhoto = styled.div<Omit<AvatarProps, "username">>`
+export const AvatarPhoto = styled.div<Pick<AvatarProps, "photoURL">>`
 	background: url(${({ photoURL }) => (photoURL ? photoURL : PictureAvatar)});
 	width: 45px;
 	height: 45px;
@@ -27,6 +27,8 @@ export const AvatarPhoto = styled.div<Omit<AvatarProps, "username">>`
 	border-radius: 50%;
 
 	overflow: hidden;
+
+	cursor: pointer;
 `;
 
 export const AvatarDisplayName = styled.p`

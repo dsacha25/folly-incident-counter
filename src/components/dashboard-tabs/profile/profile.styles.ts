@@ -8,7 +8,7 @@ export const ProfileContainer = styled.div`
 	max-width: 40vw;
 
 	padding-top: 40px;
-	grid-template-rows: 40vh 1fr;
+	grid-template-rows: auto 1fr;
 	gap: 40px;
 
 	@media screen and (max-width: 800px) {
