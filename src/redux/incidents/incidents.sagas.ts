@@ -26,6 +26,7 @@ import { QuerySnapshot } from "../../utils/firebase/types";
 import { Query } from "@testing-library/react";
 import Incident from "../../utils/classes/incident/incident";
 import { selectIncidents } from "./incidents.selector";
+import getErrorMessage from "../../utils/methods/get-error-message.method";
 
 // ==== CREATE INCIDENT ==== //
 export function* createNewIncident({
@@ -47,7 +48,7 @@ export function* createNewIncident({
 
 		yield put(createIncidentSuccess(payload));
 	} catch (err) {
-		yield put(incidentError(err.message));
+		yield put(incidentError(getErrorMessage(err)));
 	}
 }
 
@@ -79,7 +80,7 @@ export function* fetchIncidents(): Generator<SelectEffect | PutEffect> | Query {
 			fetchIncidentsSuccess(incidents.map((incident) => new Incident(incident)))
 		);
 	} catch (err) {
-		yield put(incidentError(err.message));
+		yield put(incidentError(getErrorMessage(err)));
 	}
 }
 
@@ -107,7 +108,7 @@ export function* updateIncident({
 			)
 		);
 	} catch (err) {
-		yield put(incidentError(err.message));
+		yield put(incidentError(getErrorMessage(err)));
 	}
 }
 
@@ -126,7 +127,7 @@ export function* deleteIncident({
 
 		yield put(deleteIncidentSuccess(payload));
 	} catch (err) {
-		yield put(incidentError(err.message));
+		yield put(incidentError(getErrorMessage(err)));
 	}
 }
 

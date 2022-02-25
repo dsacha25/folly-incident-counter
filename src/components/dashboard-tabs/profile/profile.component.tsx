@@ -61,6 +61,8 @@ const Profile = (props: DashboardProps) => {
 		setPicture(image);
 	};
 
+	const setRandomPhoto = () => {};
+
 	return props.tab === 1 ? (
 		<ProfileContainer>
 			<GenericContainer title="Info" minHeight="500px">

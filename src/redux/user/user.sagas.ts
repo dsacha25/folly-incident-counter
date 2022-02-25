@@ -50,6 +50,7 @@ import { selectCurrentUser, selectUID } from "./user.selector";
 import callFirebaseFunction from "../../utils/methods/call-firebase-function.method";
 import { Profile } from "../profile/types";
 import { filter, flatMap } from "lodash";
+import getErrorMessage from "../../utils/methods/get-error-message.method";
 
 /// CREATE USER IN FIREBASE
 export function* createUserInFirebase({
@@ -77,7 +78,7 @@ export function* createUserInFirebase({
 			});
 		}
 	} catch (err) {
-		yield put(signUpUserFailure(err));
+		yield put(signUpUserFailure(getErrorMessage(err)));
 	}
 }
 
@@ -106,7 +107,7 @@ export function* userEmailSignUp({ payload }: SignUpStartAction) {
 			})
 		);
 	} catch (err) {
-		yield put(signUpUserFailure(err));
+		yield put(signUpUserFailure(getErrorMessage(err)));
 	}
 }
 
@@ -124,7 +125,7 @@ export function* userSignInStart({ payload }: SignInStartAction) {
 
 		yield put(signInUserSuccess(user));
 	} catch (err) {
-		yield put(signUpUserFailure(err));
+		yield put(signUpUserFailure(getErrorMessage(err)));
 	}
 }
 
@@ -144,7 +145,7 @@ export function* isUserAuthenticated():
 		yield console.log("user: ", user);
 		yield put(setUserAuth(user));
 	} catch (err) {
-		yield put(signUpUserFailure(err.message));
+		yield put(signUpUserFailure(getErrorMessage(err)));
 	}
 }
 
@@ -162,7 +163,6 @@ export function* onUserSignOut() {
 }
 
 /// SET PROFILE PICTURE
-
 export function* setUserProfilePicture({
 	payload,
 }: SetProfilePictureAction): Generator<
@@ -201,7 +201,7 @@ export function* setUserProfilePicture({
 
 		yield call(callFirebaseFunction, "updateUserPhotoReferences");
 	} catch (err) {
-		yield put(signUpUserFailure(err.message));
+		yield put(signUpUserFailure(getErrorMessage(err)));
 	}
 }
 
@@ -210,7 +210,6 @@ export function* onSetProfilePicture() {
 }
 
 /// SEARCH USERS
-
 export const processUserQueryRef = (docs: QueryDocumentSnapshot[]) => {
 	const startRef = docs[0].ref;
 	const endRef = docs[docs.length - 1].ref;
@@ -250,7 +249,7 @@ export function* searchUsers({
 		yield put(setSearchPagination({ start, end }));
 		yield put(searchUsersSuccess(users));
 	} catch (err) {
-		yield put(signUpUserFailure(err.message));
+		yield put(signUpUserFailure(getErrorMessage(err)));
 	}
 }
 
@@ -273,7 +272,7 @@ export function* fetchPendingFriendRequests(): Generator<SelectEffect> | Query {
 
 		yield put(fetchPendingFriendRequestsSuccess(requests));
 	} catch (err) {
-		yield put(signUpUserFailure(err.message));
+		yield put(signUpUserFailure(getErrorMessage(err)));
 	}
 }
 
@@ -289,7 +288,6 @@ export function* fetchFriendRequests():
 	| Query {
 	try {
 		const uid = yield select(selectUID);
-		yield console.log("FRIEND REQUESTS: ");
 
 		const req_docs: QuerySnapshot = yield firestore
 			.collection(`users/${uid}/requests`)
@@ -302,7 +300,7 @@ export function* fetchFriendRequests():
 
 		yield put(fetchFriendRequestsSuccess(requests));
 	} catch (err) {
-		yield put(signUpUserFailure(err.message));
+		yield put(signUpUserFailure(getErrorMessage(err)));
 	}
 }
 
@@ -350,7 +348,7 @@ export function* fetchFriends(): Generator | Query {
 
 		yield put(fetchFriendsSuccess(friends));
 	} catch (err) {
-		yield put(signUpUserFailure(err.message));
+		yield put(signUpUserFailure(getErrorMessage(err)));
 	}
 }
 

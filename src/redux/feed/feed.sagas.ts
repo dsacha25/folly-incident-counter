@@ -17,6 +17,7 @@ import FeedTypes from "./feed.types";
 import { feedError, fetchFeedIncidentsSuccess } from "./feed.actions";
 import { filter, flatten, flatMap } from "lodash";
 import Incident from "../../utils/classes/incident/incident";
+import getErrorMessage from "../../utils/methods/get-error-message.method";
 
 // FETCH FEED
 export function* fetchFeed(): Generator | Query {
@@ -53,7 +54,7 @@ export function* fetchFeed(): Generator | Query {
 			)
 		);
 	} catch (err) {
-		yield put(feedError(err.message));
+		yield put(feedError(getErrorMessage(err)));
 	}
 }
 

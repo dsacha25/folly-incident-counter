@@ -15,7 +15,11 @@ import { State } from "./redux/root-reducer";
 import PrivateRoute from "./components/common/private-route/private-route.component";
 import PublicProfilePage from "./pages/public-profile-page/public-profile-page.component";
 import NotficationPage from "./pages/notification-page/notification-page.component";
-import ViewFriendsModal from "./components/friends/view-friends-modal/view-friends-modal.component";
+
+import {
+	fetchRandomUser,
+	parseRandomUser,
+} from "./utils/development/create-random-users";
 
 function App() {
 	const dispatch = useDispatch();

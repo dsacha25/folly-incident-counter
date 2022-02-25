@@ -4,6 +4,7 @@ import "firebase/auth";
 import "firebase/functions";
 import "firebase/storage";
 import { DocumentReference, UserCredential } from "./types";
+import getErrorMessage from "../methods/get-error-message.method";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyDwCDUGpjCwuPt5_ZGA2cno0mGs40VNWZg",
@@ -71,7 +72,7 @@ export const createUserProfileDocument = async (
 				{ merge: true }
 			);
 		} catch (err) {
-			console.log("Error creating user: ", err.message);
+			console.log("Error creating user: ", getErrorMessage(err));
 		}
 	}
 	return userRef;

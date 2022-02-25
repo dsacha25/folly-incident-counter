@@ -43,6 +43,7 @@ import ProfileTypes from "./profile.types";
 import { Profile } from "./types";
 import { flatMap, sortBy, filter } from "lodash";
 import { selectUID } from "../user/user.selector";
+import getErrorMessage from "../../utils/methods/get-error-message.method";
 
 // FETCH PROFILE INCIDENTS
 export function* fetchProfileIncidents({
@@ -66,7 +67,7 @@ export function* fetchProfileIncidents({
 			)
 		);
 	} catch (err) {
-		yield put(setProfileError(err));
+		yield put(setProfileError(getErrorMessage(err)));
 	}
 }
 
@@ -101,7 +102,7 @@ export function* fetchProfileInfo({
 
 		yield put(fetchProfileInfoSuccess(user_info));
 	} catch (err) {
-		yield put(setProfileError(err));
+		yield put(setProfileError(getErrorMessage(err)));
 	}
 }
 
@@ -157,8 +158,8 @@ export function* fetchFriends({
 		yield console.log("FRIENDS: ", friends);
 
 		yield put(fetchProfileFriendsSuccess(friends));
-	} catch (err) {
-		yield put(setProfileError(err));
+	} catch (err: unknown) {
+		yield put(setProfileError(getErrorMessage(err)));
 	}
 }
 

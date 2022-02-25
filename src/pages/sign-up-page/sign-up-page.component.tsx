@@ -7,6 +7,10 @@ import { useDispatch } from "react-redux";
 import { signUpUserStart, EmailSignUpInfo } from "../../redux/user/user.action";
 import { useForm, SubmitHandler } from "react-hook-form";
 import ErrorMessage from "../../components/common/error-message/error-message.component";
+import {
+	fetchRandomUser,
+	parseRandomUser,
+} from "../../utils/development/create-random-users";
 
 const SignUpPage = () => {
 	const dispatch = useDispatch();
@@ -25,6 +29,12 @@ const SignUpPage = () => {
 		console.log("Data: ", data);
 
 		signUpUser(data);
+	};
+
+	const handleRandomUser = async () => {
+		const userCredentials = parseRandomUser(await fetchRandomUser());
+
+		signUpUser(userCredentials);
 	};
 
 	return (
@@ -70,6 +80,11 @@ const SignUpPage = () => {
 				<ErrorMessage error={errors.password?.message} />
 				<ErrorMessage error={errors.confirmPassword?.message} />
 				<CustomButton type="submit">Submit</CustomButton>
+				{process.env.NODE_ENV === "development" && (
+					<CustomButton type="button" onClick={handleRandomUser}>
+						CREATE RANDOM USER
+					</CustomButton>
+				)}
 			</SignUpForm>
 		</PageBlank>
 	);
